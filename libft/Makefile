@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/06/06 20:22:37 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/07 02:01:02 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,30 +51,20 @@ $(OBJ_DIR)/%.o : src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
-	tput setaf 2; printf "\n-> library provided <-\n"
+	tput setaf 2; printf "\n<- library provided ->\n\n"
 	tput setaf 7
 
 $(NAME) : $(OBJ) $(HEADER) $(SRC)
-	tput setaf 3; echo "LIBFT->"
-	tput setaf 3; echo "Building->"
+	tput setaf 2; printf "\n<- Libft ->\n<- Building ->"
 	mkdir -p Library
 	ar -rc $(NAME) $(OBJ)
 
 clean:
-	tput setaf 3; echo "\nCleaning->"
 	rm -rf $(OBJ_DIR)
-	tput setaf 1; echo "Objects->" | tr -d '\n'
-	tput setaf 2; echo "       [ok] [ok]\n"
 
 fclean: clean
-	tput setaf 3; echo "Cleaning->"
 	rm -rf Library
-	tput setaf 1; echo "Libraries->" | tr -d '\n'
-	tput setaf 2; echo "     [ok] [ok]\n"
-
 
 re : fclean all
-	tput setaf 3; echo "\nRecreated->"
-	tput setaf 2; echo "All->           [ok] [ok]"
 
 .PHONY : all clean fclean re

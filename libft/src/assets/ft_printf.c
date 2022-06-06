@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 21:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/02/20 19:19:35 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/07 01:36:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,20 @@ int	ft_vfprintf(const char *s, va_list args, int ret)
 	int	i;
 
 	i = 0;
-	while (s[i] && s[i] != '\0')
+	(void) args;
+	while (s[i])
 	{
-		if (s[i] == '%')
-		{
-			ret += ft_format(s[i + 1], args);
-			i++;
-		}
-		i++;
 		if (s[i] != '%')
 		{
 			ft_putchr(s[i]);
 			ret++;
 		}
+		else
+		{
+			ret += ft_format(s[i + 1], args);
+			i++;
+		}
+		i++;
 	}
 	return (ret);
 }
@@ -60,10 +61,6 @@ int	ft_printf(const char *s, ...)
 
 	ret = 0;
 	va_start(args, s);
-	if (s[0] != '%')
-		ft_putchr(s[0]);
-	else
-		ret -= 1;
 	ret = ft_vfprintf(s, args, ret);
 	va_end(args);
 	return (ret);
