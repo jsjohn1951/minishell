@@ -6,23 +6,15 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:53:05 by wismith           #+#    #+#             */
-/*   Updated: 2021/10/05 09:57:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/06 22:41:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "../include/libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (s)
-	{
-		while (s[i])
-		{
-			write(fd, &s[i], 1);
-			i++;
-		}
-	}
+		write(fd, s, ft_strlen(s));
 }

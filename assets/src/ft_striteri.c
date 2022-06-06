@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 09:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2021/10/05 09:40:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/06 22:42:13 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	size_t		i;
 
-	i = 0;
+	i = -1;
 	if (s && f)
-	{
-		while (s[i])
-		{
+		while (s[++i])
 			f(i, s + i);
-			i++;
-		}
-	}
 }
