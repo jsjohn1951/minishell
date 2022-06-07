@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   cmdcheck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 18:21:51 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/07 17:24:18 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/07 16:02:00 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/07 17:14:02 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../../includes/minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	simple_cmd(char *cmd)
 {
-	char	*str1;
-	char	*str2;
+	int	res;
 
-	str1 = (char *) s1;
-	str2 = (char *) s2;
-	if (n == 0)
-		return (0);
-	while (*str1 && *str2 && *str1 == *str2 && n > 0)
+	if (!ft_strncmp(cmd, "clear", 4))
+			ft_printf(KCLR);
+	if (!ft_strncmp(cmd, "exit", 3))
 	{
-		str1++;
-		str2++;
-		n--;
+		res = exit_parser(cmd);
+		free (cmd);
+		cmd = NULL;
+		exit (res);
 	}
-	return (*(unsigned char *)str1 - *(unsigned char *)str2);
+	else
+	{
+		free (cmd);
+		cmd = NULL;
+	}
+	return (0);
 }

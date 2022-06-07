@@ -1,29 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/07 17:18:18 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/07 16:31:48 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/07 17:36:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(void)
+int	dub_quote_(char *cmd)
 {
-	char *cmd;
-	char *custom;
+	int	i;
+	int	count;
 
-	custom = "<$ SEASHELL-S $> ";
-	cmd = NULL;
-	while (isatty(STDIN_FILENO))
+	i = 0;
+	count = 0;
+	while (cmd[i])
 	{
-		cmd = readline(custom);
-		ft_printf("%s\n", cmd);
-		simple_cmd(cmd);
+		if (cmd[i] == 34)
+			count++;
+		i++;
 	}
-	return (0);
+	return (count);
+}
+
+int	exit_parser(char *cmd)
+{
+	int	i;
+	char *s;
+	int	res;
+	char **str;
+
+	i = -1;
+	s = cmd;
+	if (!dub_quote_(s))
+	{
+		while (++i <= 3)
+			s++;
+		res = ft_atoi(s);
+	}
+	else
+	{
+		str = ft_split(cmd, 34);
+		res = ft_atoi(str[1]);
+		free(str);
+	}
+	return (res);
 }

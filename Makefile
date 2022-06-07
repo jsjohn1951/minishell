@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/07 02:48:13 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/07 17:02:04 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME = minishell
 
 # SRCS because we never outsource our work
-SRCS = main/main
+SRCS = main/main cmds/cmdcheck parser/parser
 
 # Objects used to compile
 OBJDIR = Objects
@@ -26,13 +26,14 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/Library/libft.a
-READ = readline/8.1.2/lib/*.dylib
+READ = readline/lib/*.dylib readline/lib/*.a
 
 # Compile the objects inside the objects folder
 $(OBJDIR)/%.o : srcs/%.c
 	mkdir -p $(OBJDIR)
 	mkdir -p $(OBJDIR)/main
 	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/cmds
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)

@@ -1,0 +1,14 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/johnsmith/Desktop/42_Projects/minishell'
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/parser
+mkdir -p Objects/cmds
+gcc -Wall -Wextra -Werror -c srcs/parser/parser.c -o Objects/parser/parser.o
+ 
+tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
+make -C libft
+gcc -Wall -Wextra -Werror libft/Library/libft.a readline/lib/*.dylib readline/lib/*.a Objects/main/main.o Objects/cmds/cmdcheck.o Objects/parser/parser.o -o minishell
+tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
+make: Leaving directory `/Users/johnsmith/Desktop/42_Projects/minishell'
+ 

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/07 02:59:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/07 17:02:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <unistd.h>
 # include "../libft/include/libft.h"
 # include "../libft/include/ft_printf.h"
+
+int		simple_cmd(char *cmd);
+int		exit_parser(char *cmd);
 #endif
