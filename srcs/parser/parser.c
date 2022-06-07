@@ -6,11 +6,22 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:31:48 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/07 17:36:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/08 01:07:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	all_spaces(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] != ' ')
+			return (1);
+	return (0);
+}
 
 int	dub_quote_(char *cmd)
 {
@@ -30,10 +41,10 @@ int	dub_quote_(char *cmd)
 
 int	exit_parser(char *cmd)
 {
-	int	i;
-	char *s;
-	int	res;
-	char **str;
+	int		i;
+	char	*s;
+	int		res;
+	char	**str;
 
 	i = -1;
 	s = cmd;
@@ -47,7 +58,9 @@ int	exit_parser(char *cmd)
 	{
 		str = ft_split(cmd, 34);
 		res = ft_atoi(str[1]);
-		free(str);
+		free (cmd);
+		cmd = NULL;
+		free_matrix(str);
 	}
 	return (res);
 }

@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/07 17:02:04 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/08 00:20:31 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 NAME = minishell
 
 # SRCS because we never outsource our work
-SRCS = main/main cmds/cmdcheck parser/parser
+SRCS = main/main cmds/cmdcheck parser/parser\
+		parser/terminate
 
 # Objects used to compile
 OBJDIR = Objects

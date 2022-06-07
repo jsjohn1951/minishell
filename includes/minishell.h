@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/07 17:02:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/08 00:56:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@
 
 int		simple_cmd(char *cmd);
 int		exit_parser(char *cmd);
+int		all_spaces(char *s);
+void	free_matrix(char **matrix);
 #endif

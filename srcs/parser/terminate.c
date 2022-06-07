@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/08 01:04:57 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/08 00:23:14 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(void)
+void	free_matrix(char **matrix)
 {
-	char	*cmd;
-	char	*custom;
+	int	i;
 
-	custom = "<$ SEASHELL-S $> ";
-	cmd = NULL;
-	while (isatty(STDIN_FILENO))
-	{
-		cmd = readline(custom);
-		simple_cmd(cmd);
-	}
-	return (0);
+	i = -1;
+	while (matrix[++i])
+		free(matrix[i]);
+	free (matrix);
+	matrix = NULL;
 }
