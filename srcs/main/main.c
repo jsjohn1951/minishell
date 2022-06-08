@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/08 01:04:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:52:48 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	main(void)
 	while (isatty(STDIN_FILENO))
 	{
 		cmd = readline(custom);
-		simple_cmd(cmd);
+		if (ft_strlen(cmd))
+			simple_cmd(cmd);
+		else
+			break ;
 	}
 	return (0);
 }
