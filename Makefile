@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/08 00:20:31 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/08 14:48:28 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = minishell
 
 # SRCS because we never outsource our work
 SRCS = main/main cmds/cmdcheck parser/parser\
-		parser/terminate
+		parser/terminate errors/err1
 
 # Objects used to compile
 OBJDIR = Objects
@@ -35,6 +35,7 @@ $(OBJDIR)/%.o : srcs/%.c
 	mkdir -p $(OBJDIR)/main
 	mkdir -p $(OBJDIR)/parser
 	mkdir -p $(OBJDIR)/cmds
+	mkdir -p $(OBJDIR)/errors
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/08 14:28:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/08 14:51:25 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@
 
 # include "../readline/includes/readline.h"
 # include "../readline/includes/history.h"
-# include <unistd.h>
 # include "../libft/include/libft.h"
 # include "../libft/include/ft_printf.h"
+
+# include <unistd.h>
+
+typedef struct s_data
+{
+	char	**data;
+}	t_data;
 
 /* cmds */
 /*	cmdcheck.c */
@@ -41,4 +47,8 @@ int		all_spaces(char *s);
 /* parser */
 /*	terminate.c */
 void	free_matrix(char **matrix);
+
+/* errors */
+/*	err1.c */
+void	err_(char *cmd);
 #endif
