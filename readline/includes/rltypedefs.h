@@ -22,7 +22,7 @@
 #ifndef _RL_TYPEDEFS_H_
 #define _RL_TYPEDEFS_H_
 
-#define FILE void
+// #define FILE void
 
 #ifdef __cplusplus
 extern "C" {

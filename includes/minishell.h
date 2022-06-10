@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/08 14:51:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/10 09:13:17 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define KCYN  "\x1B[36m"
 # define KWHT  "\x1B[37m"
 # define KCLR  "\e[1;1H\e[2J"
+
+#include <stdio.h>
 
 # include "../readline/includes/readline.h"
 # include "../readline/includes/history.h"
@@ -47,6 +49,10 @@ int		all_spaces(char *s);
 /* parser */
 /*	terminate.c */
 void	free_matrix(char **matrix);
+/*	printer */
+void	print_matrix(char **matrix);
+/*	customsplit */
+char	**split(char *cmd);
 
 /* errors */
 /*	err1.c */

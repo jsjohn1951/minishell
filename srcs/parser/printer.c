@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/10 09:13:39 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/10 09:14:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(void)
+void	print_matrix(char **matrix)
 {
-	char	*cmd;
-	char	*custom;
-	t_data	data;
+	int	i;
 
-	custom = "<$ SEASHELL-S $> ";
-	cmd = NULL;
-	while (isatty(STDIN_FILENO))
+	i = 0;
+	ft_printf("\n");
+	while (matrix[i])
 	{
-		cmd = readline(custom);
-		if (ft_strlen(cmd))
-		{
-			add_history(cmd);
-			simple_cmd(cmd);
-			data.data = split(cmd);
-			print_matrix(data.data);
-			free (cmd);
-			cmd = NULL;
-			free_matrix(data.data);
-		}
-		else if (!cmd)
-			break ;
+		ft_printf("argument %d: '%s'\n", i, matrix[i]);
+		i++;
 	}
-	return (0);
+	ft_printf("\n");
 }
