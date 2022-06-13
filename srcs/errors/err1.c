@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:48:36 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/08 14:50:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/10 10:28:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ void	err_(char *cmd)
 	ft_putstr_fd(": command not found\n", 2);
 	free_matrix(matrix);
 	free_matrix(m2);
+}
+
+void	err_split(void)
+{
+	ft_putstr_fd("Contains uneven num of '", 2);
+	ft_putchar_fd(34, 2);
+	ft_putstr_fd("'\n", 2);
 }
