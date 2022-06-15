@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/12 20:48:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/15 10:50:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_universal_flags
 	int	s_quote;
 	int	w_counter;
 }	t_flags;
-
 
 /* cmds */
 /*	cmdcheck.c */

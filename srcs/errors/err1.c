@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:48:36 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/10 10:28:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/15 10:52:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	err_(char *cmd)
 	int		i;
 
 	i = -1;
-	matrix = ft_split(cmd, ' ');
-	m2 = ft_split(matrix[0], 34);
+	matrix = ft_split_mod(cmd, ' ');
+	m2 = ft_split_mod(matrix[0], 34);
 	ft_putstr_fd("SEASHELL-S: ", 2);
 	while (m2[++i])
 		ft_putstr_fd(m2[i], 2);
