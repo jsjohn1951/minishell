@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/15 10:49:35 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/15 11:23:00 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/Library/libft.a
 READ = readline/lib/*.dylib readline/lib/*.a
+OFLAGS = -L/usr/local/lib -I/usr/local/include -lreadline
 
 # Compile the objects inside the objects folder
 $(OBJDIR)/%.o : srcs/%.c
@@ -47,7 +48,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	make -C libft
-	$(CC) $(CFLAGS) $(LIBFT) -L/usr/local/lib -I/usr/local/include -lreadline $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(LIBFT) $(OFLAGS) $(OBJ) -o $(NAME)
 #	$(CC) $(CFLAGS) $(LIBFT) $(READ) $(OBJ) -o $(NAME)
 
 # Cleans the objects (including libft)

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/15 10:50:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/16 11:15:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct s_data
 
 typedef struct s_universal_flags
 {
-	int	d_quote;
-	int	s_quote;
-	int	w_counter;
+	int	count;
+	int	quote;
+	int	word;
 }	t_flags;
 
 /* cmds */
