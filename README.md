@@ -25,7 +25,6 @@
 -> displays the prompt and receives user input from
 -> stdin
 ->
--> So far I've incorporated a simple split function
 -> and a simple parser that detects whether it's 
 -> received the 'clear' or 'exit' commands
 -> 'Clear' uses the printf clear characters but
@@ -33,3 +32,14 @@
 -> clear function in the $PATH directories.
 -> 'exit' only takes one argument, but does
 -> not handle errors
+->
+  _________________
+ /*  Version 1.5 */
+/* list changes */
+-----------------
+
+-> custom split works with simple input including :
+-> <$ SEASHELL-S $> "hello" "world" aa'bob'yy is here
+->
+-> custom split fails with complex inputs, e.g.:
+-> <$ SEASHELL-s $> ''a ''''b''c''y'y'
