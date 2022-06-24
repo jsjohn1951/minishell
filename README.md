@@ -41,5 +41,7 @@
 -> custom split works with simple input including :
 -> <$ SEASHELL-S $> "hello" "world" aa'bob'yy is here
 ->
--> custom split fails with complex inputs, e.g.:
--> <$ SEASHELL-s $> ''a ''''b''c''y'y'
+-> FIXED :: Version 1.6
+-> -> custom split fails with complex inputs, e.g.:
+-> -> <$ SEASHELL-s $> ''a ''''b'' c'' y''
+-> FIXED ;;

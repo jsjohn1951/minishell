@@ -6,67 +6,51 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:08:31 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/17 16:12:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/24 15:00:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_quote_(char c)
-{
-	if (c == 34 || c == 39)
-		return (1);
-	return (0);
-}
-
 int	count_(char *cmd, t_flags flags)
 {
 	int	i;
 
-	i = -1;
-	if (!is_quote_(cmd[0]) && cmd[0] != ' ')
-		flags.word = ++flags.count;
-	while (cmd[++i])
+	i = 0;
+	while (cmd[i])
 	{
-		if (is_quote_(cmd[i]) && !flags.quote && !flags.word)
+		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+			isword(&flags);
+		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
-			flags.quote = cmd[i];
-			flags.count++;
+			is_quoted_message(&flags, cmd, i);
+			i++;
 		}
-		else if (flags.quote == cmd[i])
-			flags.quote = 0;
-		else if (cmd[i - 1] && cmd[i - 1] == ' '
-			&& cmd[i] != ' ' && !flags.quote && !flags.word)
-			flags.word = ++flags.count;
-		else if (cmd[i] == ' ')
-			flags.word = 0;
+		cancel_flags(&flags, cmd, i);
+		i++;
 	}
 	if (flags.quote)
 		return (0);
 	return (flags.count);
 }
 
-int	sub_(char *cmd, t_flags flags, int word)
+int	count_start_(char *cmd, t_flags flags, int word)
 {
 	int	i;
 
 	i = 0;
-	if (!is_quote_(cmd[0]) && cmd[0] != ' ')
-		flags.word = ++flags.count;
 	while (cmd[i])
 	{
-		if (is_quote_(cmd[i]) && !flags.quote && !flags.word)
+		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+			isword(&flags);
+		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
-			flags.quote = cmd[i];
-			flags.count++;
+			is_quoted_message(&flags, cmd, i);
+			if (flags.count == word)
+				break ;
+			i++;
 		}
-		else if (flags.quote == cmd[i])
-			flags.quote = 0;
-		else if (cmd[i - 1] && cmd[i - 1] == ' '
-			&& cmd[i] != ' ' && !flags.quote && !flags.word)
-			flags.word = ++flags.count;
-		else if (cmd[i] == ' ')
-			flags.word = 0;
+		cancel_flags(&flags, cmd, i);
 		if (flags.count == word)
 			break ;
 		i++;
@@ -74,58 +58,59 @@ int	sub_(char *cmd, t_flags flags, int word)
 	return (i);
 }
 
-int	sub_v2_(char *cmd, t_flags flags, int word)
+int	count_end_(char *cmd, t_flags flags, int word)
 {
 	int	i;
 
 	i = 0;
-	if (!is_quote_(cmd[0]) && cmd[0] != ' ')
-		flags.word = ++flags.count;
 	while (cmd[i])
 	{
-		if (is_quote_(cmd[i]) && !flags.quote && !flags.word)
+		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+			isword(&flags);
+		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
-			flags.quote = cmd[i];
-			flags.count++;
+			is_quoted_message(&flags, cmd, i);
+			i++;
 		}
-		else if (flags.quote == cmd[i])
-			flags.quote = 0;
-		else if (cmd[i - 1] && cmd[i - 1] == ' '
-			&& cmd[i] != ' ' && !flags.quote && !flags.word)
-			flags.word = ++flags.count;
-		else if (cmd[i] == ' ')
-			flags.word = 0;
-		if (flags.count >= word && !flags.quote && cmd[i] == ' ')
-			break ;
+		cancel_flags(&flags, cmd, i);
 		i++;
+		if (flags.count == word && !flags.quote && !flags.word)
+			break ;
 	}
 	return (i);
 }
 
+void	flag_init(t_flags *flags)
+{
+	flags->count = 0;
+	flags->quote = 0;
+	flags->word = 0;
+}
+
 char	**split(char *cmd)
 {
-	int		w_count;
-	char	**res;
-	int		i;
-	int		len;
 	t_flags	flags;
+	int		h;
+	int		i;
+	int		word_start;
+	char	**res;
 
-	flags.count = 0;
-	flags.quote = 0;
-	flags.word = 0;
-	i = -1;
-	w_count = count_(cmd, flags);
-	ft_printf("count : %d\n", w_count);
-	res = (char **)ft_calloc(w_count + 1, sizeof(char *));
+	flag_init(&flags);
+	i = 0;
+	h = count_(cmd, flags);
+	if (!h)
+		return (NULL);
+	res = (char **)malloc(sizeof(char *) * (h + 1));
 	if (!res)
 		return (NULL);
-	while (++i < w_count)
+	while (i < h)
 	{
-		len = sub_(cmd, flags, i + 1);
-		res[i] = ft_substr(cmd, len, sub_v2_(cmd, flags, i + 1) - len);
+		word_start = count_start_(cmd, flags, i + 1);
+		res[i] = ft_substr(cmd, word_start,
+				count_end_(cmd, flags, i + 1) - word_start);
+		res[i] = quote_strip_(res[i]);
+		i++;
 	}
-	res[i] = NULL;
-	if (!w_count)
-		return (NULL);
+	res[h] = NULL;
 	return (res);
 }

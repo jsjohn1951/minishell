@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/17 15:43:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/23 13:38:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(void)
 		if (ft_strlen(cmd))
 		{
 			add_history(cmd);
-			simple_cmd(cmd);
 			data.data = split(cmd);
 			if (data.data)
 			{
