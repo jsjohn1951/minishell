@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/23 13:47:14 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/26 13:26:45 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ NAME = minishell
 # SRCS because we never outsource our work
 SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
-		parser/customsplit parser/split_tools
+		parser/customsplit parser/split_tools\
+		builtins/echo cmdbus/specialbus\
+		parser/init
 
 # Objects used to compile
 OBJDIR = Objects
@@ -35,8 +37,9 @@ OFLAGS = -L/usr/local/lib -I/usr/local/include -lreadline
 $(OBJDIR)/%.o : srcs/%.c
 	mkdir -p $(OBJDIR)
 	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
 	mkdir -p $(OBJDIR)/parser
-	mkdir -p $(OBJDIR)/cmds
+	mkdir -p $(OBJDIR)/builtins
 	mkdir -p $(OBJDIR)/errors
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -48,8 +51,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	make -C libft
-	$(CC) $(CFLAGS) $(LIBFT) $(OFLAGS) $(OBJ) -o $(NAME)
-#	$(CC) $(CFLAGS) $(LIBFT) $(READ) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(LIBFT) $(OFLAGS) $(READ) $(OBJ) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :

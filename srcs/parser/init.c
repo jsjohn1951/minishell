@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/25 15:15:46 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/26 13:26:52 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/26 13:27:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(void)
+void	flag_init(t_flags *flags)
 {
-	char	*cmd;
-	t_data	data;
-
-	cmd = NULL;
-	while (isatty(STDIN_FILENO))
-	{
-		cmd = readline("<$ SEASHELL-S $> ");
-		if (ft_strlen(cmd))
-		{
-			add_history(cmd);
-			data.data = split(cmd);
-			if (data.data)
-			{
-				specialbus(data.data);
-				print_matrix(data.data);
-				free_matrix(data.data);
-			}
-			free (cmd);
-			cmd = NULL;
-		}
-		else if (!cmd)
-			break ;
-	}
-	return (0);
+	flags->count = 0;
+	flags->quote = 0;
+	flags->word = 0;
 }

@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   specialbus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/25 15:15:46 by wismith          ###   ########.fr       */
+/*   Created: 2022/06/25 15:07:58 by wismith           #+#    #+#             */
+/*   Updated: 2022/06/25 15:34:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(void)
+void	specialbus(char **matrix)
 {
-	char	*cmd;
-	t_data	data;
+	char	*s;
 
-	cmd = NULL;
-	while (isatty(STDIN_FILENO))
+	s = quote_strip_(matrix[0]);
+	if (!matrix || !s || !*s)
+		return ;
+	if (!ft_strncmp(s, "clear", 5))
+		ft_printf(KCLR);
+	if (!ft_strncmp(s, "exit", 4))
 	{
-		cmd = readline("<$ SEASHELL-S $> ");
-		if (ft_strlen(cmd))
-		{
-			add_history(cmd);
-			data.data = split(cmd);
-			if (data.data)
-			{
-				specialbus(data.data);
-				print_matrix(data.data);
-				free_matrix(data.data);
-			}
-			free (cmd);
-			cmd = NULL;
-		}
-		else if (!cmd)
-			break ;
+		ft_free (s);
+		free_matrix(matrix);
+		exit(0);
 	}
-	return (0);
+	ft_echo(matrix, s);
 }

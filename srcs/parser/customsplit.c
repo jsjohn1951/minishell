@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:08:31 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/24 15:00:42 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/26 13:27:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,6 @@ int	count_end_(char *cmd, t_flags flags, int word)
 	return (i);
 }
 
-void	flag_init(t_flags *flags)
-{
-	flags->count = 0;
-	flags->quote = 0;
-	flags->word = 0;
-}
-
 char	**split(char *cmd)
 {
 	t_flags	flags;
@@ -108,7 +101,6 @@ char	**split(char *cmd)
 		word_start = count_start_(cmd, flags, i + 1);
 		res[i] = ft_substr(cmd, word_start,
 				count_end_(cmd, flags, i + 1) - word_start);
-		res[i] = quote_strip_(res[i]);
 		i++;
 	}
 	res[h] = NULL;

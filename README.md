@@ -45,3 +45,7 @@
 -> -> custom split fails with complex inputs, e.g.:
 -> -> <$ SEASHELL-s $> ''a ''''b'' c'' y''
 -> FIXED ;;
+-> ADDED :: Version 1.6
+-> -> added an echo functionality that will echo to the terminal
+-> ADDED ;;
+->

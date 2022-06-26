@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/24 14:39:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/26 13:28:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_universal_flags
 /* parser */
 /*	terminate.c */
 void	free_matrix(char **matrix);
+void	ft_free(void *data);
 /*	printer */
 void	print_matrix(char **matrix);
 /*	customsplit */
@@ -58,5 +59,15 @@ void	is_quoted_message(t_flags *flags, char *cmd, int i);
 void	cancel_flags(t_flags *flags, char *cmd, int i);
 /*	quote_strip */
 char	*quote_strip_(char *s);
+/*	init */
+void	flag_init(t_flags *flags);
+
+/* builtins */
+/*	echo */
+void	ft_echo(char **matrix, char *s);
+
+/*	cmdbus */
+/* specialbus */
+void	specialbus(char **matrix);
 
 #endif
