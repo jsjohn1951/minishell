@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/26 13:28:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/26 22:45:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	flag_init(t_flags *flags);
 /* builtins */
 /*	echo */
 void	ft_echo(char **matrix, char *s);
+/*	exit */
+void	exit_(char **matrix);
 
 /*	cmdbus */
 /* specialbus */

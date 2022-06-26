@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:07:58 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/25 15:34:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/26 22:47:02 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void	specialbus(char **matrix)
 		return ;
 	if (!ft_strncmp(s, "clear", 5))
 		ft_printf(KCLR);
-	if (!ft_strncmp(s, "exit", 4))
-	{
-		ft_free (s);
-		free_matrix(matrix);
-		exit(0);
-	}
+	exit_(matrix);
 	ft_echo(matrix, s);
+	ft_free (s);
 }
