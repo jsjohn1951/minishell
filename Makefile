@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/27 15:21:15 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/27 18:08:36 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/Library/libft.a
-# READ = ./readline/lib/*.dylib readline/lib/*.a
+READ = ./readline/lib/*
 LDFLAGS = -lreadline
 
 # Compile the objects inside the objects folder

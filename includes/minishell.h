@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/27 15:27:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/27 22:42:47 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 typedef struct s_data
 {
 	char	**data;
+	char	**env;
 }	t_data;
 
 typedef struct s_universal_flags
@@ -48,6 +49,7 @@ void	free_matrix(char **matrix);
 void	ft_free(void *data);
 /*	printer */
 void	print_matrix(char **matrix);
+void	print_matrix2(char **matrix);
 /*	customsplit */
 char	**split(char *cmd);
 /*	split_tools */
