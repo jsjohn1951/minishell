@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/26 13:31:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:34:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	print_matrix(char **matrix)
 		return ;
 	}
 	ft_printf("%cQuote stripper active%c\n", 34, 34);
+	free (s);
 	while (matrix[i])
 	{
 		s = quote_strip_(matrix[i]);

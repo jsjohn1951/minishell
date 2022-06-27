@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_alt.c                                      :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:04:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/06 20:21:18 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:54:13 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ char	*ft_itoa(int n)
 	char	*res;
 	int		i;
 	int		nflag;
+	int		r;
 
 	i = 0;
 	nflag = 1;
 	res = (char *)malloc(sizeof(char) * (count(n) + 1));
 	if (n < 0)
 		nflag = -1;
-	while ((n % 10) && !(nflag == -1 && !(n % 10) * nflag))
+	r = (n % 10) * nflag;
+	while ((n % 10) && !(nflag == -1 && !r))
 	{
 		res[i++] = (n % 10) * nflag + '0';
 		n /= 10;

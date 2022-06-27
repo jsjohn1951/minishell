@@ -6,11 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:06:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/25 15:46:29 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:39:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	rtn_free(char *s)
+{
+	free (s);
+	s = NULL;
+	return (1);
+}
 
 int	echo_char_check(char *s)
 {
@@ -19,14 +26,14 @@ int	echo_char_check(char *s)
 
 	temp = quote_strip_(s);
 	if (ft_strlen(temp) < 2)
-		return (1);
+		return (rtn_free(temp));
 	if (temp[0] != '-')
-		return (1);
+		return (rtn_free(temp));
 	i = 1;
 	while (temp[i])
 	{
 		if (temp[i] != 'n')
-			return (1);
+			return (rtn_free(temp));
 		i++;
 	}
 	ft_free (temp);
