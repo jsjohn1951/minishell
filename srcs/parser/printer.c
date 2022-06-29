@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/27 22:42:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/29 22:29:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ void	print_matrix2(char **matrix)
 	int	i;
 
 	i = 0;
+	if (!matrix && !*matrix)
+		return ;
 	while (matrix[i])
 	{
+		if (!matrix[i])
+			return ;
 		ft_printf("%s\n", matrix[i]);
 		i++;
 	}

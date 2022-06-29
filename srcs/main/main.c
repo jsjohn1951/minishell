@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/29 15:00:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/29 22:43:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ char	**ft_matrix_dup(char **m)
 	res = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!res)
 		return (NULL);
-	i = -1;
-	while (m[++i])
+	i = 0;
+	while (m[i])
+	{
 		res[i] = ft_strdup(m[i]);
-	res[i + 1] = NULL;
+		i++;
+	}
+	res[i] = NULL;
 	return (res);
 }
 
