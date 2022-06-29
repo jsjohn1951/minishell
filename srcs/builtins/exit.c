@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/26 23:50:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/29 15:05:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,26 @@ int	exit_err(char *s)
 	return (ft_exit_status(ft_atoi(s)));
 }
 
-void	exit_(char **matrix)
+void	exit_(t_data *data)
 {
 	char	*s;
 	int		exit_num;
 
-	s = quote_strip_(matrix[0]);
+	s = quote_strip_(data->data[0]);
 	if (!ft_strncmp(s, "exit", 4))
 	{
 		ft_free (s);
-		if (matrix[1] && matrix[1][0])
-			exit_num = exit_err(quote_strip_(matrix[1]));
+		if (data->data[1] && data->data[1][0])
+			exit_num = exit_err(quote_strip_(data->data[1]));
 		else
 			exit_num = 0;
-		if (arg_counters(matrix) == 255 && exit_num != 255)
+		if (arg_counters(data->data) == 255 && exit_num != 255)
 		{
 			ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2);
 			return ;
 		}
-		free_matrix(matrix);
+		free_matrix(data->env);
+		free_matrix(data->data);
 		exit(exit_num);
 	}
 	ft_free (s);

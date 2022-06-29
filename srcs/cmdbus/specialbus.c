@@ -6,22 +6,22 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:07:58 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/27 15:48:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/29 15:05:05 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	specialbus(char **matrix)
+void	specialbus(t_data *data)
 {
 	char	*s;
 
-	s = quote_strip_(matrix[0]);
-	if (!matrix || !s || !*s)
+	s = quote_strip_(data->data[0]);
+	if (!data->data || !s || !*s)
 		return ;
 	if (!ft_strncmp(s, "clear", 5))
 		ft_printf(KCLR);
-	ft_echo(matrix, s);
+	ft_echo(data->data, s);
 	ft_free (s);
-	exit_(matrix);
+	exit_(data);
 }

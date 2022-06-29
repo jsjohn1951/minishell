@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/27 22:45:22 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/29 15:00:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 
 void	cmd_control(t_data *data)
 {
-	specialbus(data->data);
+	specialbus(data);
 	if (data->data[0] && !ft_strncmp(data->data[0], "env", 3))
 		print_matrix2(data->env);
 	print_matrix(data->data);
 	free_matrix(data->data);
+}
+
+char	**ft_matrix_dup(char **m)
+{
+	int		i;
+	char	**res;
+
+	i = 0;
+	while (m[i])
+		i++;
+	res = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!res)
+		return (NULL);
+	i = -1;
+	while (m[++i])
+		res[i] = ft_strdup(m[i]);
+	res[i + 1] = NULL;
+	return (res);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -29,7 +47,7 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	(void) argc;
 	(void) argv;
-	data.env = envp;
+	data.env = ft_matrix_dup(envp);
 	while (isatty(STDIN_FILENO))
 	{
 		cmd = readline("<$ SEASHELL-S $> ");
