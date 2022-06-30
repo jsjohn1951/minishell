@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/29 15:03:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:28:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 {
 	char	**data;
 	char	**env;
+	char	**path;
 }	t_data;
 
 typedef struct s_universal_flags
@@ -67,6 +68,7 @@ void	flag_init(t_flags *flags);
 void	ft_echo(char **matrix, char *s);
 /*	exit */
 void	exit_(t_data *data);
+void	free_data(t_data *data);
 
 /*	cmdbus */
 /* specialbus */

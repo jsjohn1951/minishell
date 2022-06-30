@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:07:15 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/06 20:26:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:36:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_itoa(int n);
 char	*ft_strjoin_mod(char *s1, char *s2, int s2size);
-char	**ft_split_mod(char const *s, char c);
+char	**ft_split_old(char const *s, char c);
 void	*ft_strrev(void *a);
 
 #endif

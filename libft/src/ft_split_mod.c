@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:41:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/04/17 14:42:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:35:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	int	ft_element_counter(const char *s, char c)
 	return (num);
 }
 
-char	**ft_split_mod(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	int		start;

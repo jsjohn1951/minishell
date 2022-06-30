@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/29 22:29:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:33:14 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ void	print_matrix(char **matrix)
 	i = 0;
 	s = quote_strip_(matrix[i]);
 	if (matrix[i] && (!ft_strncmp(s, "clear", 5)
-			|| !ft_strncmp(s, "echo", 4)))
+			|| !ft_strncmp(s, "echo", 4) || !ft_strncmp(s, "exit", 4)))
 	{
-		free (s);
-		s = NULL;
+		ft_free(s);
 		return ;
 	}
-	ft_printf("%cQuote stripper active%c\n", 34, 34);
+	ft_printf("\n%cQuote stripper active%c\n", 34, 34);
 	free (s);
 	while (matrix[i])
 	{
 		s = quote_strip_(matrix[i]);
 		ft_printf("argument %d:\t|%s|\n", i, s);
-		free (s);
-		s = NULL;
+		ft_free(s);
 		i++;
 	}
 	ft_printf("\n");

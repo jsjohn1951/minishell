@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/06/07 02:01:02 by wismith          ###   ########.fr        #
+#    Updated: 2022/06/30 10:38:29 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIST =	ft_atoi ft_bzero ft_calloc\
 		ft_strlen ft_strncmp ft_strnstr\
 		ft_strrchr ft_tolower ft_toupper\
 		ft_substr ft_strjoin ft_strtrim\
-		ft_split ft_strmapi\
+		ft_split_old ft_strmapi\
 		ft_striteri ft_putchar_fd ft_putstr_fd\
 		ft_putendl_fd ft_putnbr_fd ft_itoa\
 		ft_strjoin_mod ft_lstnew\

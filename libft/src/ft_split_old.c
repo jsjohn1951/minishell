@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 19:32:36 by wismith           #+#    #+#             */
-/*   Updated: 2022/04/17 14:42:29 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:35:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static char	**ft_algo(const char *s, char c, char **res, int num)
 	return (res);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split_old(const char *s, char c)
 {
 	int		num;
 	int		wordcount;
