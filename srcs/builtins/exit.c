@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/30 10:28:48 by wismith          ###   ########.fr       */
+/*   Updated: 2022/06/30 12:16:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ void	exit_(t_data *data)
 	{
 		ft_free (s);
 		if (data->data[1] && data->data[1][0])
-			exit_num = exit_err(quote_strip_(data->data[1]));
+		{
+			s = quote_strip_(data->data[1]);
+			exit_num = exit_err(s);
+			ft_free (s);
+		}
 		else
 			exit_num = 0;
 		if (arg_counters(data->data) == 255 && exit_num != 255)
