@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/06/27 18:08:36 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/01 15:45:30 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
 		parser/customsplit parser/split_tools\
 		builtins/echo cmdbus/specialbus\
-		parser/init builtins/exit
+		parser/init builtins/exit parser/env_dup\
 
 # Objects used to compile
 OBJDIR = Objects

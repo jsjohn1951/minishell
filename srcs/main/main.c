@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/30 12:03:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:53:25 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,9 @@ void	cmd_control(t_data *data)
 {
 	specialbus(data);
 	if (data->data[0] && !ft_strncmp(data->data[0], "env", 3))
-		print_matrix2(data->env);
+		print_env(data->env);
 	print_matrix(data->data);
 	free_matrix(data->data);
-}
-
-char	**ft_matrix_dup(char **m)
-{
-	int		i;
-	char	**res;
-
-	i = 0;
-	while (m[i])
-		i++;
-	res = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (m[i])
-	{
-		res[i] = ft_strdup(m[i]);
-		i++;
-	}
-	res[i] = NULL;
-	return (res);
 }
 
 char	**path(char **data)
@@ -66,11 +45,11 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	(void) argc;
 	(void) argv;
-	data.env = ft_matrix_dup(envp);
+	data.env = ft_matrix_dup_rtn(envp);
 	data.path = path(data.env);
 	while (isatty(STDIN_FILENO))
 	{
-		cmd = readline("<$ SEASHELL-S $> ");
+		cmd = readline("\x1B[34m SEA SHELL\x1B[32m v1.7 -> \x1B[0m");
 		if (ft_strlen(cmd))
 		{
 			add_history(cmd);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/30 10:28:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/01 17:20:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	free_matrix(char **matrix);
 void	ft_free(void *data);
 /*	printer */
 void	print_matrix(char **matrix);
-void	print_matrix2(char **matrix);
+void	print_env(char **matrix);
 /*	customsplit */
 char	**split(char *cmd);
 /*	split_tools */
@@ -62,6 +62,8 @@ void	cancel_flags(t_flags *flags, char *cmd, int i);
 char	*quote_strip_(char *s);
 /*	init */
 void	flag_init(t_flags *flags);
+/*	env_dup */
+char	**ft_matrix_dup_rtn(char **m);
 
 /* builtins */
 /*	echo */
