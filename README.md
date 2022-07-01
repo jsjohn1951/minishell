@@ -17,6 +17,8 @@
 <li>-> 'exit' only takes one argument, but does</li>
 <li>-> not handle errors</li>
 <br></br>
+
+# -----------------------------------
 <li><b>  _________________ </b></li>
 <li><b> /*  Version 1.5 */ </b></li>
 <li><b>/* list changes */  </b></li>
@@ -25,7 +27,6 @@
 <li>-> custom split works with input from the user including: :</li>
 <li>-> -> '$> "hello" "world" aa'bob'yy is here' as input.</li>
 <li>-> Work needs to be done for redirection and pipes to be handled properly.</li>
-<li>-></li>
 
 ## -> ADDED :: Version 1.6
 <li>-> -> added an echo functionality that will echo to the terminal</li>
