@@ -25,16 +25,14 @@
 <li>-> Work needs to be done for redirection and pipes to be handled properly.</li>
 
 ### -> ADDED :: Version 1.6
-<li>-> -> added an echo functionality that will echo to the terminal</li>
-<li>-> ADDED ;;</li>
+<li>-> -> added an echo functionality that will echo to stdout</li>
 
 ### -> ADDED :: Version 1.7
-<li>-> -> added 3 matrices with struct 'data' to store env, path, and</li>
-<li>-> ->	commands.</li>
-<li>-> -> commands are handled within the cmd_control which calls</li>
+<li>-> added 3 matrices with struct 'data' to store env, path, and
+-> ->	commands.</li>
+<li>-> commands are handled within the cmd_control which calls</li>
 <li>-> -> 	related bus functions.</li>
-<li>-> -> path matrix gets updated and freed with each iteration of the main</li>
+<li>-> path matrix gets updated and freed with each iteration of the main</li>
 <li>-> ->	loop in order to remain identical to the PATH element within the env.</li>
 <li>-> ->	That is to say that once the env PATH gets changed by the user</li>
 <li>-> ->	it's automatically updated with the next iteration.</li>
-<li>-> ADDED ;;</li>
