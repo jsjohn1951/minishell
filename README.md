@@ -1,53 +1,41 @@
-## minishell
-<li>\\\\\\\\\\\\\\\\\\ </li>
-<li>\\\ |||||||||||| \ </li>
-<li>\\\\\\\ ||| \\\\\\ </li>
-<li>\\\\\\\ ||| \\\\\\ </li>
-<li>\\\\\\\ ||| \\\\\\ </li>
-<li>\ ||| \ ||| \\\\\\ </li>
-<li>\\\\ |||| \ ||| \\ </li>
-<li>\\\\\\\\\\\\\\\\\\ </li>
-
-### -> Project Minishell 42
--> Started working on the parsing aspect
--> 
--> The 'readline' directory contains
--> all the archieve files form the readline
--> library
--> The Makefile will compile the project using
--> these archieve files
--> So far it works, and the readline() function
--> displays the prompt and receives user input from
--> stdin
-->
--> and a simple parser that detects whether it's 
--> received the 'clear' or 'exit' commands
--> 'Clear' uses the printf clear characters but
--> we may want to replace that later with the
--> clear function in the $PATH directories.
--> 'exit' only takes one argument, but does
--> not handle errors
-->
+## -> Project Minishell 42
+<li>-> Started working on the parsing aspect</li>
+<br></br>
+<li>-> The 'readline' directory contains</li>
+<li>-> all the archieve files form the readline</li>
+<li>-> library</li>
+<li>-> The Makefile will compile the project using</li>
+<li>-> these archieve files</li>
+<li>-> So far it works, and the readline() function</li>
+<li>-> displays the prompt and receives user input from</li>
+<li>-> stdin</li>
+<br></br>
+<li>-> and a simple parser that detects whether it's </li>
+<li>-> received the 'clear' or 'exit' commands</li>
+<li>-> 'Clear' uses the printf clear characters but</li>
+<li>-> we may want to replace that later with the</li>
+<li>-> clear function in the $PATH directories.</li>
+<li>-> 'exit' only takes one argument, but does</li>
+<li>-> not handle errors</li>
+<br></br>
 <li>  _________________ </li>
 <li> /*  Version 1.5 */ </li>
 <li>/* list changes */  </li>
 <li>-----------------   </li>
 
--> custom split works with simple input including :
--> <$ SEASHELL-S $> "hello" "world" aa'bob'yy is here
-->
-##-> FIXED :: Version 1.6
--> -> custom split fails with complex inputs, e.g.:
--> -> <$ SEASHELL-s $> ''a ''''b'' c'' y''
--> FIXED ;;
-##-> ADDED :: Version 1.6
--> -> added an echo functionality that will echo to the terminal
--> ADDED ;;
-##-> ADDED :: Version 1.7
--> -> added 3 matrices with struct 'data' to store env, path, and
--> ->	commands.
--> -> commands are handled within the cmd_control function by
--> -> 	bus functions.
--> -> path matrix gets updated with each iteration of the main
--> ->	loop.
--> ADDED ;;
+<li>-> custom split works with simple input including :</li>
+<li>-> $> "hello" "world" aa'bob'yy is here</li>
+<li>-></li>
+
+## -> ADDED :: Version 1.6
+<li>-> -> added an echo functionality that will echo to the terminal</li>
+<li>-> ADDED ;;</li>
+
+## -> ADDED :: Version 1.7
+<li>-> -> added 3 matrices with struct 'data' to store env, path, and</li>
+<li>-> ->	commands.</li>
+<li>-> -> commands are handled within the cmd_control function by</li>
+<li>-> -> 	bus functions.</li>
+<li>-> -> path matrix gets updated with each iteration of the main</li>
+<li>-> ->	loop.</li>
+<li>-> ADDED ;;</li>
