@@ -24,11 +24,11 @@
 <li>-> -> '$> "hello" "world" aa'bob'yy is here' as input.</li>
 <li>-> Work needs to be done for redirection and pipes to be handled properly.</li>
 
-## -> ADDED :: Version 1.6
+### -> ADDED :: Version 1.6
 <li>-> -> added an echo functionality that will echo to the terminal</li>
 <li>-> ADDED ;;</li>
 
-## -> ADDED :: Version 1.7
+### -> ADDED :: Version 1.7
 <li>-> -> added 3 matrices with struct 'data' to store env, path, and</li>
 <li>-> ->	commands.</li>
 <li>-> -> commands are handled within the cmd_control which calls</li>
