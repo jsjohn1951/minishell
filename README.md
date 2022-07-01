@@ -29,7 +29,7 @@
 
 ### -> ADDED :: Version 1.7
 <li>-> added 3 matrices with struct 'data' to store env, path, and
--> ->	commands.</li>
+<br>-> ->	commands.</li>
 <li>-> commands are handled within the cmd_control which calls</li>
 <li>-> -> 	related bus functions.</li>
 <li>-> path matrix gets updated and freed with each iteration of the main</li>
