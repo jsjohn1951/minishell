@@ -18,11 +18,7 @@
 <li>-> not handle errors</li>
 <br></br>
 
-# -----------------------------------
-<li>  _________________ </li>
-<li>  /*<b>  Version 1.5 </b>*/ </li>
-<li> /* list changes */  </li>
-<li>-----------------   </li>
+## Version edits
 
 <li>-> custom split works with input from the user including: :</li>
 <li>-> -> '$> "hello" "world" aa'bob'yy is here' as input.</li>
