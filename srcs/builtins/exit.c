@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/30 12:16:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/02 13:34:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	exit_(t_data *data)
 			return ;
 		}
 		free_data(data);
+		ft_printf("exit\n");
 		exit(exit_num);
 	}
 	ft_free (s);

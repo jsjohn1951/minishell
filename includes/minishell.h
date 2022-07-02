@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/01 17:20:28 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/02 12:27:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "../libft/include/ft_printf.h"
 
 # include <unistd.h>
+# include <termios.h>
 
 typedef struct s_data
 {
@@ -43,6 +44,11 @@ typedef struct s_universal_flags
 	int	quote;
 	int	word;
 }	t_flags;
+
+/*	main */
+/* cmd */
+int		cmd_(t_data *data);
+char	**path(char **data);
 
 /* parser */
 /*	terminate.c */
