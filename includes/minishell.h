@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/02 12:27:31 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/02 15:10:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@
 # include <unistd.h>
 # include <termios.h>
 
+typedef struct s_mode
+{
+	int	pipe;
+	int	redir;
+}	t_mode;
+
 typedef struct s_data
 {
 	char	**data;
 	char	**env;
 	char	**path;
+	t_mode	*mode;
 }	t_data;
 
 typedef struct s_universal_flags
@@ -46,40 +53,43 @@ typedef struct s_universal_flags
 }	t_flags;
 
 /*	main */
-/* cmd */
+/* file: cmd */
 int		cmd_(t_data *data);
 char	**path(char **data);
 
 /* parser */
-/*	terminate.c */
+/*	file: terminate.c */
 void	free_matrix(char **matrix);
 void	ft_free(void *data);
-/*	printer */
+/*	file: printer */
 void	print_matrix(char **matrix);
 void	print_env(char **matrix);
-/*	customsplit */
+/*	file: customsplit */
 char	**split(char *cmd);
-/*	split_tools */
+/*	file: split_tools */
 void	isword(t_flags *flags);
 int		is_quote_(char c);
 void	is_quoted_message(t_flags *flags, char *cmd, int i);
 void	cancel_flags(t_flags *flags, char *cmd, int i);
-/*	quote_strip */
+/*	file: quote_strip */
 char	*quote_strip_(char *s);
-/*	init */
+/*	file: init */
 void	flag_init(t_flags *flags);
-/*	env_dup */
+/*	file: env_dup */
 char	**ft_matrix_dup_rtn(char **m);
+/*	file: set_mode */
+void	set_mode(t_data *data, char *cmd);
+void	init_mode_check(t_data *data);
 
 /* builtins */
-/*	echo */
+/*	file: echo */
 void	ft_echo(char **matrix, char *s);
-/*	exit */
+/*	file: exit */
 void	exit_(t_data *data);
 void	free_data(t_data *data);
 
 /*	cmdbus */
-/* specialbus */
+/* file: specialbus */
 void	specialbus(t_data *data);
 
 #endif

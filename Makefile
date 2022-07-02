@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/01 18:42:56 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/02 14:41:48 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = main/main parser/quote_strip\
 		parser/customsplit parser/split_tools\
 		builtins/echo cmdbus/specialbus\
 		parser/init builtins/exit parser/env_dup\
-		main/cmd
+		main/cmd parser/set_mode
 
 # Objects used to compile
 OBJDIR = Objects
@@ -71,6 +71,9 @@ printre :
 
 # Incase you want to redo everything... lol
 re : fclean printre all
+
+run : re
+	clear && ./minishell
 
 # Phony rules... we don't have to obey them. Cuz they're phony ;) lol
 .PHONY: all clean fclean re printre
