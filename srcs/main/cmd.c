@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/02 15:22:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:41:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	cmd_control(t_data *data)
 	if (data->data[0] && !ft_strncmp(data->data[0], "env", 3))
 		print_env(data->env);
 	print_matrix(data->data);
-	free_matrix(data->data);
 }
 
 char	**path(char **data)
@@ -27,6 +26,8 @@ char	**path(char **data)
 	char	*scpy;
 
 	i = 0;
+	if (!data && !*data)
+		return (NULL);
 	while (data[i] && ft_strncmp(data[i], "PATH=", 4))
 		i++;
 	if (data[i])
@@ -39,17 +40,18 @@ char	**path(char **data)
 
 void	conditional_(t_data *data, char *cmd)
 {
-	if (!data->mode->pipe && !data->mode->redir)
+	data->data = split(cmd);
+	ft_free(cmd);
+	if (!data->mode.pipe && !data->mode.redir)
 	{
-		data->data = split(cmd);
 		if (data->data)
 			cmd_control(data);
 	}
-	if (data->mode->pipe && data->mode->redir)
+	if (data->mode.pipe && data->mode.redir)
 		ft_printf("contains pipes and redirections!\n");
-	else if (data->mode->pipe)
+	else if (data->mode.pipe)
 		ft_printf("contains pipes!\n");
-	else if (data->mode->redir)
+	else if (data->mode.redir)
 		ft_printf("contains redirections!\n");
 }
 
@@ -57,7 +59,6 @@ int	cmd_(t_data *data)
 {
 	char			*cmd;
 
-	cmd = NULL;
 	cmd = readline("SEA SHELL v1.7 -> ");
 	init_mode_check(data);
 	if (ft_strlen(cmd))
@@ -67,12 +68,9 @@ int	cmd_(t_data *data)
 		conditional_(data, cmd);
 		free_matrix(data->path);
 		data->path = path(data->env);
-		ft_free(cmd);
+		free_matrix(data->data);
 	}
 	else
-	{
-		ft_free(cmd);
-		ft_printf("\b\b  \b\b\n");
-	}
+		free (cmd);
 	return (0);
 }

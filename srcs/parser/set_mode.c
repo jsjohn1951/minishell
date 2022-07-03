@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:41:18 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/02 15:11:29 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/03 17:29:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	init_mode_check(t_data *data)
 {
-	data->mode->pipe = 0;
-	data->mode->redir = 0;
+	data->mode.pipe = 0;
+	data->mode.redir = 0;
+}
+
+void	init_flags_quotes(t_flags *flags)
+{
+	flags->quote = 0;
 }
 
 void	set_mode(t_data *data, char *cmd)
@@ -24,6 +29,7 @@ void	set_mode(t_data *data, char *cmd)
 	t_flags	flags;
 
 	i = 0;
+	init_flags_quotes(&flags);
 	while (cmd[i])
 	{
 		if ((cmd[i] == 34 || cmd[i] == 39) && !flags.quote)
@@ -31,9 +37,9 @@ void	set_mode(t_data *data, char *cmd)
 		else if (cmd[i] == flags.quote)
 			flags.quote = 0;
 		if (!flags.quote && cmd[i] == '|')
-			data->mode->pipe = 1;
+			data->mode.pipe = 1;
 		if (!flags.quote && (cmd[i] == '>' || cmd[i] == '<'))
-			data->mode->redir = 1;
+			data->mode.redir = 1;
 		i++;
 	}
 }

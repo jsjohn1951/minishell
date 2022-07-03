@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/02 15:10:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/02 16:06:56 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_data
 	char	**data;
 	char	**env;
 	char	**path;
-	t_mode	*mode;
+	t_mode	mode;
 }	t_data;
 
 typedef struct s_universal_flags
