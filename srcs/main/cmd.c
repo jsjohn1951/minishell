@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/03 17:41:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/06 22:11:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,49 @@ char	**path(char **data)
 	return (NULL);
 }
 
+/* conditional_() takes struct data and cmd
+as arguments and if determined by 'set_mode()'
+that cmd contains either pipes or redirections
+the parsing is done differently.
+- should first split using  using '|', '>', '<'
+	as delimiters, but should not neglect to
+	include these characters within the data struct.
+The parsed commands are then stored in data->data
+and passed into cmd_control().
+cmd is freed to avoid memleaks */
+
 void	conditional_(t_data *data, char *cmd)
 {
-	data->data = split(cmd);
-	ft_free(cmd);
+	data->data = NULL;
 	if (!data->mode.pipe && !data->mode.redir)
+		data->data = split(cmd);
+	else if (data->mode.pipe || data->mode.redir)
 	{
-		if (data->data)
-			cmd_control(data);
+		ft_printf("Contains pipes or redirections!\n");
+		data->data = ft_split(cmd, '|');
 	}
-	if (data->mode.pipe && data->mode.redir)
-		ft_printf("contains pipes and redirections!\n");
-	else if (data->mode.pipe)
-		ft_printf("contains pipes!\n");
-	else if (data->mode.redir)
-		ft_printf("contains redirections!\n");
+	ft_free(cmd);
+	if (data->data)
+		cmd_control(data);
 }
+
+/* cmd_() will collect the user input from the 
+readline function & 
+if (cmd)
+1. add input to history 
+2. set_mode (check if there are pipes or redirections) 
+3. send the user cmd to conditional_() where
+	it will be parsed and placed into data struct
+4. frees data->data & data->path
+	in order to update them during next iteration */
 
 int	cmd_(t_data *data)
 {
 	char			*cmd;
 
 	cmd = readline("SEA SHELL v1.7 -> ");
+	if (!cmd)	
+		ft_printf("\b\b  \n");
 	init_mode_check(data);
 	if (ft_strlen(cmd))
 	{
