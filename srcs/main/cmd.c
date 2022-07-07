@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 18:13:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:39:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@ void	cmd_control(t_data *data)
 {
 	char	*s;
 
+	data->path = ft_matrix_add_elem(data->path, "/hello/world");
 	s = quote_strip_(data->data[0]);
 	if (!data->data || !s || !*s)
 		return ;
 	if (!ft_strncmp(s, "clear", 5))
 		ft_printf(KCLR);
-	if (!ft_strncmp(s, "env", 3))
+	else if (!ft_strncmp(s, "env", 3))
 		ft_print_matrix(data->env);
+	else if (!ft_strncmp(s, "path", 4))
+		ft_print_matrix(data->path);
+	else if (ft_strncmp(s, "exit", 4))
+		print_cmd(data->data);
 	ft_echo(data->data, s);
 	ft_free (s);
 	exit_(data);
-	print_cmd(data->data);
-	if (!ft_strncmp(s, "PATH", 4))
-	{
-		ft_printf("\nPATH:\n\n");
-		ft_print_matrix(data->path);
-		ft_printf("\n");
-	}
 }
 
 char	**path(char **data)

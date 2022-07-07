@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 18:12:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:35:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	print_cmd(char **matrix)
 
 	i = 0;
 	s = quote_strip_(matrix[i]);
-	if (matrix[i] && (!ft_strncmp(s, "clear", 5)
-			|| !ft_strncmp(s, "echo", 4) || !ft_strncmp(s, "exit", 4)
-			|| !ft_strncmp(s, "env", 3) || !ft_strncmp(s, "PATH", 4)))
-	{
-		ft_free(s);
-		return ;
-	}
+	// if (matrix[i] && (!ft_strncmp(s, "clear", 5)
+	// 		|| !ft_strncmp(s, "echo", 4) || !ft_strncmp(s, "exit", 4)
+	// 		|| !ft_strncmp(s, "env", 3) || !ft_strncmp(s, "path", 4)))
+	// {
+	// 	ft_free(s);
+	// 	return ;
+	// }
 	ft_printf("\n%cQuote stripper active%c\n", 34, 34);
 	free (s);
 	while (matrix[i])
