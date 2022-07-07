@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specialbus.c                                       :+:      :+:    :+:   */
+/*   ft_matrix_dup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 15:07:58 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/29 15:05:05 by wismith          ###   ########.fr       */
+/*   Created: 2022/07/07 15:50:49 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/07 15:53:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/libft.h"
 
-void	specialbus(t_data *data)
+char	**ft_matrix_dup(char **m)
 {
-	char	*s;
+	int		i;
+	char	**res;
 
-	s = quote_strip_(data->data[0]);
-	if (!data->data || !s || !*s)
-		return ;
-	if (!ft_strncmp(s, "clear", 5))
-		ft_printf(KCLR);
-	ft_echo(data->data, s);
-	ft_free (s);
-	exit_(data);
+	i = 0;
+	if (!m)
+		return (NULL);
+	res = (char **)malloc(sizeof(char *) * (ft_matrix_size(m) + 1));
+	if (!res)
+		return (NULL);
+	while (m[i])
+	{
+		res[i] = ft_strdup(m[i]);
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
 }

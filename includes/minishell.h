@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/02 16:06:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 16:31:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ char	**path(char **data);
 void	free_matrix(char **matrix);
 void	ft_free(void *data);
 /*	file: printer */
+void	print_cmd(char **matrix);
 void	print_matrix(char **matrix);
-void	print_env(char **matrix);
 /*	file: customsplit */
 char	**split(char *cmd);
 /*	file: split_tools */

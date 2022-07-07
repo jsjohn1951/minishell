@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_matrix_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 13:26:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/26 13:27:32 by wismith          ###   ########.fr       */
+/*   Created: 2022/07/07 15:47:22 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/07 15:52:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-
-void	flag_init(t_flags *flags)
+int	ft_matrix_size(char **m)
 {
-	flags->count = 0;
-	flags->quote = 0;
-	flags->word = 0;
+	int	i;
+
+	i = 0;
+	if (!m && !*m)
+		return (0);
+	while (m[i])
+		i++;
+	return (i);
 }

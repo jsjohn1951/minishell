@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/02 14:41:48 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/07 16:24:55 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ NAME = minishell
 SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
 		parser/customsplit parser/split_tools\
-		builtins/echo cmdbus/specialbus\
-		parser/init builtins/exit parser/env_dup\
+		builtins/echo builtins/exit\
 		main/cmd parser/set_mode
 
 # Objects used to compile

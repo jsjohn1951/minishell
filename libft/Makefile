@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/06/30 10:38:29 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/07 16:34:38 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ LIST =	ft_atoi ft_bzero ft_calloc\
 		assets/ft_int_min assets/ft_printf\
 		assets/ft_put_u assets/ft_put\
 		assets/ft_puthex assets/ft_putptr\
-		ft_split_mod ft_strrev
+		ft_split_mod ft_strrev\
+		new_funcs/ft_matrix_len new_funcs/ft_matrix_dup\
+		new_funcs/ft_print_matrix
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -48,6 +50,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(LIST)))
 $(OBJ_DIR)/%.o : src/%.c
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/assets
+	mkdir -p $(OBJ_DIR)/new_funcs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)

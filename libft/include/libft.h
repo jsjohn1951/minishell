@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:07:15 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/30 10:36:22 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 16:34:13 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,10 @@ char	*ft_itoa(int n);
 char	*ft_strjoin_mod(char *s1, char *s2, int s2size);
 char	**ft_split_old(char const *s, char c);
 void	*ft_strrev(void *a);
+
+/* new_funcs */
+int		ft_matrix_size(char **m);
+char	**ft_matrix_dup(char **m);
+void	ft_print_matrix(char **matrix);
 
 #endif

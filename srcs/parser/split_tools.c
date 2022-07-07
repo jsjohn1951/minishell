@@ -6,11 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:05:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/23 12:58:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 16:12:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	flag_init(t_flags *flags)
+{
+	flags->count = 0;
+	flags->quote = 0;
+	flags->word = 0;
+}
 
 void	isword(t_flags *flags)
 {

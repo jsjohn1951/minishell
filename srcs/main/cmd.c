@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/06 22:11:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 16:38:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 void	cmd_control(t_data *data)
 {
-	specialbus(data);
-	if (data->data[0] && !ft_strncmp(data->data[0], "env", 3))
-		print_env(data->env);
-	print_matrix(data->data);
+	char	*s;
+
+	s = quote_strip_(data->data[0]);
+	if (!data->data || !s || !*s)
+		return ;
+	if (!ft_strncmp(s, "clear", 5))
+		ft_printf(KCLR);
+	if (!ft_strncmp(s, "env", 3))
+		ft_print_matrix(data->env);
+	ft_echo(data->data, s);
+	ft_free (s);
+	exit_(data);
+	print_cmd(data->data);
 }
 
 char	**path(char **data)
@@ -64,11 +73,25 @@ void	conditional_(t_data *data, char *cmd)
 		cmd_control(data);
 }
 
-/* cmd_() will collect the user input from the 
-readline function & 
+void	not_cmd_(t_data *data, char *cmd)
+{
+	if (!cmd)
+	{
+		free_matrix(data->path);
+		free_matrix(data->env);
+		ft_printf("\b\b  \n");
+		exit(0);
+	}
+}
+
+/* cmd_() will collect the user input from the
+readline function &
+if cmd == NULL
+	it means that ctrl-D has been pressed, and will
+	exit program.
 if (cmd)
-1. add input to history 
-2. set_mode (check if there are pipes or redirections) 
+1. add input to history
+2. set_mode (check if there are pipes or redirections)
 3. send the user cmd to conditional_() where
 	it will be parsed and placed into data struct
 4. frees data->data & data->path
@@ -79,8 +102,7 @@ int	cmd_(t_data *data)
 	char			*cmd;
 
 	cmd = readline("SEA SHELL v1.7 -> ");
-	if (!cmd)	
-		ft_printf("\b\b  \n");
+	not_cmd_(data, cmd);
 	init_mode_check(data);
 	if (ft_strlen(cmd))
 	{

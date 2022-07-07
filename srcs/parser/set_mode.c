@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:41:18 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/03 17:29:53 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 16:10:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@ void	init_mode_check(t_data *data)
 	data->mode.redir = 0;
 }
 
-void	init_flags_quotes(t_flags *flags)
-{
-	flags->quote = 0;
-}
-
 void	set_mode(t_data *data, char *cmd)
 {
 	int		i;
 	t_flags	flags;
 
 	i = 0;
-	init_flags_quotes(&flags);
+	flags.quote = 0;
 	while (cmd[i])
 	{
 		if ((cmd[i] == 34 || cmd[i] == 39) && !flags.quote)
