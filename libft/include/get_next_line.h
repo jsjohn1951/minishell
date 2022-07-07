@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:29:45 by wismith           #+#    #+#             */
-/*   Updated: 2022/03/15 21:35:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 17:27:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int		ft_nlel(char *s);
 char	*ft_rtnline(char *s);
 char	*ft_rtnsave(char *s);
 char	*get_next_line(int fd);
-char	*ft_free(char *s);
+char	*ft_free_(char *s);
 #endif

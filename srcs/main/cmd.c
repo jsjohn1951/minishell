@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 16:38:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 18:13:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	cmd_control(t_data *data)
 	ft_free (s);
 	exit_(data);
 	print_cmd(data->data);
+	if (!ft_strncmp(s, "PATH", 4))
+	{
+		ft_printf("\nPATH:\n\n");
+		ft_print_matrix(data->path);
+		ft_printf("\n");
+	}
 }
 
 char	**path(char **data)
@@ -73,12 +79,16 @@ void	conditional_(t_data *data, char *cmd)
 		cmd_control(data);
 }
 
+/* if !cmd / cmd == NULL
+	it means that ctrl-D has been pressed, and will
+	exit program. */
+
 void	not_cmd_(t_data *data, char *cmd)
 {
 	if (!cmd)
 	{
-		free_matrix(data->path);
-		free_matrix(data->env);
+		ft_free_matrix(data->path);
+		ft_free_matrix(data->env);
 		ft_printf("\b\b  \n");
 		exit(0);
 	}
@@ -86,9 +96,6 @@ void	not_cmd_(t_data *data, char *cmd)
 
 /* cmd_() will collect the user input from the
 readline function &
-if cmd == NULL
-	it means that ctrl-D has been pressed, and will
-	exit program.
 if (cmd)
 1. add input to history
 2. set_mode (check if there are pipes or redirections)
@@ -99,7 +106,7 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
-	char			*cmd;
+	char	*cmd;
 
 	cmd = readline("SEA SHELL v1.7 -> ");
 	not_cmd_(data, cmd);
@@ -109,9 +116,9 @@ int	cmd_(t_data *data)
 		add_history(cmd);
 		set_mode(data, cmd);
 		conditional_(data, cmd);
-		free_matrix(data->path);
+		ft_free_matrix(data->path);
 		data->path = path(data->env);
-		free_matrix(data->data);
+		ft_free_matrix(data->data);
 	}
 	else
 		free (cmd);

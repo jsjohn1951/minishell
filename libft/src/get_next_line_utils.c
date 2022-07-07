@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:31:23 by wismith           #+#    #+#             */
-/*   Updated: 2022/03/08 18:07:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 17:26:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_rtnsave(char *s)
 	if (!s)
 		return (NULL);
 	if (!ft_nlel(s))
-		return (ft_free(s));
+		return (ft_free_(s));
 	i = 0;
 	index = 0;
 	while (s[i] != '\n')
@@ -85,6 +85,6 @@ char	*ft_rtnsave(char *s)
 		index++;
 	}
 	res[index] = '\0';
-	ft_free(s);
+	ft_free_(s);
 	return (res);
 }

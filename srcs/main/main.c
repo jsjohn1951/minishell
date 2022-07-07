@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 15:54:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 17:47:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 	main function
-	1. starts gathering data from envp
+	1. gathers data from envp
 	and initializes the data.path variable by setting it equal to
 	the path gathered from envp.
 	2. data is then sent to cmd_() function iteratively where changes

@@ -6,13 +6,13 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 20:44:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/03/08 18:05:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 17:27:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
-char	*ft_free(char *s)
+char	*ft_free_(char *s)
 {
 	if (!s)
 		return (NULL);
@@ -35,11 +35,11 @@ char	*gnl_algo(char *save, int fd)
 	{
 		check = read(fd, temp, BUFFER_SIZE);
 		if (check == -1)
-			return (ft_free(temp));
+			return (ft_free_(temp));
 		temp[check] = '\0';
 		save = ft_strjoin_mod(save, temp, BUFFER_SIZE);
 	}
-	ft_free(temp);
+	ft_free_(temp);
 	return (save);
 }
 

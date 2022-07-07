@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:07:15 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 16:34:13 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 17:22:15 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void	*ft_strrev(void *a);
 int		ft_matrix_size(char **m);
 char	**ft_matrix_dup(char **m);
 void	ft_print_matrix(char **matrix);
+void	ft_free_matrix(char **matrix);
+void	ft_free(void *data);
 
 #endif

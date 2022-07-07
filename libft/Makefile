@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/07/07 16:34:38 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/07 17:23:51 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ LIST =	ft_atoi ft_bzero ft_calloc\
 		assets/ft_puthex assets/ft_putptr\
 		ft_split_mod ft_strrev\
 		new_funcs/ft_matrix_len new_funcs/ft_matrix_dup\
-		new_funcs/ft_print_matrix
+		new_funcs/ft_print_matrix new_funcs/ft_free_matrix\
+		new_funcs/ft_free
 
 CFLAGS = -Wall -Wextra -Werror
 

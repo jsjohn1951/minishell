@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   terminate.c                                        :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:23:16 by wismith          ###   ########.fr       */
+/*   Created: 2022/07/07 17:19:10 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/07 17:20:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/libft.h"
 
-void	free_data(t_data *data)
+void	ft_free_matrix(char **matrix)
 {
-	ft_free_matrix(data->env);
-	ft_free_matrix(data->path);
-	ft_free_matrix(data->data);
+	int	i;
+
+	i = -1;
+	if (!matrix || !*matrix)
+		return ;
+	while (matrix[++i])
+		ft_free(matrix[i]);
+	ft_free (matrix);
+	matrix = NULL;
 }

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   terminate.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:23:16 by wismith          ###   ########.fr       */
+/*   Created: 2022/07/07 17:21:37 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/07 17:22:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/libft.h"
 
-void	free_data(t_data *data)
+void	ft_free(void *data)
 {
-	ft_free_matrix(data->env);
-	ft_free_matrix(data->path);
-	ft_free_matrix(data->data);
+	if (!data)
+		return ;
+	free (data);
+	data = NULL;
 }
