@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:29:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/06/26 13:25:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:54:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*quote_strip_(char *s)
 
 	i = -1;
 	flags.quote = 0;
+	if (!s || !*s)
+		return (NULL);
 	res = (char *)ft_calloc(quote_size_finder(s, flags) + 1, sizeof(char));
 	index = 0;
 	if (!res)
