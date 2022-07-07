@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 19:56:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/07 20:10:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	cmd_control(t_data *data)
 	char	*s;
 
 	data->path = ft_matrix_add_elem(data->path, "/hello/world");
+	data->path = ft_matrix_add_elem(data->path, "/hello/bob");
 	s = quote_strip_(data->data[0]);
 	if (!s || !*s)
 		return ;
