@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:54:18 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:15:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	print_cmd(char **matrix);
 void	print_matrix(char **matrix);
 /*	file: customsplit */
 char	**split(char *cmd);
+/*	file: pipe_redir_split */
+char	**pipe_redir_split(char *cmd);
 /*	file: split_tools */
 void	isword(t_flags *flags);
 int		is_quote_(char c);

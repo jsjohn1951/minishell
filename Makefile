@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/07 16:24:55 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/10 18:12:34 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
 		parser/customsplit parser/split_tools\
 		builtins/echo builtins/exit\
-		main/cmd parser/set_mode
+		main/cmd parser/set_mode\
+		parser/pipe_redir_split\
+		\
+		\
 
 # Objects used to compile
 OBJDIR = Objects

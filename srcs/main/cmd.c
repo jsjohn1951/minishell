@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 20:10:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:16:25 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	conditional_(t_data *data, char *cmd)
 	else if (data->mode.pipe || data->mode.redir)
 	{
 		ft_printf("Contains pipes or redirections!\n");
-		data->data = ft_split(cmd, '|');
+		data->data = pipe_redir_split(cmd);
 	}
 	ft_free(cmd);
 	if (data->data)

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:08:31 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:53:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/10 23:57:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	count_(char *cmd, t_flags flags)
 	while (cmd[i])
 	{
 		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
-			isword(&flags);
+		{
+			if (i == 0 || cmd[i - 1] == ' ')
+				isword(&flags);
+		}
 		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);
@@ -45,7 +48,10 @@ int	count_start_(char *cmd, t_flags flags, int word)
 	while (cmd[i])
 	{
 		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
-			isword(&flags);
+		{
+			if (i == 0 || cmd[i - 1] == ' ')
+				isword(&flags);
+		}
 		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);
@@ -69,7 +75,10 @@ int	count_end_(char *cmd, t_flags flags, int word)
 	while (cmd[i])
 	{
 		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
-			isword(&flags);
+		{
+			if (i == 0 || cmd[i - 1] == ' ')
+				isword(&flags);
+		}
 		else if (is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);

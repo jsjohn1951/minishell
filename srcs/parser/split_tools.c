@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:05:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 16:12:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/11 00:04:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void	cancel_flags(t_flags *flags, char *cmd, int i)
 		if (cmd[i + 1] == ' ' || cmd[i + 1] == '\0')
 			flags->word = 0;
 	if (flags->quote == cmd[i])
+	{
+		if (cmd[i + 1])
+			if (cmd[i + 1] != ' ')
+				flags->word = 1;
 		flags->quote = 0;
+	}
 }
 
 int	is_quote_(char c)
