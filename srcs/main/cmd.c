@@ -6,11 +6,13 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/10 18:16:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/12 22:52:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+/* Muna can change this function */
 
 void	cmd_control(t_data *data)
 {
