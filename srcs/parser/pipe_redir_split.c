@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:12:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/10 22:57:17 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:30:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@ int	is_pipe_or_redir(char c, t_flags *flags)
 
 int	chunk_count(char *cmd, t_flags flags)
 {
-	int	i;
-	int	num;
+	int		i;
+	int		num;
 
-	i = 0;
+	i = -1;
 	num = 0;
-	while (cmd[i])
+	if (!is_pipe_or_redir(cmd[0], &flags))
+		num++;
+	while (cmd[++i])
 	{
-		if ((cmd[i] == 34 || cmd[i] == 39) && !flags.quote)
+		if (cmd[i] == 34 || cmd[i] == 39)
 			flags.quote = cmd[i];
-		else if (flags.quote == cmd[i])
+		else if (cmd[i] == flags.quote)
 			flags.quote = 0;
 		if (is_pipe_or_redir(cmd[i], &flags))
-			num++;
-		i++;
+		{
+			if (!is_pipe_or_redir(cmd[i + 1], &flags) && cmd[i + 1] != 0)
+				num += 2;
+		}
 	}
 	return (num);
 }
