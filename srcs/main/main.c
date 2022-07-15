@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:47:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/15 15:38:05 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv, char **envp)
 	(void) argc;
 	(void) argv;
 	data.env = ft_matrix_dup(envp);
+	env(&data);
 	data.path = path(data.env);
 	while (isatty(STDIN_FILENO))
 		cmd_(&data);

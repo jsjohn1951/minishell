@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/10 18:15:38 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/15 15:34:56 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ typedef struct s_mode
 	int	redir;
 }	t_mode;
 
-typedef struct s_data
+typedef struct s_parsed
 {
-	char	**data;
-	char	**env;
-	char	**path;
-	t_mode	mode;
-}	t_data;
+	char	**cmd;
+	char	*pipe_redir;
+}	t_parsed;
 
 typedef struct s_universal_flags
 {
@@ -52,6 +50,17 @@ typedef struct s_universal_flags
 	int	word;
 	int	err;
 }	t_flags;
+
+typedef struct s_data
+{
+	char		**data;
+	char		**env;
+	char		**path;
+	int			num_cmds;
+	t_mode		mode;
+	t_parsed	*pars;
+	t_flags		flags;
+}	t_data;
 
 /*	main */
 /* file: cmd */
@@ -62,10 +71,11 @@ char	**path(char **data);
 /*	file: printer */
 void	print_cmd(char **matrix);
 void	print_matrix(char **matrix);
+void	print_parsed(t_data *data);
 /*	file: customsplit */
 char	**split(char *cmd);
-/*	file: pipe_redir_split */
-char	**pipe_redir_split(char *cmd);
+/*	file: split_by_pipe */
+void	set_cmds(t_data *data, char *cmd);
 /*	file: split_tools */
 void	isword(t_flags *flags);
 int		is_quote_(char c);
@@ -80,6 +90,8 @@ char	**ft_matrix_dup_rtn(char **m);
 /*	file: set_mode */
 void	set_mode(t_data *data, char *cmd);
 void	init_mode_check(t_data *data);
+/*	env */
+void	env(t_data *data);
 
 /* builtins */
 /*	file: echo */
@@ -87,6 +99,7 @@ void	ft_echo(char **matrix, char *s);
 /*	file: exit */
 void	exit_(t_data *data);
 void	free_data(t_data *data);
+void	free_parsed_data(t_data *data);
 
 /*	cmdbus */
 /* file: specialbus */

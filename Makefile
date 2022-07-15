@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/10 18:12:34 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/15 15:33:28 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = main/main parser/quote_strip\
 		parser/customsplit parser/split_tools\
 		builtins/echo builtins/exit\
 		main/cmd parser/set_mode\
-		parser/pipe_redir_split\
+		parser/split_by_pipe parser/env\
 		\
 		\
 

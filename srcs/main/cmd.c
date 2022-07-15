@@ -6,20 +6,19 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/12 22:52:44 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:38:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/* Muna can change this function */
+/* data->path = ft_matrix_add_elem(data->path, "/hello/world");
+	function: will add elem to a 2D matrix*/
 
 void	cmd_control(t_data *data)
 {
 	char	*s;
 
-	data->path = ft_matrix_add_elem(data->path, "/hello/world");
-	data->path = ft_matrix_add_elem(data->path, "/hello/bob");
 	s = quote_strip_(data->data[0]);
 	if (!s || !*s)
 		return ;
@@ -30,7 +29,7 @@ void	cmd_control(t_data *data)
 	else if (!ft_strncmp(s, "path", 4))
 		ft_print_matrix(data->path);
 	else if (ft_strncmp(s, "exit", 4) && ft_strncmp(s, "echo", 4))
-		print_cmd(data->data);
+		print_parsed(data);
 	ft_echo(data->data, s);
 	ft_free (s);
 	exit_(data);
@@ -68,14 +67,7 @@ cmd is freed to avoid memleaks */
 void	conditional_(t_data *data, char *cmd)
 {
 	data->data = NULL;
-	if (!data->mode.pipe && !data->mode.redir)
-		data->data = split(cmd);
-	else if (data->mode.pipe || data->mode.redir)
-	{
-		ft_printf("Contains pipes or redirections!\n");
-		data->data = pipe_redir_split(cmd);
-	}
-	ft_free(cmd);
+	set_cmds(data, cmd);
 	if (data->data)
 		cmd_control(data);
 }
@@ -111,15 +103,14 @@ int	cmd_(t_data *data)
 
 	cmd = readline("SEA SHELL v1.7 -> ");
 	not_cmd_(data, cmd);
-	init_mode_check(data);
 	if (ft_strlen(cmd))
 	{
 		add_history(cmd);
-		set_mode(data, cmd);
 		conditional_(data, cmd);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		ft_free_matrix(data->data);
+		free_parsed_data(data);
 	}
 	else
 		free (cmd);
