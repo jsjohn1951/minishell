@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/15 15:34:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/16 15:30:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_mode
 
 typedef struct s_parsed
 {
+	int		num;
 	char	**cmd;
 	char	*pipe_redir;
 }	t_parsed;
@@ -69,7 +70,7 @@ char	**path(char **data);
 
 /* parser */
 /*	file: printer */
-void	print_cmd(char **matrix);
+void	print_cmd(t_parsed pars);
 void	print_matrix(char **matrix);
 void	print_parsed(t_data *data);
 /*	file: customsplit */

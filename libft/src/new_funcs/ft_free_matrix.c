@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:19:10 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/07 17:20:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:58:46 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	ft_free_matrix(char **matrix)
 	if (!matrix || !*matrix)
 		return ;
 	while (matrix[++i])
-		ft_free(matrix[i]);
+	{
+		if (matrix[i] && *matrix[i])
+		{
+			free (matrix[i]);
+			matrix[i] = NULL;
+		}
+	}
 	ft_free (matrix);
-	matrix = NULL;
 }

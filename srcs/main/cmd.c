@@ -6,32 +6,39 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/14 10:38:30 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/16 15:44:47 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /* data->path = ft_matrix_add_elem(data->path, "/hello/world");
-	function: will add elem to a 2D matrix*/
+	function: will add elem to the bottom of a 2D matrix */
 
 void	cmd_control(t_data *data)
 {
 	char	*s;
+	int		i;
 
-	s = quote_strip_(data->data[0]);
-	if (!s || !*s)
-		return ;
-	if (!ft_strncmp(s, "clear", 5))
-		ft_printf(KCLR);
-	else if (!ft_strncmp(s, "env", 3))
-		ft_print_matrix(data->env);
-	else if (!ft_strncmp(s, "path", 4))
-		ft_print_matrix(data->path);
-	else if (ft_strncmp(s, "exit", 4) && ft_strncmp(s, "echo", 4))
-		print_parsed(data);
-	ft_echo(data->data, s);
-	ft_free (s);
+	i = 0;
+	while (i < data->num_cmds)
+	{
+		s = quote_strip_(data->pars[i].cmd[0]);
+		data->pars[i].num = i;
+		if (!ft_strncmp(s, "clear", 5))
+			ft_printf(KCLR);
+		else if (!ft_strncmp(s, "env", 3))
+			ft_print_matrix(data->env);
+		else if (!ft_strncmp(s, "path", 4))
+			ft_print_matrix(data->path);
+		if (ft_strncmp(s, "exit", 4) && ft_strncmp(s, "echo", 4)
+			&& ft_strncmp(s, "clear", 5) && ft_strncmp(s, "env", 3))
+			print_cmd(data->pars[i]);
+		ft_echo(data->pars[i].cmd, s);
+		free (s);
+		s = NULL;
+		i++;
+	}
 	exit_(data);
 }
 
@@ -101,7 +108,7 @@ int	cmd_(t_data *data)
 {
 	char	*cmd;
 
-	cmd = readline("SEA SHELL v1.7 -> ");
+	cmd = readline("SEA SHELL VII -> ");
 	not_cmd_(data, cmd);
 	if (ft_strlen(cmd))
 	{

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:33:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/15 22:09:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:41:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	rm_elem_matrix(t_data *data)
 	}
 	if (truth)
 	{
-		ft_printf("> %s\n", data->env[i]);
 		while (data->env[i])
 		{
 			free (data->env[i]);
@@ -59,7 +58,6 @@ void	rm_elem_matrix(t_data *data)
 		}
 		ft_free (data->env[i]);
 	}
-	return ;
 }
 
 void	env(t_data *data)

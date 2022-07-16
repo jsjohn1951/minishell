@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/14 17:08:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/16 15:18:35 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void	set_cmds(t_data *data, char *cmd)
 	flag_init(&data->flags);
 	data->data = split(cmd);
 	data->num_cmds = num_of_cmds(data, cmd);
-	data->pars = (t_parsed *)malloc(sizeof(t_parsed) * (data->num_cmds + 1));
+	data->pars = (t_parsed *)malloc(sizeof(t_parsed) * (data->num_cmds));
 	split_pipe(data, cmd, i, j);
 }
