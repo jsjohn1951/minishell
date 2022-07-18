@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/18 12:54:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/18 14:55:11 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	cmd_control(t_data *data)
 			&& ft_strncmp(data->strip, "clear", 5)
 			&& ft_strncmp(data->strip, "env", 3))
 			print_cmd(data->pars[i]);
-		exec_builtin(data, i);
+		//exec_builtin(data, i);
+		ft_exec(data, i);
 		free (data->strip);
 		data->strip = NULL;
 		i++;

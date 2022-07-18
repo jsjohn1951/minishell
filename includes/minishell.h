@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/18 12:50:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/18 14:55:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	ft_close_fd(t_data *data, int fd[2]);
 int		ft_create_pipe(t_data *data);
 void	ft_dup2(int i, int *fd, t_data *data);
 void	ft_process(t_data *data, int i, int *fd);
-int		ft_exec(t_data *data);
+int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
 

@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/18 12:56:05 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/18 14:47:45 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS = main/main parser/quote_strip\
 		parser/split_by_pipe parser/env\
 		\
 		\
-		builtins/builitins
+		builtins/builitins builtins/execve2\
 
 # Objects used to compile
 OBJDIR = Objects
