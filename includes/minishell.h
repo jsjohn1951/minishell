@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/16 15:30:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/18 12:50:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	char		**data;
 	char		**env;
 	char		**path;
+	char		*strip;
 	int			num_cmds;
 	t_mode		mode;
 	t_parsed	*pars;
@@ -105,5 +106,15 @@ void	free_parsed_data(t_data *data);
 /*	cmdbus */
 /* file: specialbus */
 void	specialbus(t_data *data);
+
+/*muna*/
+
+void	ft_close_fd(t_data *data, int fd[2]);
+int		ft_create_pipe(t_data *data);
+void	ft_dup2(int i, int *fd, t_data *data);
+void	ft_process(t_data *data, int i, int *fd);
+int		ft_exec(t_data *data);
+int		is_builtin(t_data *data);
+int		exec_builtin(t_data *data, int i);
 
 #endif

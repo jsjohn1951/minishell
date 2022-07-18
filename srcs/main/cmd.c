@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/16 16:33:53 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/18 12:54:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,27 @@
 
 void	cmd_control(t_data *data)
 {
-	char	*s;
 	int		i;
 
 	i = 0;
 	while (i < data->num_cmds)
 	{
-		s = quote_strip_(data->pars[i].cmd[0]);
+		data->strip = quote_strip_(data->pars[i].cmd[0]);
 		data->pars[i].num = i;
-		if (!ft_strncmp(s, "clear", 5))
+		if (!ft_strncmp(data->strip, "clear", 5))
 			ft_printf(KCLR);
-		else if (!ft_strncmp(s, "env", 3))
+		else if (!ft_strncmp(data->strip, "env", 3))
 			ft_print_matrix(data->env);
-		else if (!ft_strncmp(s, "path", 4))
+		else if (!ft_strncmp(data->strip, "path", 4))
 			ft_print_matrix(data->path);
-		if (ft_strncmp(s, "exit", 4) && ft_strncmp(s, "echo", 4)
-			&& ft_strncmp(s, "clear", 5) && ft_strncmp(s, "env", 3))
+		if (ft_strncmp(data->strip, "exit", 4)
+			&& ft_strncmp(data->strip, "echo", 4)
+			&& ft_strncmp(data->strip, "clear", 5)
+			&& ft_strncmp(data->strip, "env", 3))
 			print_cmd(data->pars[i]);
-		ft_echo(data->pars[i].cmd, s);
-		free (s);
-		s = NULL;
+		exec_builtin(data, i);
+		free (data->strip);
+		data->strip = NULL;
 		i++;
 	}
 	exit_(data);
