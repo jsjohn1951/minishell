@@ -19,10 +19,13 @@ int		is_builtin(t_data *data)
 
 int	exec_builtin(t_data *data, int i)
 {
+	int result;
+
+	result = 0;
 	if (!ft_strncmp(data->pars[i].cmd[0], "echo", 4))
 		ft_echo(data->pars[i].cmd, data->strip);
-	// else if (ft_strncmp(cmd, "pwd", 3)
-	// 	ft_pwd(cmd);
+	else if (ft_strncmp(data->pars[i].cmd[0], "pwd", 3))
+		result = ft_pwd();
 	// else if (ft_strncmp(cmd, "env", 3)
 	// 	ft_env(cmd);
 	// else if (ft_strncmp(cmd, "export", 6)

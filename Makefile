@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
+#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/18 14:47:45 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/18 16:14:28 by mnyalhdrmy       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = main/main parser/quote_strip\
 		\
 		\
 		builtins/builitins builtins/execve2\
+		builtins/pwd\
 
 # Objects used to compile
 OBJDIR = Objects
