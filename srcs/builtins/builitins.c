@@ -23,16 +23,23 @@ int	exec_builtin(t_data *data, int i)
 
 	result = 0;
 	if (!ft_strncmp(data->pars[i].cmd[0], "echo", 4))
+	{
+		printf("muna\n");
 		ft_echo(data->pars[i].cmd, data->strip);
+	}
 	else if (ft_strncmp(data->pars[i].cmd[0], "pwd", 3))
-		result = ft_pwd();
-	// else if (ft_strncmp(cmd, "env", 3)
-	// 	ft_env(cmd);
+	{
+		result = ft_pwd();// not done sigfult
+	}
+	else if (ft_strncmp(data->pars[i].cmd[0], "env", 3))
+		ft_env(data);
+	else if (ft_strncmp(data->pars[i].cmd[0], "cd", 2))
+		ft_cd(data);
 	// else if (ft_strncmp(cmd, "export", 6)
 	// 	ft_export(cmd);
 	// else if (ft_strncmp(cmd, "unset", 5)
 	// 	ft_unset(cmd);
 	// else
 	// 	execve(path, cmd, env)
-	return (0);
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/18 16:22:02 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/19 12:46:17 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,8 @@ int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
 int		ft_pwd(void);
+int 	ft_env(t_data *data);
+int		ft_cd(t_data *data);
+char	*get_path(t_data *data, char *to_find, int *i);
+char	*ft_get_home(t_data *data);
 #endif

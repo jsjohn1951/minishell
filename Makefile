@@ -6,7 +6,7 @@
 #    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/18 16:14:28 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/07/19 11:56:10 by mnyalhdrmy       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS = main/main parser/quote_strip\
 		\
 		\
 		builtins/builitins builtins/execve2\
-		builtins/pwd\
+		builtins/pwd builtins/env\
+		builtins/get_path builtins/cd\
 
 # Objects used to compile
 OBJDIR = Objects
