@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/19 11:03:37 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/19 15:04:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,26 @@ void	cmd_control(t_data *data)
 	i = 0;
 	while (i < data->num_cmds)
 	{
-		data->strip = quote_strip_(data->pars[i].cmd[0]);
-		data->pars[i].num = i;
-		if (!ft_strncmp(data->strip, "clear", 5))
-			ft_printf(KCLR);
-		else if (!ft_strncmp(data->strip, "env", 3))
-			ft_print_matrix(data->env);
-		else if (!ft_strncmp(data->strip, "path", 4))
-			ft_print_matrix(data->path);
-		if (ft_strncmp(data->strip, "exit", 4)
-			&& ft_strncmp(data->strip, "echo", 4)
-			&& ft_strncmp(data->strip, "clear", 5)
-			&& ft_strncmp(data->strip, "env", 3))
-			print_cmd(data->pars[i]);
-		ft_exec(data, i);
-		// get_right_path(data);
-		free (data->strip);
-		data->strip = NULL;
+		if (data->pars[i].cmd)
+		{
+			data->strip = quote_strip_(data->pars[i].cmd[0]);
+			data->pars[i].num = i;
+			// if (!ft_strncmp(data->strip, "clear", 5))
+			// 	ft_printf(KCLR);
+			// else if (!ft_strncmp(data->strip, "env", 3))
+			// 	ft_env(data);
+			// else if (!ft_strncmp(data->strip, "path", 4))
+			// 	ft_print_matrix(data->path);
+			if (ft_strncmp(data->strip, "exit", 4)
+				&& ft_strncmp(data->strip, "echo", 4)
+				&& ft_strncmp(data->strip, "clear", 5)
+				&& ft_strncmp(data->strip, "env", 3))
+				print_cmd(data->pars[i]);
+			ft_exec(data, i);
+			// get_right_path(data);
+			free (data->strip);
+			data->strip = NULL;
+		}
 		i++;
 	}
 	exit_(data);

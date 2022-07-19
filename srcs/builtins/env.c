@@ -1,13 +1,13 @@
 #include "../../includes/minishell.h"
 
-int		ft_env(t_data *data)
+int	ft_env(t_data *data)
 {
 	int	i;
 	int	size_line;
-    int fd;
+	int	fd;
 
 	i = -1;
-    fd = 1;
+	fd = 1;
 	while (data->env[++i])
 	{
 		size_line = ft_strlen(data->env[i]);
