@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/19 15:20:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:18:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 int	ft_create_pipe(t_data *data)
 {
 	int	i;
-	int	fd[2000000];
+	int	fd[2];
 
 	i = 0;
 	while (i < data->num_cmds)
@@ -86,8 +86,12 @@ int	ft_exec(t_data *data, int i)
 	// ft_printf("> %d\n", data->num_cmds);
 	// ft_printf("> %d\n", i);
 	pid = NULL;
-	if (is_builtin(data) && data->num_cmds == 1)
-		return (exec_builtin(data, i));
+	(void) pid;
+	if (data->num_cmds == 1)
+	{
+		if (is_builtin(data))
+			return (exec_builtin(data, i));
+	}
 	else if (data->num_cmds > 1)
 		ft_create_pipe(data);
 	// while (i < data->num_cmds)

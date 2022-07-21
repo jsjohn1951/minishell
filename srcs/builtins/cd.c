@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/21 14:45:38 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 char	*ft_get_home(t_data *data)
@@ -49,10 +61,10 @@ int	change_env(t_data *data, char *path, char *new_path)
 
 int	ft_cd_minus(t_data *data)
 {
-	int	i;
+	// int	i;
 
-	i = -1;
-	free(path);
+	// i = -1;
+	// free(path);
 	// data->path = get_path(data, "OLDPWD", &i);
 	// if (!data->path)
 	// 	return ();

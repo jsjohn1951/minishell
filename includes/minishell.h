@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/19 15:01:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/21 14:56:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_data
 	char		*strip;
 	int			num_cmds;
 	t_mode		mode;
-	t_parsed	*pars;
+	t_parsed	pars[150000];
 	t_flags		flags;
 }	t_data;
 
