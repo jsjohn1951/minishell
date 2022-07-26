@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 13:50:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/26 15:50:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ void	ft_print_env(char **env_sorted)
 		ft_putstr("declare -x ");
 		while (env_sorted[i] && env_sorted[i][j])
 		{
-            if (env_sorted[i][j - 1] == '=')
-                ft_putstr("\"");
-            ft_flag = 1;
+			if (env_sorted[i][j - 1] == '=')
+				ft_putstr("\"");
+			ft_flag = 1;
 			ft_putchr(env_sorted[i][j]);
 			j++;
-
 		}
 		if (ft_flag == 1)
 			ft_putchr('\"');
@@ -76,7 +75,8 @@ void	ft_sort_env(char **env)
 		j = i + 1;
 		while (env_sorted[j])
 		{
-			if (ft_strncmp(env_sorted[i], env_sorted[j], ft_strlen(env_sorted[i])) > 0)
+			if (ft_strncmp(env_sorted[i], env_sorted[j],
+					ft_strlen(env_sorted[i])) > 0)
 			{
 				tmp = env_sorted[i];
 				env_sorted[i] = env_sorted[j];
@@ -90,11 +90,12 @@ void	ft_sort_env(char **env)
 	free_env(env_sorted);
 }
 
-char **ft_print_export(char **env)
+char	**ft_print_export(char **env)
 {
-    ft_sort_env(env);
-    return(env);
+	ft_sort_env(env);
+	return (env);
 }
+
 char	*ft_strtrim_first_letter(char *line)
 {
 	char	*new;
@@ -110,21 +111,36 @@ char	*ft_strtrim_first_letter(char *line)
 	return (new);
 }
 
+// char	*get_path2(t_data *data, char *to_find, int *i)
+// {
+// 	int		size;
+// 	char	*ret_ptr;
+// 	char	*path;
+
+// 	size = ft_strlen(to_find);
+// 	while (data->env[++(*i)])
+// 	{
+// 		ret_ptr = ft_strnstr(data->env[*i], to_find, size);
+// 		if (ret_ptr != 0)
+// 		{
+// 			path = ft_strdup(ret_ptr + (size + 1));
+// 			return (path);
+// 		}
+// 	}
+// 	return (NULL);
+// }
+
 char	*get_path2(t_data *data, char *to_find, int *i)
 {
 	int		size;
-	char	*ret_ptr;
-	char	*path;
 
 	size = ft_strlen(to_find);
 	while (data->env[++(*i)])
 	{
-		ret_ptr = ft_strnstr(data->env[*i], to_find, size);
-		if (ret_ptr != 0)
-		{
-			path = ft_strdup(ret_ptr + (size + 1));
-			return (path);
-		}
+		if (!ft_strncmp(data->env[*i], to_find, size - 1) && size > 1)
+			return (ft_strdup(data->env[*i]));
+		else if (size <= 1 && data->env[*i][0] == to_find[0])
+			return (ft_strdup(data->env[*i]));
 	}
 	return (NULL);
 }
@@ -137,9 +153,9 @@ int	change_env(t_data *data, char *path, char *new_path)
 
 	i = -1;
 	ret_ptr = get_path2(data, path, &i);
-	tmp = ft_substr(data->env[i - 1], 0, ft_strlen(path) + 1);
-	free(data->env[i - 1]);
-	data->env[i - 1] = ft_strjoin(tmp, new_path);
+	tmp = ft_substr(data->env[i], 0, ft_strlen(path) + 1);
+	free(data->env[i]);
+	data->env[i] = ft_strjoin(tmp, new_path);
 	free(ret_ptr);
 	free(tmp);
 	return (0);
@@ -163,7 +179,7 @@ char	**ft_export(t_data *data, int num_cmd)
 		ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
 		if (!ft_is_in_env(data, key))
 			data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
-		else
+		else if (ft_is_in_env(data, key))
 		{
 			value = ft_strtrim_first_letter(value);
 			change_env(data, key, value);

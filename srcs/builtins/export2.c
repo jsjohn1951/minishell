@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 13:45:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/26 15:42:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,12 @@ int	ft_is_in_env(t_data *data, char *key)
 	size = ft_strlen(key);
 	while (data->env[++i])
 	{
-		if (!ft_strncmp(key, data->env[i], size - 1))
+		if (!ft_strncmp(key, data->env[i], size - 1) && size > 1)
+		{
+			if (data->env[i][size] == '=')
+				return (1);
+		}
+		else if (size <= 1 && data->env[i][0] == key[0])
 		{
 			if (data->env[i][size] == '=')
 				return (1);
@@ -90,7 +95,7 @@ char	**set_in_env(t_data *data, char *line)
 
 	size = 0;
 	i = -1;
-	while (data->env[++i])
+	while (data->env[size])
 		size++;
 	tmp = malloc(sizeof(char *) * (size + 2));
 	i = 0;
