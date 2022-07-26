@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/26 13:45:10 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 char	*ft_strndup(const char *s1, int n)
@@ -17,6 +29,7 @@ char	*ft_strndup(const char *s1, int n)
 	s2[i] = '\0';
 	return (s2);
 }
+
 int	ft_check_arg(char *arg)
 {
 	int	i;
@@ -32,6 +45,7 @@ int	ft_check_arg(char *arg)
 	}
 	return (1);
 }
+
 int	ft_parse_env(char *tab, char **key, char **value)
 {
 	int		dollar;
@@ -49,7 +63,8 @@ int	ft_parse_env(char *tab, char **key, char **value)
 	*value = ft_strchr(tab, '=');
 	return (0);
 }
-int	ft_is_in_env(t_data *data,char *key)
+
+int	ft_is_in_env(t_data *data, char *key)
 {
 	int		i;
 	int		size;
@@ -58,15 +73,16 @@ int	ft_is_in_env(t_data *data,char *key)
 	size = ft_strlen(key);
 	while (data->env[++i])
 	{
-		if (!ft_strncmp(key, data->env[i], size))
+		if (!ft_strncmp(key, data->env[i], size - 1))
 		{
-			if (data->env[i][size]== '=')
+			if (data->env[i][size] == '=')
 				return (1);
 		}
 	}
 	return (0);
 }
-char	**set_in_env(t_data *data,char *line)
+
+char	**set_in_env(t_data *data, char *line)
 {
 	int		i;
 	int		size;
@@ -89,6 +105,7 @@ char	**set_in_env(t_data *data,char *line)
 	free_env(data->env);
 	return (tmp);
 }
+
 void	free_env(char **env)
 {
 	int	i;

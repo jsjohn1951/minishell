@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
+/*   Updated: 2022/07/26 13:50:51 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	ft_print_env(char **env_sorted)
@@ -49,6 +61,7 @@ char	**ft_copy_env(char **envp)
 	env[i] = NULL;
 	return (env);
 }
+
 void	ft_sort_env(char **env)
 {
 	char	**env_sorted;
@@ -76,6 +89,7 @@ void	ft_sort_env(char **env)
 	ft_print_env(env_sorted);
 	free_env(env_sorted);
 }
+
 char **ft_print_export(char **env)
 {
     ft_sort_env(env);
@@ -95,6 +109,7 @@ char	*ft_strtrim_first_letter(char *line)
 	new[i - 1] = '\0';
 	return (new);
 }
+
 char	*get_path2(t_data *data, char *to_find, int *i)
 {
 	int		size;
@@ -113,6 +128,7 @@ char	*get_path2(t_data *data, char *to_find, int *i)
 	}
 	return (NULL);
 }
+
 int	change_env(t_data *data, char *path, char *new_path)
 {
 	int		i;
@@ -121,39 +137,39 @@ int	change_env(t_data *data, char *path, char *new_path)
 
 	i = -1;
 	ret_ptr = get_path2(data, path, &i);
-	tmp = ft_substr(data->env[i], 0, ft_strlen(path) + 1);
-	free(data->env[i]);
-	data->env[i] = ft_strjoin(tmp, new_path);
+	tmp = ft_substr(data->env[i - 1], 0, ft_strlen(path) + 1);
+	free(data->env[i - 1]);
+	data->env[i - 1] = ft_strjoin(tmp, new_path);
 	free(ret_ptr);
 	free(tmp);
 	return (0);
 }
 
-char    **ft_export(t_data *data, int num_cmd)
+char	**ft_export(t_data *data, int num_cmd)
 {
-    int i;
-    char	*key;
+	int		i;
+	char	*key;
 	char	*value;
 
-    key = NULL;
+	key = NULL;
 	value = NULL;
-    i = 0;
-    if (!data->pars[num_cmd].cmd[1])
-        ft_print_export(data->env);
-    while (data->pars[num_cmd].cmd[++i])
-    {
-        if (!ft_check_arg(data->pars[num_cmd].cmd[i]))
+	i = 0;
+	if (!data->pars[num_cmd].cmd[1])
+		ft_print_export(data->env);
+	while (data->pars[num_cmd].cmd[++i])
+	{
+		if (!ft_check_arg(data->pars[num_cmd].cmd[i]))
 			return (data->env);
-        ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
-        if (!ft_is_in_env(data, key))
-            data->env = set_in_env(data,data->pars[num_cmd].cmd[i]);
-        if (ft_is_in_env(data, key))
-        {
-           value = ft_strtrim_first_letter(value);
-           change_env(data, key, value);
-           free(value);
-        }
-        free(key);
-    }
-    return(data->env);
+		ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
+		if (!ft_is_in_env(data, key))
+			data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
+		else
+		{
+			value = ft_strtrim_first_letter(value);
+			change_env(data, key, value);
+			free(value);
+		}
+		free(key);
+	}
+	return (data->env);
 }
