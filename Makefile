@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/26 13:14:36 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/07/26 16:01:45 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = main/main parser/quote_strip\
 		builtins/echo builtins/exit\
 		main/cmd parser/set_mode\
 		parser/split_by_pipe parser/env\
+		main/cmdblock\
 		\
 		\
 		builtins/builitins builtins/execve2\
@@ -47,7 +48,7 @@ $(OBJDIR)/%.o : srcs/%.c
 	mkdir -p $(OBJDIR)/cmdbus
 	mkdir -p $(OBJDIR)/parser
 	mkdir -p $(OBJDIR)/builtins
-	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/errhandle
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)

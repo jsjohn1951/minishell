@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 13:12:59 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/26 15:58:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_data
 /* file: cmd */
 int		cmd_(t_data *data);
 char	**path(char **data);
+/* file: cmdblock */
+void	do_print_(t_data *data, int i);
 
 /* parser */
 /*	file: printer */
@@ -105,7 +107,8 @@ void	free_parsed_data(t_data *data);
 
 /*	cmdbus */
 /* file: specialbus */
-void	specialbus(t_data *data);
+/* void	specialbus(t_data *data); */
+
 
 /*muna*/
 
