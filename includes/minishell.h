@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/21 14:56:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/26 13:12:59 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,16 @@ int		ft_env(t_data *data);
 int		ft_cd(t_data *data);
 char	*get_path(t_data *data, char *to_find, int *i);
 char	*ft_get_home(t_data *data);
+char   **ft_export(t_data *data, int i);
+void	ft_sort_env(char **env);
+char   **ft_print_export(char **env);
+char	**ft_copy_env(char **envp);
+void	ft_print_env(char **tab);
+void	free_env(char **env);
+int		ft_check_arg(char *arg);
+int		ft_parse_env(char *tab, char **key, char **value);
+char	*ft_strndup(const char *s1, int n);
+int		ft_is_in_env(t_data *data,char *key);
+char	**set_in_env(t_data *data,char *line);
+int		change_env(t_data *data, char *path, char *new_path);
 #endif
