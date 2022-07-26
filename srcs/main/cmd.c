@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/21 15:07:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/25 22:20:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	cmd_control(t_data *data)
 		{
 			data->strip = quote_strip_(data->pars[i].cmd[0]);
 			data->pars[i].num = i;
+			accessible_(data);
 			if (ft_strncmp(data->strip, "exit", 4)
 				&& ft_strncmp(data->strip, "echo", 4)
 				&& ft_strncmp(data->strip, "clear", 5)
-				&& ft_strncmp(data->strip, "env", 3))
+				&& ft_strncmp(data->strip, "env", 3)
+				&& ft_strncmp(data->strip, "pwd", 3))
 				print_cmd(data->pars[i]);
 			ft_exec(data, i);
-			// get_right_path(data);
 			free (data->strip);
 			data->strip = NULL;
 		}

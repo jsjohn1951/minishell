@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/21 14:56:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/25 22:15:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ void	free_parsed_data(t_data *data);
 /* file: specialbus */
 void	specialbus(t_data *data);
 
+/* tools */
+/* file: mini_tool_set */
+int		ft_is_in_env(t_data *data, char *key);
+void	accessible_(t_data *data);
 /*muna*/
 
 void	ft_close_fd(t_data *data, int fd[2]);

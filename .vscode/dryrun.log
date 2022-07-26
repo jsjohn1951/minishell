@@ -1,0 +1,160 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/johnsmith/Desktop/mini_moc'
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/main/main.c -o Objects/main/main.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/quote_strip.c -o Objects/parser/quote_strip.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/terminate.c -o Objects/parser/terminate.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/printer.c -o Objects/parser/printer.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/customsplit.c -o Objects/parser/customsplit.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/split_tools.c -o Objects/parser/split_tools.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/echo.c -o Objects/builtins/echo.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/exit.c -o Objects/builtins/exit.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/main/cmd.c -o Objects/main/cmd.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/set_mode.c -o Objects/parser/set_mode.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/split_by_pipe.c -o Objects/parser/split_by_pipe.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/parser/env.c -o Objects/parser/env.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/tools/mini_tool_set.c -o Objects/tools/mini_tool_set.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/builitins.c -o Objects/builtins/builitins.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/execve2.c -o Objects/builtins/execve2.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/pwd.c -o Objects/builtins/pwd.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/env.c -o Objects/builtins/env.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/get_path.c -o Objects/builtins/get_path.o
+mkdir -p Objects
+mkdir -p Objects/main
+mkdir -p Objects/cmdbus
+mkdir -p Objects/parser
+mkdir -p Objects/builtins
+mkdir -p Objects/errors
+mkdir -p Objects/tools
+gcc -Wall -Wextra -Werror -c srcs/builtins/cd.c -o Objects/builtins/cd.o
+tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
+make -C libft
+gcc -Wall -Wextra -Werror Objects/main/main.o Objects/parser/quote_strip.o Objects/parser/terminate.o Objects/parser/printer.o Objects/parser/customsplit.o Objects/parser/split_tools.o Objects/builtins/echo.o Objects/builtins/exit.o Objects/main/cmd.o Objects/parser/set_mode.o Objects/parser/split_by_pipe.o Objects/parser/env.o Objects/tools/mini_tool_set.o Objects/builtins/builitins.o Objects/builtins/execve2.o Objects/builtins/pwd.o Objects/builtins/env.o Objects/builtins/get_path.o Objects/builtins/cd.o ./libft/Library/libft.a -lreadline -o minishell
+tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
+make: Leaving directory `/Users/johnsmith/Desktop/mini_moc'
+ 

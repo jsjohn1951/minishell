@@ -1,0 +1,731 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Mon Jul 25 21:20:30 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 34)
+OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/johnsmith/Desktop/mini_moc
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 38)
+CFLAGS = -Wall -Wextra -Werror
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Users/johnsmith/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/johnsmith/Library/Python/3.8/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/johnsmith/Documents/42-ValgrindContainer
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 41)
+LDFLAGS = -lreadline
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.VqvCdaa4zW/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = /private/tmp/com.apple.launchd.CrWHWmFIvv/org.xquartz:0
+# environment
+PWD = /Users/johnsmith/Desktop/mini_moc
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+PYENV_SHELL = zsh
+# environment
+HOME = /Users/johnsmith
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/johnsmith/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+# environment
+LOGNAME = johnsmith
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ZSH = /Users/johnsmith/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from `Makefile', line 19)
+SRCS = main/main parser/quote_strip parser/terminate parser/printer parser/customsplit parser/split_tools builtins/echo builtins/exit main/cmd parser/set_mode parser/split_by_pipe parser/env tools/mini_tool_set builtins/builitins builtins/execve2 builtins/pwd builtins/env builtins/get_path builtins/cd 
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 39)
+LIBFT = ./libft/Library/libft.a
+# makefile (from `Makefile', line 37)
+CC = gcc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = johnsmith
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 16)
+NAME = minishell
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/1r/0_wywpp16gdbvn_4ghgmwkt80000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/johnsmith/Library/Application Support/Code/1.69.2-main.sock
+# environment
+MallocNanoZone = 0
+# makefile
+MAKEFLAGS = sRrqp
+# environment
+MFLAGS = -sRrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12181092.12181098
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# makefile (from `Makefile', line 40)
+READ = ./readline/lib/*
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x2
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# makefile (from `Makefile', line 33)
+OBJDIR = Objects
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 54202
+# variable set hash-table stats:
+# Load=73/1024=7%, Rehash=0, Collisions=3/114=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# srcs/builtins (device 16777224, inode 12170721): 10 files, no impossibilities so far.
+# . (device 16777224, inode 12170559): 14 files, no impossibilities.
+# srcs/tools (device 16777224, inode 12172190): 3 files, no impossibilities so far.
+# srcs/main (device 16777224, inode 12170730): 4 files, no impossibilities so far.
+# srcs (device 16777224, inode 12170720): No files, no impossibilities so far.
+# srcs/parser (device 16777224, inode 12170733): 10 files, no impossibilities so far.
+
+# 41 files, no impossibilities in 6 directories.
+
+# Implicit Rules
+
+Objects/%.o: srcs/%.c
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+srcs/tools/mini_tool_set.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:42:59
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/parser/terminate.o: srcs/parser/terminate.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/terminate'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/11=0%
+#  commands to execute (from `Makefile', line 56):
+	tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
+	
+
+.PHONY: all clean fclean re printre
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/parser/quote_strip.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Objects/builtins/pwd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Objects/builtins/cd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/builtins/exit.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+printre:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 77):
+	tput setaf 4; echo "-> Recreating <-"; tput setaf 7;
+	
+
+Objects/builtins/echo.o: srcs/builtins/echo.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `builtins/echo'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+ 
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+srcs/parser/split_by_pipe.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:36:22
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/parser/printer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/main/cmd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:35:42
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/main/main.o: srcs/main/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `main/main'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+minishell: Objects/main/main.o Objects/parser/quote_strip.o Objects/parser/terminate.o Objects/parser/printer.o Objects/parser/customsplit.o Objects/parser/split_tools.o Objects/builtins/echo.o Objects/builtins/exit.o Objects/main/cmd.o Objects/parser/set_mode.o Objects/parser/split_by_pipe.o Objects/parser/env.o Objects/tools/mini_tool_set.o Objects/builtins/builitins.o Objects/builtins/execve2.o Objects/builtins/pwd.o Objects/builtins/env.o Objects/builtins/get_path.o Objects/builtins/cd.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-25 17:42:33
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/11=0%
+#  commands to execute (from `Makefile', line 60):
+	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
+	make -C libft
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+	
+
+# Not a target:
+srcs/parser/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/tools/mini_tool_set.o: srcs/tools/mini_tool_set.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `tools/mini_tool_set'
+#  Last modified 2022-07-25 17:42:28
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Objects/tools/mini_tool_set.o
+# automatic
+# % := 
+# automatic
+# * := tools/mini_tool_set
+# automatic
+# + := srcs/tools/mini_tool_set.c
+# automatic
+# | := 
+# automatic
+# < := srcs/tools/mini_tool_set.c
+# automatic
+# ^ := srcs/tools/mini_tool_set.c
+# automatic
+# ? := srcs/tools/mini_tool_set.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/21=5%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 72):
+	rm -f $(NAME)
+	make fclean -C libft
+	
+
+Objects/parser/customsplit.o: srcs/parser/customsplit.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/customsplit'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+srcs/parser/set_mode.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Objects/builtins/builitins.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.SILENT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/parser/split_tools.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/parser/quote_strip.o: srcs/parser/quote_strip.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/quote_strip'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Objects/builtins/env.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Objects/builtins/exit.o: srcs/builtins/exit.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `builtins/exit'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+re: fclean printre all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+run: re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 83):
+	clear && ./minishell
+	
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 66):
+	tput setaf 1; echo "-> Cleaning <-"; tput setaf 7;
+	rm -rf $(OBJDIR)
+	make clean -C libft
+	
+
+Objects/parser/split_by_pipe.o: srcs/parser/split_by_pipe.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/split_by_pipe'
+#  Last modified 2022-07-25 17:42:28
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+srcs/parser/terminate.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/parser/printer.o: srcs/parser/printer.c
+ 
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/printer'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+Objects/main/cmd.o: srcs/main/cmd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `main/cmd'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+Objects/builtins/get_path.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Objects/builtins/execve2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Objects/parser/env.o: srcs/parser/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/env'
+#  Last modified 2022-07-25 17:42:28
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+srcs/parser/customsplit.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/builtins/echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Objects/parser/set_mode.o: srcs/parser/set_mode.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/set_mode'
+#  Last modified 2022-07-25 17:42:28
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+Objects/parser/split_tools.o: srcs/parser/split_tools.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parser/split_tools'
+#  Last modified 2022-07-25 17:42:27
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 45):
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/main
+	mkdir -p $(OBJDIR)/cmdbus
+	mkdir -p $(OBJDIR)/parser
+	mkdir -p $(OBJDIR)/builtins
+	mkdir -p $(OBJDIR)/errors
+	mkdir -p $(OBJDIR)/tools
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+srcs/main/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 17:28:16
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# files hash-table stats:
+# Load=44/1024=4%, Rehash=0, Collisions=3/126=2%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Mon Jul 25 21:20:30 2022
+
+ 
