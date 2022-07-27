@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 13:17:35 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/27 12:37:13 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	exec_builtin(t_data *data, int i)
 	// 	ft_cd(data);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "export", 6))
 		ft_export(data, i);
-	// else if (ft_strncmp(cmd, "unset", 5)
-	// 	ft_unset(cmd);
+	else if (!ft_strncmp(data->pars[i].cmd[0], "unset", 5))
+		ft_unset(data, i);
 	// else
 	// 	execve(path, cmd, env)
 	return (result);

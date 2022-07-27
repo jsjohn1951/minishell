@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdblock.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:54:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 15:57:03 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/27 12:39:48 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	do_print_(t_data *data, int i)
 		&& ft_strncmp(data->strip, "clear", 5)
 		&& ft_strncmp(data->strip, "env", 3)
 		&& ft_strncmp(data->strip, "pwd", 3)
-		&& ft_strncmp(data->strip, "export", 6))
+		&& ft_strncmp(data->strip, "export", 6)
+		&& ft_strncmp(data->strip, "unset", 5))
 		print_cmd(data->pars[i]);
 }

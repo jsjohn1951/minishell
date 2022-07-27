@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 15:58:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/27 13:41:52 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,7 @@ char	*ft_strndup(const char *s1, int n);
 int		ft_is_in_env(t_data *data,char *key);
 char	**set_in_env(t_data *data,char *line);
 int		change_env(t_data *data, char *path, char *new_path);
+/*	file: unset */
+char    **ft_unset(t_data *data, int num_cmd);
+int		ft_is_in_env2(char *key, t_data *data);
 #endif
