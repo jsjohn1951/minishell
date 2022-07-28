@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/28 16:49:04 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/29 00:01:28 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,39 @@ $(OBJDIR)/%.o : srcs/%.c create_dir
 
 # in case of bonus... use all? :)
 all : $(NAME)
-	tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
-
+	printf "\e[1;1H\e[2J"
+	printf "\x1B[31m"
+	printf "\n\n\n"
+	echo ───────────▒▒▒▒▒▒▒▒
+	echo ─────────▒▒▒──────▒▒▒
+	echo ────────▒▒───▒▒▒▒──▒░▒
+	echo ───────▒▒───▒▒──▒▒──▒░▒
+	echo ──────▒▒░▒──────▒▒──▒░▒
+	echo ───────▒▒░▒────▒▒──▒░▒
+	echo ─────────▒▒▒▒▒▒▒───▒▒
+	echo ─────────────────▒▒▒
+	echo ─────▒▒▒▒────────▒▒
+	echo ───▒▒▒░░▒▒▒─────▒▒──▓▓▓▓▓▓▓▓
+	echo ──▒▒─────▒▒▒────▒▒▓▓▓▓▓░░░░░▓▓──▓▓▓▓
+	echo ─▒───▒▒────▒▒─▓▓▒░░░░░░░░░█▓▒▓▓▓▓░░▓▓▓
+	echo ▒▒──▒─▒▒───▓▒▒░░▒░░░░░████▓▓▒▒▓░░░░░░▓▓
+	echo ░▒▒───▒──▓▓▓░▒░░░░░░█████▓▓▒▒▒▒▓▓▓▓▓░░▓▓
+	echo ──▒▒▒▒──▓▓░░░░░░███████▓▓▓▒▒▒▒▒▓───▓▓░▓▓
+	echo ──────▓▓░░░░░░███████▓▓▓▒▒▒▒▒▒▒▓───▓░░▓▓
+	echo ─────▓▓░░░░░███████▓▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓░░▓▓
+	echo ────▓▓░░░░██████▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓░░░░▓▓
+	echo ────▓▓▓░████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓
+	echo ─────▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓
+	echo ─────▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m __  __ _       _     _          _ _\x1B[31m\n"
+	echo ──────▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m |  \/  (_)_ __ (_)___| |__   ___| | |\x1B[31m\n"
+	echo ───────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m  | |\/| | | '_ \| / __| '_ \ / _ \ | |\x1B[31m\n"
+	echo ─────────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m    | |  | | | | | | \__ \ | | |  __/ | |\x1B[31m\n"
+	echo ───────────▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m      |_|  |_|_|_| |_|_|___/_| |_|\___|_|_|\x1B[31m\n"
+	echo ───────────────▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "\x1B[32m                   <- SEA SHELL ->         \x1B[31m\n"
+	printf "\x1B[34m"
+	printf "\n                   -> Executable Provided <-\n\n\n"
+	printf "\x1B[0m"
+                                      
 create_dir :
 	mkdir -p $(OBJDIR)
 	mkdir -p $(OBJDIR)/main
@@ -63,6 +94,9 @@ $(NAME) : $(OBJ)
 	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	make -C libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+
+execute : re
+	./minishell
 
 # Cleans the objects (including libft)
 clean :
@@ -86,4 +120,4 @@ run : re
 	clear && ./minishell
 
 # Phony rules... we don't have to obey them. Cuz they're phony ;) lol
-.PHONY: all clean fclean re printre
+.PHONY: all clean fclean re printre execute
