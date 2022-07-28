@@ -6,11 +6,11 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/07/28 16:50:03 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/29 00:17:04 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = library/libft.a
+NAME = Library/libft.a
 
 .SILENT:
 
@@ -57,9 +57,9 @@ all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER) $(SRC)
 	tput setaf 2; printf "\n<- Libft ->\n<- Building ->"
-	mkdir -p library
+	mkdir -p Library
 	ar -rc $(NAME) $(OBJ)
-
+	
 create_dir :
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/assets

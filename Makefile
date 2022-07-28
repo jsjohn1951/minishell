@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/29 00:01:28 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/29 00:18:59 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,8 @@ $(OBJDIR)/%.o : srcs/%.c create_dir
 # in case of bonus... use all? :)
 all : $(NAME)
 	printf "\e[1;1H\e[2J"
-	printf "\x1B[31m"
-	printf "\n\n\n"
+	printf "\n\n"
+	printf "\x1B[31m\n"
 	echo ───────────▒▒▒▒▒▒▒▒
 	echo ─────────▒▒▒──────▒▒▒
 	echo ────────▒▒───▒▒▒▒──▒░▒
@@ -92,7 +92,7 @@ create_dir :
 # Compiles our executable
 $(NAME) : $(OBJ)
 	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
-	make -C libft
+	make -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 execute : re
