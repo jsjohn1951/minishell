@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 15:58:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/28 16:22:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	cmd_control(t_data *data)
 	int		i;
 
 	i = 0;
+	pars_check_(data);
 	while (i < data->num_cmds)
 	{
 		if (data->pars[i].cmd)

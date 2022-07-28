@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/27 12:34:46 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/07/28 16:49:04 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = main/main parser/quote_strip\
 		builtins/echo builtins/exit\
 		main/cmd parser/set_mode\
 		parser/split_by_pipe parser/env\
-		main/cmdblock\
+		main/cmdblock errhandle/err\
 		\
 		\
 		builtins/builitins builtins/execve2\
@@ -43,18 +43,20 @@ READ = ./readline/lib/*
 LDFLAGS = -lreadline
 
 # Compile the objects inside the objects folder
-$(OBJDIR)/%.o : srcs/%.c
+$(OBJDIR)/%.o : srcs/%.c create_dir
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# in case of bonus... use all? :)
+all : $(NAME)
+	tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
+
+create_dir :
 	mkdir -p $(OBJDIR)
 	mkdir -p $(OBJDIR)/main
 	mkdir -p $(OBJDIR)/cmdbus
 	mkdir -p $(OBJDIR)/parser
 	mkdir -p $(OBJDIR)/builtins
 	mkdir -p $(OBJDIR)/errhandle
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# in case of bonus... use all? :)
-all : $(NAME)
-	tput setaf 2; echo "-> Executable Provided <-"; tput setaf 7;
 
 # Compiles our executable
 $(NAME) : $(OBJ)

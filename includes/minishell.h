@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/27 13:41:52 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/28 16:22:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,9 @@ void	exit_(t_data *data);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 
-/*	cmdbus */
-/* file: specialbus */
-/* void	specialbus(t_data *data); */
-
+/*	errhandle */
+/* file: err */
+void	pars_check_(t_data *data);
 
 /*muna*/
 
@@ -124,19 +123,19 @@ int		ft_env(t_data *data);
 int		ft_cd(t_data *data);
 char	*get_path(t_data *data, char *to_find, int *i);
 char	*ft_get_home(t_data *data);
-char   **ft_export(t_data *data, int i);
+char	**ft_export(t_data *data, int i);
 void	ft_sort_env(char **env);
-char   **ft_print_export(char **env);
+char	**ft_print_export(char **env);
 char	**ft_copy_env(char **envp);
 void	ft_print_env(char **tab);
 void	free_env(char **env);
 int		ft_check_arg(char *arg);
 int		ft_parse_env(char *tab, char **key, char **value);
 char	*ft_strndup(const char *s1, int n);
-int		ft_is_in_env(t_data *data,char *key);
-char	**set_in_env(t_data *data,char *line);
+int		ft_is_in_env(t_data *data, char *key);
+char	**set_in_env(t_data *data, char *line);
 int		change_env(t_data *data, char *path, char *new_path);
 /*	file: unset */
-char    **ft_unset(t_data *data, int num_cmd);
+char	**ft_unset(t_data *data, int num_cmd);
 int		ft_is_in_env2(char *key, t_data *data);
 #endif
