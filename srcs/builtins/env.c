@@ -6,26 +6,32 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:16:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/21 15:16:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/28 21:39:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int	t_env_(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] == '=')
+			return (1);
+	return (0);
+}
+
 int	ft_env(t_data *data)
 {
 	int	i;
-	int	size_line;
-	int	fd;
 
 	i = -1;
-	fd = 1;
 	while (data->env[++i])
 	{
-		size_line = ft_strlen(data->env[i]);
-		if (size_line)
-			write(fd, data->env[i], size_line);
-		write(fd, "\n", 1);
+		if (ft_strlen(data->env[i]) && t_env_(data->env[i]))
+			ft_printf("%s\n", data->env[i]);
 	}
 	return (0);
 }

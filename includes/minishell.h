@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 17:01:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/28 22:56:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_data
 	char		**path;
 	char		*strip;
 	int			num_cmds;
+	int			err;
+	int			a_err;
 	t_mode		mode;
 	t_parsed	pars[150000];
 	t_flags		flags;
@@ -108,6 +110,7 @@ void	free_parsed_data(t_data *data);
 /*	errhandle */
 /* file: err */
 int		pars_check_(t_data *data);
+void	set_err_(t_data *data, int type);
 
 /*muna*/
 

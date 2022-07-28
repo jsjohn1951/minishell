@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdblock.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:54:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/27 12:39:48 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/07/28 23:02:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	do_print_(t_data *data, int i)
 {
+	if (!i)
+		printf("\nerr: %s%d%s\n", KRED, data->err, KNRM);
 	if (ft_strncmp(data->strip, "exit", 4)
 		&& ft_strncmp(data->strip, "echo", 4)
 		&& ft_strncmp(data->strip, "clear", 5)
