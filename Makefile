@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/29 00:18:59 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/29 00:27:19 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,38 +48,38 @@ $(OBJDIR)/%.o : srcs/%.c create_dir
 
 # in case of bonus... use all? :)
 all : $(NAME)
-	printf "\e[1;1H\e[2J"
-	printf "\n\n"
-	printf "\x1B[31m\n"
-	echo ───────────▒▒▒▒▒▒▒▒
-	echo ─────────▒▒▒──────▒▒▒
-	echo ────────▒▒───▒▒▒▒──▒░▒
-	echo ───────▒▒───▒▒──▒▒──▒░▒
-	echo ──────▒▒░▒──────▒▒──▒░▒
-	echo ───────▒▒░▒────▒▒──▒░▒
-	echo ─────────▒▒▒▒▒▒▒───▒▒
-	echo ─────────────────▒▒▒
-	echo ─────▒▒▒▒────────▒▒
-	echo ───▒▒▒░░▒▒▒─────▒▒──▓▓▓▓▓▓▓▓
-	echo ──▒▒─────▒▒▒────▒▒▓▓▓▓▓░░░░░▓▓──▓▓▓▓
-	echo ─▒───▒▒────▒▒─▓▓▒░░░░░░░░░█▓▒▓▓▓▓░░▓▓▓
-	echo ▒▒──▒─▒▒───▓▒▒░░▒░░░░░████▓▓▒▒▓░░░░░░▓▓
-	echo ░▒▒───▒──▓▓▓░▒░░░░░░█████▓▓▒▒▒▒▓▓▓▓▓░░▓▓
-	echo ──▒▒▒▒──▓▓░░░░░░███████▓▓▓▒▒▒▒▒▓───▓▓░▓▓
-	echo ──────▓▓░░░░░░███████▓▓▓▒▒▒▒▒▒▒▓───▓░░▓▓
-	echo ─────▓▓░░░░░███████▓▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓░░▓▓
-	echo ────▓▓░░░░██████▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓░░░░▓▓
-	echo ────▓▓▓░████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓
-	echo ─────▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓
-	echo ─────▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m __  __ _       _     _          _ _\x1B[31m\n"
-	echo ──────▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m |  \/  (_)_ __ (_)___| |__   ___| | |\x1B[31m\n"
-	echo ───────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m  | |\/| | | '_ \| / __| '_ \ / _ \ | |\x1B[31m\n"
-	echo ─────────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m    | |  | | | | | | \__ \ | | |  __/ | |\x1B[31m\n"
-	echo ───────────▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m      |_|  |_|_|_| |_|_|___/_| |_|\___|_|_|\x1B[31m\n"
-	echo ───────────────▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "\x1B[32m                   <- SEA SHELL ->         \x1B[31m\n"
-	printf "\x1B[34m"
-	printf "\n                   -> Executable Provided <-\n\n\n"
-	printf "\x1B[0m"
+	@printf "\e[1;1H\e[2J"
+	@printf "\n\n"
+	@printf "\x1B[31m\n"
+	@echo ───────────▒▒▒▒▒▒▒▒
+	@echo ─────────▒▒▒──────▒▒▒
+	@echo ────────▒▒───▒▒▒▒──▒░▒
+	@echo ───────▒▒───▒▒──▒▒──▒░▒
+	@echo ──────▒▒░▒──────▒▒──▒░▒
+	@echo ───────▒▒░▒────▒▒──▒░▒
+	@echo ─────────▒▒▒▒▒▒▒───▒▒
+	@echo ─────────────────▒▒▒
+	@echo ─────▒▒▒▒────────▒▒
+	@echo ───▒▒▒░░▒▒▒─────▒▒──▓▓▓▓▓▓▓▓
+	@echo ──▒▒─────▒▒▒────▒▒▓▓▓▓▓░░░░░▓▓──▓▓▓▓
+	@echo ─▒───▒▒────▒▒─▓▓▒░░░░░░░░░█▓▒▓▓▓▓░░▓▓▓
+	@echo ▒▒──▒─▒▒───▓▒▒░░▒░░░░░████▓▓▒▒▓░░░░░░▓▓
+	@echo ░▒▒───▒──▓▓▓░▒░░░░░░█████▓▓▒▒▒▒▓▓▓▓▓░░▓▓
+	@echo ──▒▒▒▒──▓▓░░░░░░███████▓▓▓▒▒▒▒▒▓───▓▓░▓▓
+	@echo ──────▓▓░░░░░░███████▓▓▓▒▒▒▒▒▒▒▓───▓░░▓▓
+	@echo ─────▓▓░░░░░███████▓▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓░░▓▓
+	@echo ────▓▓░░░░██████▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓░░░░▓▓
+	@echo ────▓▓▓░████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓
+	@echo ─────▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓
+	@echo ─────▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m __  __ _       _     _          _ _\x1B[31m\n"
+	@echo ──────▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m |  \/  (_)_ __ (_)___| |__   ___| | |\x1B[31m\n"
+	@echo ───────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m  | |\/| | | '_ \| / __| '_ \ / _ \ | |\x1B[31m\n"
+	@echo ─────────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m    | |  | | | | | | \__ \ | | |  __/ | |\x1B[31m\n"
+	@echo ───────────▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m      |_|  |_|_|_| |_|_|___/_| |_|\___|_|_|\x1B[31m\n"
+	@echo ───────────────▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "\x1B[32m                   <- SEA SHELL ->         \x1B[31m\n"
+	@printf "\x1B[34m"
+	@printf "\n                   -> Executable Provided <-\n\n\n"
+	@printf "\x1B[0m"
                                       
 create_dir :
 	mkdir -p $(OBJDIR)
@@ -91,7 +91,7 @@ create_dir :
 
 # Compiles our executable
 $(NAME) : $(OBJ)
-	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
+	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	make -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
@@ -100,7 +100,7 @@ execute : re
 
 # Cleans the objects (including libft)
 clean :
-	tput setaf 1; echo "-> Cleaning <-"; tput setaf 7;
+	@tput setaf 1; echo "-> Cleaning <-"; tput setaf 7;
 	rm -rf $(OBJDIR)
 	make clean -C libft
 
@@ -111,7 +111,7 @@ fclean : clean
 
 # What does this do??? Oh yeah! No wait... I forgot... It prints stuff, I think?
 printre :
-	tput setaf 4; echo "-> Recreating <-"; tput setaf 7;
+	@tput setaf 4; echo "-> Recreating <-"; tput setaf 7;
 
 # Incase you want to redo everything... lol
 re : fclean printre all
