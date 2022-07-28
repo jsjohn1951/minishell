@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 16:22:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/28 17:01:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	free_parsed_data(t_data *data);
 
 /*	errhandle */
 /* file: err */
-void	pars_check_(t_data *data);
+int		pars_check_(t_data *data);
 
 /*muna*/
 
