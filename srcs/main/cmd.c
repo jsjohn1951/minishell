@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 22:59:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 11:40:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	cmd_control(t_data *data)
 			data->strip = NULL;
 		}
 	}
-	set_err_(data, 0);
 	exit_(data);
+	set_err_(data, 0);
 }
 
 char	**path(char **data)
