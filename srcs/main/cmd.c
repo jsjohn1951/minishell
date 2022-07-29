@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 16:00:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 23:55:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	cmd_control(t_data *data)
 	int		i;
 
 	i = -1;
+	set_cmds(data, data->cmd);
 	set_err_(data, 1);
 	while (++i < data->num_cmds)
 	{
@@ -57,25 +58,6 @@ char	**path(char **data)
 	return (NULL);
 }
 
-/* conditional_() takes struct data and cmd
-as arguments and if determined by 'set_mode()'
-that cmd contains either pipes or redirections
-the parsing is done differently.
-- should first split using  using '|', '>', '<'
-	as delimiters, but should not neglect to
-	include these characters within the data struct.
-The parsed commands are then stored in data->data
-and passed into cmd_control().
-cmd is freed to avoid memleaks */
-
-void	conditional_(t_data *data, char *cmd)
-{
-	data->data = NULL;
-	set_cmds(data, cmd);
-	if (data->data)
-		cmd_control(data);
-}
-
 /* if !cmd / cmd == NULL
 	it means that ctrl-D has been pressed, and will
 	exit program. */
@@ -103,15 +85,14 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
-	data->cmd = readline("SEA SHELL VII -> ");
+	data->cmd = readline("SEA SHELL -> ");
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
 		add_history(data->cmd);
-		conditional_(data, data->cmd);
+		cmd_control(data);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
-		ft_free_matrix(data->data);
 		free_parsed_data(data);
 	}
 	else

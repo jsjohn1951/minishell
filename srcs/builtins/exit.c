@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 11:41:31 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 23:45:51 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,20 @@ void	exit_(t_data *data)
 	char	*s;
 	int		exit_num;
 
-	s = quote_strip_(data->data[0]);
-	if (!ft_strncmp(s, "exit", 4))
+	if (data->pars[0].cmd)
+		s = quote_strip_(data->pars[0].cmd[0]);
+	if (data->pars[0].cmd && !ft_strncmp(s, "exit", 4))
 	{
 		ft_free (s);
-		if (data->data[1] && data->data[1][0])
+		if (data->pars[0].cmd[1] && data->pars[0].cmd[1][0])
 		{
-			s = quote_strip_(data->data[1]);
+			s = quote_strip_(data->pars[0].cmd[1]);
 			exit_num = exit_err(s);
 			ft_free (s);
 		}
 		else
 			exit_num = ft_exit_status(data->err);
-		if (arg_counters(data->data) == 255 && exit_num != 255)
+		if (arg_counters(data->pars[0].cmd) == 255 && exit_num != 255)
 		{
 			ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2);
 			return ;
@@ -81,5 +82,4 @@ void	exit_(t_data *data)
 		ft_printf("exit\n");
 		exit(exit_num);
 	}
-	ft_free (s);
 }

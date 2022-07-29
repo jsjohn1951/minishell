@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 11:22:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 23:34:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	num_of_cmds(t_data *data, char *s)
 
 	i = -1;
 	num = 0;
-	if (!is_pipe_redir(s[0], &data->flags))
+	if (!is_pipe_redir(s[0], &data->flags) && s[0] != ' ')
 		num++;
 	while (s[++i])
 	{
@@ -85,7 +85,8 @@ void	set_cmds(t_data *data, char *cmd)
 	i = 0;
 	j = 0;
 	flag_init(&data->flags);
-	data->data = split(cmd);
+	data->pars[0].cmd = NULL;
+	data->pars[0].pipe_redir = NULL;
 	data->num_cmds = num_of_cmds(data, cmd);
 	while (cmd[i] && cmd[i] == ' ')
 		i++;
