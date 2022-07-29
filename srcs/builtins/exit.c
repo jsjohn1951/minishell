@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 23:45:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/30 00:16:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,9 @@ void	exit_(t_data *data)
 		else
 			exit_num = ft_exit_status(data->err);
 		if (arg_counters(data->pars[0].cmd) == 255 && exit_num != 255)
-		{
-			ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2);
-			return ;
-		}
+			return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
 		free_data(data);
+		ft_free(data->cmd);
 		ft_printf("exit\n");
 		exit(exit_num);
 	}

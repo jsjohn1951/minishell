@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 23:55:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/30 00:20:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	cmd_(t_data *data)
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		free_parsed_data(data);
+		ft_free (data->cmd);
 	}
 	else
 		free (data->cmd);
