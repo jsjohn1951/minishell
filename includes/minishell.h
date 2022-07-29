@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 22:56:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 15:59:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	char		**env;
 	char		**path;
 	char		*strip;
+	char		*cmd;
 	int			num_cmds;
 	int			err;
 	int			a_err;
@@ -82,6 +83,7 @@ void	print_parsed(t_data *data);
 char	**split(char *cmd);
 /*	file: split_by_pipe */
 void	set_cmds(t_data *data, char *cmd);
+int		is_pipe_redir(char c, t_flags *flags);
 /*	file: split_tools */
 void	isword(t_flags *flags);
 int		is_quote_(char c);
@@ -111,6 +113,7 @@ void	free_parsed_data(t_data *data);
 /* file: err */
 int		pars_check_(t_data *data);
 void	set_err_(t_data *data, int type);
+int		before_pars_(char *s);
 
 /*muna*/
 

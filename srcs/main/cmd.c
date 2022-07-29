@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 11:40:09 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/29 16:00:56 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,18 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
-	char	*cmd;
-
-	cmd = readline("SEA SHELL VII -> ");
-	not_cmd_(data, cmd);
-	if (ft_strlen(cmd))
+	data->cmd = readline("SEA SHELL VII -> ");
+	not_cmd_(data, data->cmd);
+	if (ft_strlen(data->cmd))
 	{
-		add_history(cmd);
-		conditional_(data, cmd);
+		add_history(data->cmd);
+		conditional_(data, data->cmd);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		ft_free_matrix(data->data);
 		free_parsed_data(data);
 	}
 	else
-		free (cmd);
+		free (data->cmd);
 	return (0);
 }
