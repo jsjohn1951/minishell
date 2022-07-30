@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 23:26:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/30 17:30:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 	int			num_cmds;
 	int			err;
 	int			a_err;
+	int			end_pipe;
 	t_mode		mode;
 	t_parsed	pars[150000];
 	t_flags		flags;
@@ -72,6 +73,7 @@ int		cmd_(t_data *data);
 char	**path(char **data);
 /* file: cmdblock */
 void	do_print_(t_data *data, int i);
+void	join_cmds_(t_data *data);
 
 /* parser */
 /*	file: printer */
@@ -112,7 +114,7 @@ void	free_parsed_data(t_data *data);
 /* file: err */
 int		pars_check_(t_data *data);
 void	set_err_(t_data *data, int type);
-int		before_pars_(char *s);
+int		before_pars_(char *s, t_data *data);
 
 /*muna*/
 

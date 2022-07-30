@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/30 00:26:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/30 12:30:07 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void	exit_(t_data *data)
 	char	*s;
 	int		exit_num;
 
-	if (data->pars[0].cmd)
-		s = quote_strip_(data->pars[0].cmd[0]);
+	if (!data->pars[0].cmd)
+		return ;
+	s = quote_strip_(data->pars[0].cmd[0]);
 	if (data->pars[0].cmd && !ft_strncmp(s, "exit", 4))
 	{
 		ft_free (s);

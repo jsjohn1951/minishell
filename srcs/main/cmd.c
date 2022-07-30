@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/30 00:20:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/30 18:26:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	cmd_control(t_data *data)
 	int		i;
 
 	i = -1;
+	join_cmds_(data);
 	set_cmds(data, data->cmd);
 	set_err_(data, 1);
 	while (++i < data->num_cmds)
@@ -89,8 +90,8 @@ int	cmd_(t_data *data)
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
-		add_history(data->cmd);
 		cmd_control(data);
+		add_history(data->cmd);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		free_parsed_data(data);
