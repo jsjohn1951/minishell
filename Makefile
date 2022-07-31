@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/30 18:35:38 by wismith          ###   ########.fr        #
+#    Updated: 2022/07/31 14:25:09 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = main/main parser/quote_strip\
 		main/cmd parser/set_mode\
 		parser/split_by_pipe parser/env\
 		main/cmdblock errhandle/err\
+		errhandle/quote_check\
 		\
 		\
 		builtins/builitins builtins/execve2\

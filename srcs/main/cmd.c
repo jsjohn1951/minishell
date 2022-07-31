@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/30 18:26:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/07/31 14:30:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	cmd_control(t_data *data)
 
 	i = -1;
 	join_cmds_(data);
+	if (quote_check_(data))
+		return ;
 	set_cmds(data, data->cmd);
 	set_err_(data, 1);
 	while (++i < data->num_cmds)
@@ -86,6 +88,7 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
+	data->num_cmds = 0;
 	data->cmd = readline("SEA SHELL -> ");
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
