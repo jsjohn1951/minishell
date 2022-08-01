@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 16:37:44 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:29:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,41 +40,67 @@ char	*key_(char *s, int in)
 	i = in + 1;
 	while (s[i])
 	{
-		if (s[i] == ' ' || is_quote_(s[i]) || s[i] == '$')
+		if (s[i] == ' ' || is_quote_(s[i]) || s[i] == '$' || s[i] == '=')
 			break ;
 		i++;
 	}
 	if (i > 0 && i > in + 1)
-		key = ft_substr(s, in + 1, i - in - 1);
+	{
+		if (s[in + 1] != '?')
+			key = ft_substr(s, in + 1, i - in - 1);
+		else
+			key = ft_strdup("?");
+	}
 	else
 		key = NULL;
 	return (key);
 }
 
+void	env_key_(t_data *data, t_expand *exp, int j)
+{
+	int	i;
+	int	key_len;
+
+	i = 0;
+	key_len = ft_strlen(exp->key);
+	if (exp->key[0] == '?')
+	{
+		printf("> %s\n", data->pars[exp->par_i].cmd[j]);
+	}
+	while (data->env[i])
+	{
+		if (key_len > 1 && !ft_strncmp(data->env[i], exp->key, key_len - 1))
+			printf("env: %s\n", data->env[i]);
+		else if (key_len == 1 && exp->key[0] == data->env[i][0]
+			&& data->env[i][1] && data->env[i][1] == '=')
+			printf("env: %s\n", data->env[i]);
+		i++;
+	}
+}
+
 void	expand(t_data *data, int i, int j)
 {
-	int		in;
-	char	*key;
-	t_flags	flags;
+	t_expand	exp;
 
-	in = 0;
-	flag_init(&flags);
-	while (data->pars[i].cmd[j][in])
+	exp.in = 0;
+	exp.par_i = i;
+	flag_init(&exp.flags);
+	while (data->pars[i].cmd[j][exp.in])
 	{
-		if (is_quote_(data->pars[i].cmd[j][in]) && !flags.quote)
-			flags.quote = data->pars[i].cmd[j][in];
-		else if (flags.quote == data->pars[i].cmd[j][in])
-			flags.quote = 0;
-		if (data->pars[i].cmd[j][in] == '$' && flags.quote != 39)
+		if (is_quote_(data->pars[i].cmd[j][exp.in]) && !exp.flags.quote)
+			exp.flags.quote = data->pars[i].cmd[j][exp.in];
+		else if (exp.flags.quote == data->pars[i].cmd[j][exp.in])
+			exp.flags.quote = 0;
+		if (data->pars[i].cmd[j][exp.in] == '$' && exp.flags.quote != 39)
 		{
-			key = key_(data->pars[i].cmd[j], in);
-			if (key)
-				printf("key: %s\n", key);
+			exp.key = key_(data->pars[i].cmd[j], exp.in);
+			if (exp.key)
+				env_key_(data, &exp, j);
 			else
 				printf("key: NULL\n");
-			ft_free(key);
+			ft_free(exp.key);
 		}
-		in++;
+		exp.in++;
 	}
 }
 

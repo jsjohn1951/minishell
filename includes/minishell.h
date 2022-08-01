@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 14:18:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:28:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ typedef struct s_universal_flags
 	int	word;
 	int	err;
 }	t_flags;
+
+typedef struct s_expand
+{
+	int		in;
+	int		par_i;
+	char	*key;
+	t_flags	flags;
+}	t_expand;
 
 typedef struct s_data
 {
