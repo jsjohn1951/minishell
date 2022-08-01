@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 16:04:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 16:37:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,17 @@ void	expand(t_data *data, int i, int j)
 {
 	int		in;
 	char	*key;
+	t_flags	flags;
 
 	in = 0;
+	flag_init(&flags);
 	while (data->pars[i].cmd[j][in])
 	{
-		if (data->pars[i].cmd[j][in] == '$')
+		if (is_quote_(data->pars[i].cmd[j][in]) && !flags.quote)
+			flags.quote = data->pars[i].cmd[j][in];
+		else if (flags.quote == data->pars[i].cmd[j][in])
+			flags.quote = 0;
+		if (data->pars[i].cmd[j][in] == '$' && flags.quote != 39)
 		{
 			key = key_(data->pars[i].cmd[j], in);
 			if (key)
@@ -86,5 +92,6 @@ void	expandable_check_(t_data *data)
 				if (is_dollar_(data->pars[i].cmd[j]))
 					expand(data, i, j);
 		i++;
+		j = -1;
 	}
 }
