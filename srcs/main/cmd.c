@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 14:28:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 18:51:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	cmd_control(t_data *data)
 	if (quote_check_(data))
 		return ;
 	set_cmds(data, data->cmd);
-	expandable_check_(data);
 	set_err_(data, 1);
+	expandable_check_(data);
 	while (++i < data->num_cmds)
 	{
 		if (data->err && !data->a_err)

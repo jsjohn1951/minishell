@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 17:29:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 18:46:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,13 @@ char	*key_(char *s, int in)
 
 void	env_key_(t_data *data, t_expand *exp, int j)
 {
-	int	i;
-	int	key_len;
+	int		i;
+	int		key_len;
 
 	i = 0;
 	key_len = ft_strlen(exp->key);
 	if (exp->key[0] == '?')
-	{
-		printf("> %s\n", data->pars[exp->par_i].cmd[j]);
-	}
+		exit_status_exp_(data, exp, j);
 	while (data->env[i])
 	{
 		if (key_len > 1 && !ft_strncmp(data->env[i], exp->key, key_len - 1))

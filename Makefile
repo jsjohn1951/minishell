@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/01 14:21:19 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/01 18:41:24 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = main/main parser/quote_strip\
 		main/cmdblock errhandle/err\
 		errhandle/quote_check\
 		expansions/cmd_check\
+		expansions/exp_tools\
 		\
 		\
 		builtins/builitins builtins/execve2\
@@ -53,13 +54,13 @@ all : $(NAME)
 	@printf "\e[1;1H\e[2J"
 	@printf "\n\n"
 	@printf "\x1B[31m\n"
-	@echo ───────────▒▒▒▒▒▒▒▒  
-	@echo ─────────▒▒▒──────▒▒▒ 
-	@echo ────────▒▒───▒▒▒▒──▒░▒ 
-	@echo ───────▒▒───▒▒──▒▒──▒░▒ 
-	@echo ──────▒▒░▒──────▒▒──▒░▒ 
-	@echo ───────▒▒░▒────▒▒──▒░▒ 
-	@echo ─────────▒▒▒▒▒▒▒───▒▒ 
+	@echo ───────────▒▒▒▒▒▒▒▒
+	@echo ─────────▒▒▒──────▒▒▒
+	@echo ────────▒▒───▒▒▒▒──▒░▒
+	@echo ───────▒▒───▒▒──▒▒──▒░▒
+	@echo ──────▒▒░▒──────▒▒──▒░▒
+	@echo ───────▒▒░▒────▒▒──▒░▒
+	@echo ─────────▒▒▒▒▒▒▒───▒▒
 	@echo ─────────────────▒▒▒ | tr -d '\n'; printf "                               _.-''|''-._\n"
 	@echo ─────▒▒▒▒────────▒▒ | tr -d '\n'; printf "                             .-'     |     '-.\n"
 	@echo ───▒▒▒░░▒▒▒─────▒▒──▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "                  .'\       |       /'.\n"
@@ -72,7 +73,7 @@ all : $(NAME)
 	@echo ─────▓▓░░░░░███████▓▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓░░▓▓ | tr -d '\n'; printf "        {_____'\\|//'_____}\n"
 	@echo ────▓▓░░░░██████▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓░░░░▓▓ | tr -d '\n'; printf "                 '-'\n"
 	@echo ────▓▓▓░████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓ | tr -d '\n'; printf "           Devs: Muna / Willem\n"
-	@echo ─────▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓ 
+	@echo ─────▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓
 	@echo ─────▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m __  __ _       _     _          _ _\x1B[31m\n"
 	@echo ──────▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓ | tr -d '\n'; printf "\x1B[32m |  \/  (_)_ __ (_)___| |__   ___| | |\x1B[31m\n"
 	@echo ───────▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m  | |\/| | | '_ \| / __| '_ \ / _ \ | |\x1B[31m\n"
@@ -80,7 +81,7 @@ all : $(NAME)
 	@echo ───────────▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓ | tr -d '\n'; printf "\x1B[32m      |_|  |_|_|_| |_|_|___/_| |_|\___|_|_|\x1B[31m\n"
 	@echo ───────────────▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "\x1B[34m               -> Executable Provided <-\n\x1B[0m"
 	@printf "\n\n\n"
-                                      
+
 create_dir :
 	mkdir -p $(OBJDIR)
 	mkdir -p $(OBJDIR)/main
