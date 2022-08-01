@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/31 14:17:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/01 14:18:56 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ void	set_err_(t_data *data, int type);
 int		before_pars_(char *s, t_data *data);
 /* file: quote_check_ */
 int		quote_check_(t_data *data);
+
+/*	expansions */
+/* file: cmd_check */
+void	expandable_check_(t_data *data);
 
 /*muna*/
 

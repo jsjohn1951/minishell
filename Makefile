@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/07/31 14:25:09 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/01 14:21:19 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = main/main parser/quote_strip\
 		parser/split_by_pipe parser/env\
 		main/cmdblock errhandle/err\
 		errhandle/quote_check\
+		expansions/cmd_check\
 		\
 		\
 		builtins/builitins builtins/execve2\
@@ -87,6 +88,7 @@ create_dir :
 	mkdir -p $(OBJDIR)/parser
 	mkdir -p $(OBJDIR)/builtins
 	mkdir -p $(OBJDIR)/errhandle
+	mkdir -p $(OBJDIR)/expansions
 
 # Compiles our executable
 $(NAME) : $(OBJ)
