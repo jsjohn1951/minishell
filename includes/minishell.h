@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 18:45:44 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/02 10:04:41 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,6 @@ void	init_mode_check(t_data *data);
 /*	env */
 void	env(t_data *data);
 
-/* builtins */
-/*	file: echo */
-void	ft_echo(char **matrix, char *s);
-/*	file: exit */
-void	exit_(t_data *data);
-void	free_data(t_data *data);
-void	free_parsed_data(t_data *data);
-
 /*	errhandle */
 /* file: err */
 int		pars_check_(t_data *data);
@@ -134,6 +126,14 @@ void	exit_status_exp_(t_data *data, t_expand *exp, int j);
 
 /*muna*/
 
+/* builtins */
+/*	file: echo */
+void	ft_echo(char **matrix, char *s);
+/*	file: exit */
+void	exit_(t_data *data);
+void	free_data(t_data *data);
+void	free_parsed_data(t_data *data);
+
 void	ft_close_fd(t_data *data, int fd[2]);
 int		ft_create_pipe(t_data *data);
 void	ft_dup2(int i, int *fd);
@@ -141,11 +141,11 @@ void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
+/*	file: pwd */
 int		ft_pwd(void);
+/*	file: env */
 int		ft_env(t_data *data);
-int		ft_cd(t_data *data);
-char	*get_path(t_data *data, char *to_find, int *i);
-char	*ft_get_home(t_data *data);
+/*	file: export */
 char	**ft_export(t_data *data, int i);
 void	ft_sort_env(char **env);
 char	**ft_print_export(char **env);
@@ -161,4 +161,10 @@ int		change_env(t_data *data, char *path, char *new_path);
 /*	file: unset */
 char	**ft_unset(t_data *data, int num_cmd);
 int		ft_is_in_env2(char *key, t_data *data);
+/*	file: cd */
+int		ft_cd(t_data *data);
+int		check_cd_arg(t_data *data);
+char	*ft_strnstr2(const char *haystack, const char *needle, size_t len);
+int 	error_path(char *str);
+int		error_path2(char *path);
 #endif

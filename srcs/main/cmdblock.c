@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdblock.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:54:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/30 18:29:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/02 10:07:50 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	do_print_(t_data *data, int i)
 		|| !ft_strncmp(data->strip, "env", 3)
 		|| !ft_strncmp(data->strip, "pwd", 3)
 		|| !ft_strncmp(data->strip, "export", 6)
-		|| !ft_strncmp(data->strip, "unset", 5))
+		|| !ft_strncmp(data->strip, "unset", 5)
+		|| !ft_strncmp(data->strip, "cd", 2))
 		return ;
 	if (!i)
 		printf("\nerr status ($?): %s%d%s\n", KRED, data->err, KNRM);
