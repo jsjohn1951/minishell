@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builitins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/27 12:37:13 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/14 22:09:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	exec_builtin(t_data *data, int i)
 		result = ft_pwd();
 	else if (!ft_strncmp(data->pars[i].cmd[0], "env", 3))
 		ft_env(data);
-	// else if (!ft_strncmp(data->pars[i].cmd[0], "cd", 2))
-	// 	ft_cd(data);
+	else if (!ft_strncmp(data->pars[i].cmd[0], "cd", 2))
+		ft_cd(data);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "export", 6))
 		ft_export(data, i);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "unset", 5))

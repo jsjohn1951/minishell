@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 18:51:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/14 22:18:11 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,13 @@
 
 void	cmd_control(t_data *data)
 {
-	int		i;
-
-	i = -1;
 	join_cmds_(data);
 	if (quote_check_(data))
 		return ;
 	set_cmds(data, data->cmd);
 	set_err_(data, 1);
 	expandable_check_(data);
-	while (++i < data->num_cmds)
-	{
-		if (data->err && !data->a_err)
-			break ;
-		if (data->pars[i].cmd)
-		{
-			data->strip = quote_strip_(data->pars[i].cmd[0]);
-			data->pars[i].num = i;
-			do_print_(data, i);
-			ft_exec(data, i);
-			free (data->strip);
-			data->strip = NULL;
-		}
-	}
+	ft_exec(data, 0);
 	exit_(data);
 	set_err_(data, 0);
 }

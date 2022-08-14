@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/07/29 00:17:04 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/14 16:14:26 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,10 @@ OBJ_DIR = Objects
 SRC = src
 OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(LIST)))
 
-$(OBJ_DIR)/%.o : src/%.c create_dir
+$(OBJ_DIR)/%.o : src/%.c
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/assets
+	mkdir -p $(OBJ_DIR)/new_funcs
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
@@ -59,11 +62,6 @@ $(NAME) : $(OBJ) $(HEADER) $(SRC)
 	tput setaf 2; printf "\n<- Libft ->\n<- Building ->"
 	mkdir -p Library
 	ar -rc $(NAME) $(OBJ)
-	
-create_dir :
-	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/assets
-	mkdir -p $(OBJ_DIR)/new_funcs
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -73,4 +71,4 @@ fclean: clean
 
 re : fclean all
 
-.PHONY : all clean fclean re create_dir
+.PHONY : all clean fclean re

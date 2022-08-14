@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/02 10:07:07 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/08/14 16:18:00 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.SILENT:
+#.SILENT:
 
 # Cuz Names Are Important
 NAME = minishell
@@ -46,7 +46,14 @@ READ = ./readline/lib/*
 LDFLAGS = -lreadline
 
 # Compile the objects inside the objects folder
-$(OBJDIR)/%.o : srcs/%.c create_dir
+$(OBJDIR)/%.o : srcs/%.c
+	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/main
+	@mkdir -p $(OBJDIR)/cmdbus
+	@mkdir -p $(OBJDIR)/parser
+	@mkdir -p $(OBJDIR)/builtins
+	@mkdir -p $(OBJDIR)/errhandle
+	@mkdir -p $(OBJDIR)/expansions
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)
@@ -82,23 +89,11 @@ all : $(NAME)
 	@echo ───────────────▓▓▓▓▓▓▓▓ | tr -d '\n'; printf "\x1B[34m               -> Executable Provided <-\n\x1B[0m"
 	@printf "\n\n\n"
 
-create_dir :
-	mkdir -p $(OBJDIR)
-	mkdir -p $(OBJDIR)/main
-	mkdir -p $(OBJDIR)/cmdbus
-	mkdir -p $(OBJDIR)/parser
-	mkdir -p $(OBJDIR)/builtins
-	mkdir -p $(OBJDIR)/errhandle
-	mkdir -p $(OBJDIR)/expansions
-
 # Compiles our executable
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
-	make -C ./libft
+	@make -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
-
-execute : re
-	./minishell
 
 # Cleans the objects (including libft)
 clean :
