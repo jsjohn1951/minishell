@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/14 22:39:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 23:21:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,5 @@ int	ft_exec(t_data *data, int i)
 		free (data->strip);
 		data->strip = NULL;
 	}
-	do_print_(data, -1);
 	return (0);
 }

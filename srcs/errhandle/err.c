@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/31 14:41:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 23:18:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ int	pars_check_(t_data *data)
 	i = -1;
 	if (before_pars_(data->cmd, data))
 		return (258);
-	if (data->pars[0].pipe_redir)
+	if (data->pars[0].pipe_redir
+		&& ft_strncmp(data->pars[0].pipe_redir, "<<", 2))
 	{
-		if (data->pars[0].pipe_redir[0] && data->pars[0].pipe_redir[0] == '|')
-			ft_printf("SEA SHELL: syntax error near unexpected token `|");
-		if (data->pars[0].pipe_redir[1] && data->pars[0].pipe_redir[1] == '|')
-			ft_printf("|");
-		ft_printf("'\n");
+		if (data->pars[0].pipe_redir[0] && data->pars[0].pipe_redir[0])
+		{
+			ft_printf("SEA SHELL: syntax error near unexpected token `");
+			ft_printf("%s'\n", data->pars[0].pipe_redir);
+		}
 		return (258);
 	}
 	while (++i < data->num_cmds)

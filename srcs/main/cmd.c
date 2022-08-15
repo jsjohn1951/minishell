@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/14 22:18:11 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 23:21:51 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	cmd_control(t_data *data)
 	set_err_(data, 1);
 	expandable_check_(data);
 	ft_exec(data, 0);
+	do_print_(data, -1);
 	exit_(data);
 	set_err_(data, 0);
 }
