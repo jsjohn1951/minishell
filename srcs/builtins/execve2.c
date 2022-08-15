@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/15 23:21:03 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 23:38:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,19 @@ int	ft_create_pipe(t_data *data)
 
 int	ft_exec(t_data *data, int i)
 {
+	(void) i;
 	if (!(data->err && !data->a_err))
 	{
-		data->strip = quote_strip_(data->pars[i].cmd[0]);
 		if (data->num_cmds == 1)
 		{
+			data->strip = quote_strip_(data->pars[i].cmd[0]);
 			if (is_builtin(data))
 				return (exec_builtin(data, 0));
+			free (data->strip);
+			data->strip = NULL;
 		}
 		else if (data->num_cmds > 1)
 			ft_create_pipe(data);
-		free (data->strip);
-		data->strip = NULL;
 	}
 	return (0);
 }
