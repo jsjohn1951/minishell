@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/14 16:19:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 21:28:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		quote_check_(t_data *data);
 void	expandable_check_(t_data *data);
 /* file: exp_tools */
 void	exit_status_exp_(t_data *data, t_expand *exp, int j);
+void	exp_other(t_data *data, t_expand *exp, int j, int i);
 
 /*muna*/
 

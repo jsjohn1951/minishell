@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/01 18:46:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/15 21:56:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ char	*key_(char *s, int in)
 	i = in + 1;
 	while (s[i])
 	{
-		if (s[i] == ' ' || is_quote_(s[i]) || s[i] == '$' || s[i] == '=')
+		if (s[i] == ' ' || is_quote_(s[i]) || s[i] == '$' || s[i] == '='
+			|| !((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')))
 			break ;
 		i++;
 	}
@@ -68,10 +69,10 @@ void	env_key_(t_data *data, t_expand *exp, int j)
 	while (data->env[i])
 	{
 		if (key_len > 1 && !ft_strncmp(data->env[i], exp->key, key_len - 1))
-			printf("env: %s\n", data->env[i]);
+			exp_other(data, exp, j, i);
 		else if (key_len == 1 && exp->key[0] == data->env[i][0]
 			&& data->env[i][1] && data->env[i][1] == '=')
-			printf("env: %s\n", data->env[i]);
+			exp_other(data, exp, j, i);
 		i++;
 	}
 }
@@ -111,6 +112,9 @@ void	expandable_check_(t_data *data)
 	j = -1;
 	while (i < data->num_cmds)
 	{
+		if (data->pars[i].pipe_redir)
+			if (!ft_strncmp(data->pars[i].pipe_redir, "<<", 2))
+				j++;
 		if (data->pars[i].cmd)
 			while (data->pars[i].cmd[++j])
 				if (is_dollar_(data->pars[i].cmd[j]))
