@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/15 21:56:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/16 02:36:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,18 @@ char	*key_(char *s, int in)
 	char	*key;
 
 	i = in + 1;
-	while (s[i])
+	while (s[i] && s[i] != '?')
 	{
 		if (s[i] == ' ' || is_quote_(s[i]) || s[i] == '$' || s[i] == '='
-			|| !((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')))
+			|| (!((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+				&& !(s[i] >= '0' && s[i] <= '9')))
 			break ;
 		i++;
 	}
-	if (i > 0 && i > in + 1)
-	{
-		if (s[in + 1] != '?')
-			key = ft_substr(s, in + 1, i - in - 1);
-		else
-			key = ft_strdup("?");
-	}
+	if (s[in + 1] == '?')
+		key = ft_strdup("?");
+	else if (i > 0 && i > in + 1)
+		key = ft_substr(s, in + 1, i - in - 1);
 	else
 		key = NULL;
 	return (key);
@@ -64,8 +62,10 @@ void	env_key_(t_data *data, t_expand *exp, int j)
 
 	i = 0;
 	key_len = ft_strlen(exp->key);
-	if (exp->key[0] == '?')
-		exit_status_exp_(data, exp, j);
+	if (exp->key[0] == '?' || exp->key[0] == '0')
+		return (exit_shellname_exp_(data, exp, j));
+	else if (exp->key[0] >= '1' && exp->key[0] <= '9')
+		return (exp_num(data, exp, j));
 	while (data->env[i])
 	{
 		if (key_len > 1 && !ft_strncmp(data->env[i], exp->key, key_len - 1))
@@ -94,10 +94,12 @@ void	expand(t_data *data, int i, int j)
 		{
 			exp.key = key_(data->pars[i].cmd[j], exp.in);
 			if (exp.key)
+			{
 				env_key_(data, &exp, j);
-			else
-				printf("key: NULL\n");
-			ft_free(exp.key);
+				ft_free(exp.key);
+				if (!data->pars[i].cmd[j])
+					return ;
+			}
 		}
 		exp.in++;
 	}
