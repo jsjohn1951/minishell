@@ -6,32 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 00:24:30 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 00:57:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	is_dollar_(char *s)
-{
-	t_flags	flags;
-	int		i;
-
-	flag_init(&flags);
-	i = 0;
-	while (s[i])
-	{
-		if (is_quote_(s[i]) && !flags.quote)
-			flags.quote = s[i];
-		else if (s[i] == flags.quote)
-			flags.quote = 0;
-		if (s[i] == '$' && flags.quote != 39 && s[i + 1]
-			&& is_num_alpha(s[i + 1]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 char	*key_(char *s, int in)
 {
@@ -54,6 +33,33 @@ char	*key_(char *s, int in)
 	else
 		key = NULL;
 	return (key);
+}
+
+int	is_dollar_(char *s, t_data *data)
+{
+	t_dollar	d;
+
+	init_dollar(&d);
+	while (s[++d.i])
+	{
+		if (is_quote_(s[d.i]) && !d.flags.quote)
+			d.flags.quote = s[d.i];
+		else if (s[d.i] == d.flags.quote)
+			d.flags.quote = 0;
+		if (s[d.i] == '$' && s[d.i + 1])
+			d.is_num = is_num_alpha(s[d.i + 1]);
+		if (d.is_num == 2)
+			d.key = key_(s, d.i);
+		if (s[d.i] == '$' && d.flags.quote != 39
+			&& d.is_num == 2 && is_env(d.key, data))
+			d.truth = 1;
+		else if (s[d.i] == '$' && d.flags.quote != 39
+			&& (d.is_num == 1 || d.is_num == 3))
+			d.truth = 1;
+		ft_free(d.key);
+		d.key = NULL;
+	}
+	return (d.truth);
 }
 
 void	env_key_(t_data *data, t_expand *exp, int j)
@@ -119,7 +125,7 @@ void	expandable_check_(t_data *data)
 				j++;
 		if (data->pars[i].cmd)
 			while (data->pars[i].cmd[++j])
-				while (is_dollar_(data->pars[i].cmd[j]))
+				while (is_dollar_(data->pars[i].cmd[j], data))
 					expand(data, i, j);
 		i++;
 		j = -1;

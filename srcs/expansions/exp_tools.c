@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:41:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 00:21:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 00:44:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int	is_num_alpha(char c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	if (c >= 'a' && c <= 'z')
-		return (1);
+		return (2);
 	if (c >= 'A' && c <= 'Z')
-		return (1);
+		return (2);
+	if (c == '?')
+		return (3);
 	return (0);
 }
 

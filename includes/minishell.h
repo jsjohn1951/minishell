@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 00:21:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 01:00:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ typedef struct s_expand
 	char	*key;
 	t_flags	flags;
 }	t_expand;
+
+typedef struct s_dollar
+{
+	t_flags	flags;
+	int		i;
+	int		truth;
+	int		is_num;
+	char	*key;
+}	t_dollar;
 
 typedef struct s_data
 {
@@ -128,6 +137,9 @@ void	exit_shellname_exp_(t_data *data, t_expand *exp, int j);
 void	exp_other(t_data *data, t_expand *exp, int j, int i);
 void	exp_num(t_data *data, t_expand *exp, int j);
 int		is_num_alpha(char c);
+/* file: extra */
+int		is_env(char *s, t_data *data);
+void	init_dollar(t_dollar *d);
 
 /*muna*/
 
