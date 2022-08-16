@@ -6,11 +6,22 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:41:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 17:03:28 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 00:21:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_num_alpha(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	if (c >= 'A' && c <= 'Z')
+		return (1);
+	return (0);
+}
 
 void	exit_shellname_exp_(t_data *data, t_expand *exp, int j)
 {
@@ -52,7 +63,7 @@ void	exp_num(t_data *data, t_expand *exp, int j)
 		&& ft_strlen(data->pars[exp->par_i].cmd[j]) > 2)
 		res = ft_strjoin(tmp, data->pars[exp->par_i].cmd[j] + exp->in + 2);
 	else
-		res = ft_strdup(data->pars[exp->par_i].cmd[j]);
+		res = ft_strdup("");
 	ft_free(data->pars[exp->par_i].cmd[j]);
 	data->pars[exp->par_i].cmd[j] = ft_strdup(res);
 	ft_free (res);

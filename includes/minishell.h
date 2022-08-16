@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 15:46:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 00:21:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	expandable_check_(t_data *data);
 void	exit_shellname_exp_(t_data *data, t_expand *exp, int j);
 void	exp_other(t_data *data, t_expand *exp, int j, int i);
 void	exp_num(t_data *data, t_expand *exp, int j);
+int		is_num_alpha(char c);
 
 /*muna*/
 

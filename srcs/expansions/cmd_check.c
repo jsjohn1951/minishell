@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 16:37:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 00:24:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	is_dollar_(char *s)
 			flags.quote = s[i];
 		else if (s[i] == flags.quote)
 			flags.quote = 0;
-		if (s[i] == '$' && flags.quote != 39)
+		if (s[i] == '$' && flags.quote != 39 && s[i + 1]
+			&& is_num_alpha(s[i + 1]))
 			return (1);
 		i++;
 	}
@@ -81,9 +82,9 @@ void	expand(t_data *data, int i, int j)
 {
 	t_expand	exp;
 
-	exp.in = 0;
 	exp.par_i = i;
 	flag_init(&exp.flags);
+	exp.in = 0;
 	while (data->pars[i].cmd[j][exp.in])
 	{
 		if (is_quote_(data->pars[i].cmd[j][exp.in]) && !exp.flags.quote)
@@ -97,6 +98,7 @@ void	expand(t_data *data, int i, int j)
 			{
 				env_key_(data, &exp, j);
 				ft_free(exp.key);
+				break ;
 			}
 		}
 		exp.in++;
@@ -117,7 +119,7 @@ void	expandable_check_(t_data *data)
 				j++;
 		if (data->pars[i].cmd)
 			while (data->pars[i].cmd[++j])
-				if (is_dollar_(data->pars[i].cmd[j]))
+				while (is_dollar_(data->pars[i].cmd[j]))
 					expand(data, i, j);
 		i++;
 		j = -1;

@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/16 16:45:48 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/16 22:08:08 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(READ) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) $(READ) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :
