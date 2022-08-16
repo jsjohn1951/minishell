@@ -9,5 +9,4 @@ void	pipe_count(t_data *data)
 		if (data->pars[i].pipe_redir
 			&& data->pars[i].pipe_redir[0] == '|')
 			data->num_pipes++;
-	printf("%d\n", data->num_pipes);
 }
