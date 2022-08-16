@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/17 01:00:24 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/17 01:34:40 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME = minishell
 SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
 		parser/customsplit parser/split_tools\
+		parser/count_pipes\
 		builtins/echo builtins/exit\
 		main/cmd parser/set_mode\
 		parser/split_by_pipe parser/env\

@@ -22,6 +22,7 @@ void	cmd_control(t_data *data)
 		return ;
 	set_cmds(data, data->cmd);
 	expandable_check_(data);
+	pipe_count(data);
 	set_err_(data, 1);
 	ft_exec(data, 0);
 	do_print_(data, -1);

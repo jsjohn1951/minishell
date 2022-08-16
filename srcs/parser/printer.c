@@ -26,4 +26,5 @@ void	print_cmd(t_data *data, int pars_i)
 	while (data->pars[pars_i].cmd[++i])
 		printf("argument < %s%d%s >:\t| %s%s%s |\n",
 			KGRN, i, KNRM, KMAG, data->pars[pars_i].cmd[i], KNRM);
+	printf("\n");
 }

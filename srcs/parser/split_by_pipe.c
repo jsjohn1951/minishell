@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 23:34:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 01:34:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	set_cmds(t_data *data, char *cmd)
 	data->pars[0].cmd = NULL;
 	data->pars[0].pipe_redir = NULL;
 	data->num_cmds = num_of_cmds(data, cmd);
+	data->num_pipes = 0;
 	while (cmd[i] && cmd[i] == ' ')
 		i++;
 	split_pipe(data, cmd, i - 1, j);

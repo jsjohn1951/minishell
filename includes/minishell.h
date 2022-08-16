@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 01:00:09 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/17 01:34:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_data
 	char		*strip;
 	char		*cmd;
 	int			num_cmds;
+	int			num_pipes;
 
 /* last exit status */
 	int			err;
@@ -118,8 +119,10 @@ char	**ft_matrix_dup_rtn(char **m);
 /*	file: set_mode */
 void	set_mode(t_data *data, char *cmd);
 void	init_mode_check(t_data *data);
-/*	env */
+/* file:	env */
 void	env(t_data *data);
+/* file: count_pipes */
+void	pipe_count(t_data *data);
 
 /*	errhandle */
 /* file: err */
