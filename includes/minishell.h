@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 02:08:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/16 15:46:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,7 @@ void	join_cmds_(t_data *data);
 
 /* parser */
 /*	file: printer */
-void	print_cmd(t_parsed pars);
-void	print_matrix(char **matrix);
-void	print_parsed(t_data *data);
+void	print_cmd(t_data *data, int pars_i);
 /*	file: customsplit */
 char	**split(char *cmd);
 /*	file: split_by_pipe */

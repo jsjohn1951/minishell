@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 02:36:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:37:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ void	expand(t_data *data, int i, int j)
 			{
 				env_key_(data, &exp, j);
 				ft_free(exp.key);
-				if (!data->pars[i].cmd[j])
-					return ;
 			}
 		}
 		exp.in++;
