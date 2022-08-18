@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 01:34:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/18 16:42:52 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # define KWHT  "\x1B[37m"
 # define KCLR  "\e[1;1H\e[2J"
 
+# define MODE_APPEND 1
+# define MODE_READ 2
+# define MODE_WRITE 3
+# define MODE_HEREDOC 4
+
 # include "../readline/includes/readline.h"
 # include "../readline/includes/history.h"
 # include "../libft/include/libft.h"
@@ -30,6 +35,10 @@
 
 # include <unistd.h>
 # include <termios.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <errno.h>
 
 typedef struct s_mode
 {
@@ -89,6 +98,17 @@ typedef struct s_data
 	t_flags		flags;
 }	t_data;
 
+typedef struct s_redir
+{
+	char	*name;
+	char	mode;
+	char	*file;
+}				t_redir;
+typedef struct s_redir_list
+{
+	int	fd_num;
+	int str_dup;
+}				t_redir_list;
 /*	main */
 /* file: cmd */
 int		cmd_(t_data *data);
@@ -187,4 +207,8 @@ int		check_cd_arg(t_data *data);
 char	*ft_strnstr2(const char *haystack, const char *needle, size_t len);
 int		error_path(char *str);
 int		error_path2(char *path);
+
+/*redirecation*/
+int ft_redir_init(t_data *data, t_list **redir_list);
+int read_fd_check(t_list **redir_lst, int fd_num);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/15 23:38:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/18 18:22:12 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int	ft_create_pipe(t_data *data)
 
 int	ft_exec(t_data *data, int i)
 {
+	t_list *redir_list = NULL;
 	(void) i;
+	// if (redir_lst)
+    //     redir_lst = NULL;
 	if (!(data->err && !data->a_err))
 	{
 		if (data->num_cmds == 1)
@@ -92,7 +95,26 @@ int	ft_exec(t_data *data, int i)
 			data->strip = NULL;
 		}
 		else if (data->num_cmds > 1)
-			ft_create_pipe(data);
+		{
+			ft_redir_init(data, &redir_list);
+			// if (read_fd_check(&redir_list, 0 == -1))
+			// 	ft_lstclear(&redir_list, NULL);
+		}
+			// ft_create_pipe(data);
 	}
 	return (0);
 }
+	// else if (data->num_cmds > 1)
+		// 	ft_redir_init(data);
+		// 	ft_create_pipe(data); // see if its need malloc
+		// while (i < data->num_pipes)
+		// {
+		// 	pid[i]= fork();
+		// 	if (pid[i] == -1)
+		// 		exit(EXIT_FAILURE);
+		// 	else if (pid[i] == 0) // child process
+		// 		ft_process(data, i); // they have to free
+		// 	i++;
+		// }
+		//wait pid && parent process nned to close all open fds && free allocated memory
+		// ft_close_fd(fd, data);
