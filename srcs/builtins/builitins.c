@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/15 23:39:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/18 22:14:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_builtin(t_data *data, int i)
 	else if (!ft_strncmp(data->strip, "echo", 4))
 		ft_echo(data->pars[i].cmd, data->strip);
 	else if (!ft_strncmp(data->strip, "pwd", 3))
-		result = ft_pwd();
+		result = ft_pwd(data);
 	else if (!ft_strncmp(data->strip, "env", 3))
 		ft_env(data);
 	else if (!ft_strncmp(data->strip, "cd", 2))

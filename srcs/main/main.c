@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 22:32:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 00:26:02 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_data	data;
+	t_data			data;
 
 	(void) argc;
 	(void) argv;

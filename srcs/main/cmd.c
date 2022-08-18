@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 16:27:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 00:13:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
+	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
 	data->cmd = readline("SEA SHELL -> ");
 	not_cmd_(data, data->cmd);

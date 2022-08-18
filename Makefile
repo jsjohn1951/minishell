@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/18 16:29:59 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/08/18 22:01:13 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = main/main parser/quote_strip\
 		parser/terminate parser/printer\
 		parser/customsplit parser/split_tools\
 		parser/count_pipes\
+		parser/tools\
 		builtins/echo builtins/exit\
 		main/cmd parser/set_mode\
 		parser/split_by_pipe parser/env\

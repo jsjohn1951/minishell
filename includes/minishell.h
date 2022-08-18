@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/18 16:42:52 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/19 00:23:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <signal.h>
 
 typedef struct s_mode
 {
@@ -84,6 +85,7 @@ typedef struct s_data
 	char		**path;
 	char		*strip;
 	char		*cmd;
+	char		*pwd;
 	int			num_cmds;
 	int			num_pipes;
 
@@ -104,12 +106,17 @@ typedef struct s_redir
 	char	mode;
 	char	*file;
 }				t_redir;
+
 typedef struct s_redir_list
 {
 	int	fd_num;
-	int str_dup;
+	int	str_dup;
 }				t_redir_list;
+
 /*	main */
+/* file: main */
+void	restore(void);
+int		sigsig(void);
 /* file: cmd */
 int		cmd_(t_data *data);
 char	**path(char **data);
@@ -143,6 +150,8 @@ void	init_mode_check(t_data *data);
 void	env(t_data *data);
 /* file: count_pipes */
 void	pipe_count(t_data *data);
+/* file: tools */
+char	*find_pwd(t_data *data);
 
 /*	errhandle */
 /* file: err */
@@ -164,7 +173,12 @@ int		is_num_alpha(char c);
 int		is_env(char *s, t_data *data);
 void	init_dollar(t_dollar *d);
 
-/*muna*/
+/*                     
+*       _____ _____ _____ _____ 
+*     |     |  |  |   | |  _  |
+*    | | | |  |  | | | |     |
+*   |_|_|_|_____|_|___|__|__|
+*/
 
 /* builtins */
 /*	file: echo */
@@ -182,7 +196,7 @@ int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
 /*	file: pwd */
-int		ft_pwd(void);
+int		ft_pwd(t_data *data);
 /*	file: env */
 int		ft_env(t_data *data);
 /*	file: export */
@@ -209,6 +223,6 @@ int		error_path(char *str);
 int		error_path2(char *path);
 
 /*redirecation*/
-int ft_redir_init(t_data *data, t_list **redir_list);
-int read_fd_check(t_list **redir_lst, int fd_num);
+int		ft_redir_init(t_data *data, t_list **redir_list);
+int		read_fd_check(t_list **redir_lst, int fd_num);
 #endif
