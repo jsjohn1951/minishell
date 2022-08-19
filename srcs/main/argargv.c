@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 21:46:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 23:29:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,14 @@ void	is_command(char *join, t_data *data)
 		printf("SEA SHELL -> Command not found\n");
 }
 
-void	accessible_(t_data *data)
+void	condition_(t_data *data, char **argv)
 {
-	int		err;
-	char	*join;
+	char *join;
 
-	err = 0;
 	if (!access(data->strip, X_OK))
 	{
 		if (!fork())
-			execve(data->strip, NULL, data->env);
+			execve(data->strip, argv, data->env);
 		else
 			wait(NULL);
 	}
@@ -72,8 +70,19 @@ void	accessible_(t_data *data)
 			ft_free (join);
 		}
 	}
+}
+
+void	accessible_(t_data *data)
+{
+	int		err;
+	char	**argv;
+
+	err = 0;
+	argv = ft_split(data->strip, '\0');
+	condition_(data, argv);
 	free_env(data->env);
 	ft_free_matrix(data->path);
+	ft_free_matrix(argv);
 	ft_free(data->strip);
 	exit(err);
 }

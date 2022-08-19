@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 21:40:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 23:24:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <signal.h>
+# include <sys/wait.h>
 
 typedef struct s_mode
 {
