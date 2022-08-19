@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 16:19:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 17:22:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	do_print_(t_data *data, int i);
 void	join_cmds_(t_data *data);
 /* file: signalhandlr */
 void	signals_(int mod);
+/* file: argargv */
+void	exec_single_non_term(int argc, char **argv, t_data *data);
 
 /* parser */
 /*	file: printer */

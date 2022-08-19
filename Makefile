@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/19 16:18:18 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/19 17:22:47 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME = minishell
 SRCS = main/main\
 		main/cmd\
 		main/cmdblock\
+		main/argargv\
 		main/signalhandlr\
 		parser/quote_strip\
 		parser/terminate\
