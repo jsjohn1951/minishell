@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 00:13:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 16:20:59 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	not_cmd_(t_data *data, char *cmd)
 	{
 		ft_free_matrix(data->path);
 		ft_free_matrix(data->env);
-		ft_printf("\b\b  \n");
 		exit(0);
 	}
 }
@@ -75,6 +74,7 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
+	signals_(0);
 	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
 	data->cmd = readline("SEA SHELL -> ");
@@ -83,6 +83,7 @@ int	cmd_(t_data *data)
 	{
 		cmd_control(data);
 		add_history(data->cmd);
+		signals_(1);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		free_parsed_data(data);

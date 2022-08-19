@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/18 22:01:13 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/19 16:18:18 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,23 @@
 NAME = minishell
 
 # SRCS because we never outsource our work
-SRCS = main/main parser/quote_strip\
-		parser/terminate parser/printer\
-		parser/customsplit parser/split_tools\
+SRCS = main/main\
+		main/cmd\
+		main/cmdblock\
+		main/signalhandlr\
+		parser/quote_strip\
+		parser/terminate\
+		parser/printer\
+		parser/customsplit\
+		parser/split_tools\
 		parser/count_pipes\
 		parser/tools\
-		builtins/echo builtins/exit\
-		main/cmd parser/set_mode\
-		parser/split_by_pipe parser/env\
-		main/cmdblock errhandle/err\
+		builtins/echo\
+		builtins/exit\
+		parser/set_mode\
+		parser/split_by_pipe\
+		parser/env\
+		errhandle/err\
 		errhandle/quote_check\
 		expansions/cmd_check\
 		expansions/exp_tools\
@@ -46,8 +54,7 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I/readline/includes/*
 LIBFT = ./libft/Library/libft.a
-READ = ./readline/lib/libreadline.a
-LDFLAGS = -lreadline
+LDFLAGS = -lreadline -L ./readline/lib/
 
 # Compile the objects inside the objects folder
 $(OBJDIR)/%.o : srcs/%.c
@@ -99,7 +106,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) $(READ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :
