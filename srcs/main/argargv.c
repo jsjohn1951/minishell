@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 21:27:42 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 21:46:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,25 @@ char	*accessibility_(t_data *data)
 	return (NULL);
 }
 
-void	is_command(char *join)
+void	is_command(char *join, t_data *data)
 {
+	int	i;
+
+	i = 1;
 	if (join && !access(join, X_OK))
-		printf("%s: Cannot execute binary file\n", join);
+	{
+		if (data->argc == 2)
+			printf("%s: Cannot execute binary file\n", join);
+		else
+		{
+			printf("%s: ", join);
+			while (data->argv[++i])
+				printf("%s: ", data->argv[i]);
+			printf("No such file or directory: better luck next time :)\n");
+		}
+	}
 	else
-		printf("SEA SHELL: Command not found\n");
+		printf("SEA SHELL -> Command not found\n");
 }
 
 void	accessible_(t_data *data)
@@ -55,7 +68,7 @@ void	accessible_(t_data *data)
 		if (!is_builtin(data))
 		{
 			join = accessibility_(data);
-			is_command(join);
+			is_command(join, data);
 			ft_free (join);
 		}
 	}

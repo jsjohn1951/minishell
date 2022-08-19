@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 17:22:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 21:40:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ typedef struct s_data
 	char		*strip;
 	char		*cmd;
 	char		*pwd;
+	char		**argv;
 	int			num_cmds;
 	int			num_pipes;
+	int			argc;
 
 /* last exit status */
 	int			err;
