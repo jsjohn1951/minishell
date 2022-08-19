@@ -6,15 +6,32 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 17:21:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/19 21:27:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+char	*accessibility_(t_data *data)
+{
+	int		i;
+	char	*join;
+
+	i = -1;
+	while (data->path[++i])
+	{
+		join = ft_strjoin(data->path[i], "/");
+		join = ft_strjoin_mod(join, data->strip, ft_strlen(data->strip));
+		if (!access(join, X_OK))
+			return (join);
+		ft_free(join);
+	}
+	return (NULL);
+}
+
 void	is_command(char *join)
 {
-	if (!access(join, X_OK))
+	if (join && !access(join, X_OK))
 		printf("%s: Cannot execute binary file\n", join);
 	else
 		printf("SEA SHELL: Command not found\n");
@@ -37,12 +54,13 @@ void	accessible_(t_data *data)
 	{
 		if (!is_builtin(data))
 		{
-			join = ft_strjoin("/bin/", data->strip);
+			join = accessibility_(data);
 			is_command(join);
 			ft_free (join);
 		}
 	}
 	free_env(data->env);
+	ft_free_matrix(data->path);
 	ft_free(data->strip);
 	exit(err);
 }
