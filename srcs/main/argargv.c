@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 23:29:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/20 10:53:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	is_command(char *join, t_data *data)
 
 void	condition_(t_data *data, char **argv)
 {
-	char *join;
+	char	*join;
 
 	if (!access(data->strip, X_OK))
 	{
