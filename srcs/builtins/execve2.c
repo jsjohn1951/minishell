@@ -6,84 +6,98 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/18 18:22:12 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/22 13:43:41 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// void	ft_close_fd(t_data *data, int fd[2])
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < data->num_cmds - 1)
-// 	{
-// 		close(fd[i]);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < data->num_cmds - 1)
-// 	{
-// 		free(fd[i]);
-// 		i++;
-// 	}
-// 	free(fd);
-// }
-
-int	ft_create_pipe(t_data *data)
+void	ft_close_fd(int *fd[2], t_data *data)
 {
 	int	i;
-	int	fd[2];
 
 	i = 0;
-	while (i < data->num_cmds)
+	while (i < data->num_cmds - 1)
 	{
+		close(fd[i][0]);
+		close(fd[i][1]);
 		i++;
 	}
-	if (pipe(fd) == -1)
+	i = 0;
+	while (i < data->num_cmds - 1)
 	{
-		write(2, "error in pipe\n", 15);
-		return (1);
+		free(fd[i]);
+		i++;
+	}
+	free(fd);
+}
+
+int	ft_create_pipe(t_data *data, int **fd)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_pipes)
+	{
+		if (pipe(fd[i]) == -1)
+		{
+			write(2, "error in pipe\n", 15);
+			return (1);
+		}
+		// printf ("fd : %d\n", *fd[i]);
+		i++;
 	}
 	return (0);
 }
 
-// void	ft_dup2(int i, int *fd)
-// {
-// 	if (i != 0)
-// 	{
-// 		dup2(fd[0], STDIN_FILENO);
-// 		// ft_close(fd[1]);
-// 		// data->pipin = fd[0];
-// 	}
-// 	else
-// 	{
-// 		dup2(fd[1], STDOUT_FILENO);
-// 		// ft_close(fd[0]);
-// 		// data->pipout = fd[1];
-// 	}
-// 	// ft_close_fd(fd, data);
-// }
+static void	ft_wait_process(pid_t *id, t_data *data)
+{
+	int		i;
+	int		ret;
 
-// void	ft_process(t_data *data, int i, int *fd)
-// {
-// 	ft_dup2(i, fd);
-// 	if (is_builtin(data) && data->num_cmds == 1)
-// 		exec_builtin(data, i);
-// 	// else if (execve(data))
-// 	// {
-// 	// 	exit
-// 	// }
-// 	exit(EXIT_SUCCESS);
-// }
+	i = 0;
+	while (i < data->num_cmds)
+	{
+		waitpid(id[i], &ret, 0);
+		i++;
+	}
+}
+
+void	ft_dup_fd(int i, t_data *data, int **fd)
+{
+	if (i != 0)
+		dup2(fd[i - 1][0], STDIN_FILENO);
+	if (i != data->num_cmds - 1)
+		dup2(fd[i][1], STDOUT_FILENO);
+	return ;
+}
+
+void	ft_process(t_data *data, int i, int **fd)
+{
+	t_list *redir_list = NULL;
+	
+	ft_redir_init(data, &redir_list);
+	ft_dup_fd(i, data, fd);
+	if (is_builtin2(data, i))
+		exec_builtin2(data, i);
+	else if (execve(*data->path, data->pars[i].cmd, data->env) == -1)//see what is inside the path
+	{
+		exit(EXIT_FAILURE);
+	}
+	exit(EXIT_SUCCESS);
+}
 
 int	ft_exec(t_data *data, int i)
 {
-	t_list *redir_list = NULL;
-	(void) i;
+	pid_t *id;
+	int **fd;
 	// if (redir_lst)
     //     redir_lst = NULL;
+	i = -1;
+	id = malloc(sizeof(pid_t) * data->num_cmds);
+	fd = malloc(sizeof(int *) * (data->num_cmds - 1));
+	while (++i < data->num_cmds - 1)
+		fd[i] = malloc(sizeof(int ) * 2);
 	if (!(data->err && !data->a_err))
 	{
 		if (data->num_cmds == 1)
@@ -94,27 +108,24 @@ int	ft_exec(t_data *data, int i)
 			free (data->strip);
 			data->strip = NULL;
 		}
-		else if (data->num_cmds > 1)
+		i = 0;
+		if ((ft_create_pipe(data, fd)) || !fd)
+			return(1);
+		while(i < data->num_pipes + 1)// we can while loop num_cmds
 		{
-			ft_redir_init(data, &redir_list);
-			// if (read_fd_check(&redir_list, 0 == -1))
-			// 	ft_lstclear(&redir_list, NULL);
+			id[i] = fork();
+			if(id[i] == -1)
+				exit(EXIT_FAILURE);
+			else if (id[i] == 0)
+				ft_process(data, i, fd);
+			i++;
 		}
-			// ft_create_pipe(data);
+		ft_close_fd(fd, data);
+		ft_wait_process(id, data);
 	}
 	return (0);
 }
-	// else if (data->num_cmds > 1)
-		// 	ft_redir_init(data);
-		// 	ft_create_pipe(data); // see if its need malloc
-		// while (i < data->num_pipes)
-		// {
-		// 	pid[i]= fork();
-		// 	if (pid[i] == -1)
-		// 		exit(EXIT_FAILURE);
-		// 	else if (pid[i] == 0) // child process
-		// 		ft_process(data, i); // they have to free
-		// 	i++;
-		// }
-		//wait pid && parent process nned to close all open fds && free allocated memory
-		// ft_close_fd(fd, data);
+			// if (is_builtin(data))
+			// 	return (exec_builtin(data, 0));
+			// if (read_fd_check(&redir_list, 0 == -1))
+			// 	ft_lstclear(&redir_list, NULL);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
+#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/20 10:51:22 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/22 13:39:08 by mnyalhdrmy       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS = main/main\
 		builtins/export builtins/export2\
 		builtins/unset builtins/cd2\
 		builtins/redirecation builtins/redirecation2\
+		builtins/testfile\
 
 # Objects used to compile
 OBJDIR = Objects
@@ -56,7 +57,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I/readline/includes/*
 LIBFT = ./libft/Library/libft.a
 LDFLAGS = -lreadline -L ./readline/lib/
-LINUX = -lreadline -L ./readline/lib/*.a
+LINUX = -lreadline
 
 # Compile the objects inside the objects folder
 $(OBJDIR)/%.o : srcs/%.c
@@ -108,8 +109,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-#	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
+# $(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :

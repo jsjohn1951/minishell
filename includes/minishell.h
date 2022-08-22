@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 23:24:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/22 13:31:10 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,10 +194,9 @@ void	exit_(t_data *data);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 
-void	ft_close_fd(t_data *data, int fd[2]);
-int		ft_create_pipe(t_data *data);
+void	ft_close_fd(int *fd[2], t_data *data);
 void	ft_dup2(int i, int *fd);
-void	ft_process(t_data *data, int i, int *fd);
+void	ft_process(t_data *data, int i, int **fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
@@ -231,4 +230,8 @@ int		error_path2(char *path);
 /*redirecation*/
 int		ft_redir_init(t_data *data, t_list **redir_list);
 int		read_fd_check(t_list **redir_lst, int fd_num);
+
+/*test*/
+int	is_builtin2(t_data *data, int i);
+int	exec_builtin2(t_data *data, int i);
 #endif
