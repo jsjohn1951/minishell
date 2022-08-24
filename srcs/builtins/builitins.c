@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builitins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/18 22:14:38 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/24 16:44:00 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ int	exec_builtin(t_data *data, int i)
 		ft_export(data, i);
 	else if (!ft_strncmp(data->strip, "unset", 5))
 		ft_unset(data, i);
-	// else
-	// 	execve(path, cmd, env)
-	free (data->strip);
-	data->strip = NULL;
+	ft_free(data->strip);
 	return (result);
 }

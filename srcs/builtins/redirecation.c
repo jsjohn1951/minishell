@@ -66,8 +66,8 @@ int ft_redir_init(t_data *data, t_list **redir_list)
     i = 1;
     (void)dupps;
     (void)redir_list;
-    file = *data->pars[i].cmd;
     type_redir = ft_redir_type(data);
+    file = *data->pars[i].cmd;
     fd[0] = redir_file(type_redir, file); // its work good 
     if (type_redir == MODE_WRITE || type_redir == MODE_APPEND)
         fd[1] = 1; //stdout (write)
@@ -77,12 +77,12 @@ int ft_redir_init(t_data *data, t_list **redir_list)
 		return (-1);
     // if (read_fd_check(redir_list, fd[1] == -1))
     //     return(-1);
-    dupps = dup2(fd[0], fd[1]);//is open the file 
-    if (dupps == -1)
-    {
-        printf("error\n");
-        return (-1);
-    }
+    // dupps = dup2(fd[0], fd[1]);//is open the file 
+    // if (dupps == -1)
+    // {
+    //     printf("error\n");
+    //     return (-1);
+    // }
     // if (fd[0] != -1)
 	// 	close(fd[0]);
     return(0);

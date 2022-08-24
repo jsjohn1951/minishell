@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/22 13:31:10 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/23 16:21:50 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_data
 {
 	char		**env;
 	char		**path;
+	char        **path_execve;
 	char		*strip;
 	char		*cmd;
 	char		*pwd;
@@ -204,6 +205,7 @@ int		exec_builtin(t_data *data, int i);
 int		ft_pwd(t_data *data);
 /*	file: env */
 int		ft_env(t_data *data);
+char	*get_right_path(t_data *data);
 /*	file: export */
 char	**ft_export(t_data *data, int i);
 void	ft_sort_env(char **env);
@@ -234,4 +236,5 @@ int		read_fd_check(t_list **redir_lst, int fd_num);
 /*test*/
 int	is_builtin2(t_data *data, int i);
 int	exec_builtin2(t_data *data, int i);
+char	*accessibility_(t_data *data);
 #endif

@@ -39,7 +39,5 @@ int	exec_builtin2(t_data *data, int i)
 		ft_export(data, i);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "unset", 5))
 		ft_unset(data, i);
-	// else
-	// 	execve(path, cmd, env)
 	return (result);
 }
