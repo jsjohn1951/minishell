@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/29 23:26:06 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/24 23:39:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	free_parsed_data(t_data *data)
 {
-	int		i;
+	int	i;
 
-	i = 0;
-	while (i < data->num_cmds)
+	i = -1;
+	while (++i < data->num_cmds)
 	{
+		ft_free (data->pars[i].cmd_name);
 		if (data->pars[i].cmd)
 			ft_free_matrix(data->pars[i].cmd);
 		if (data->pars[i].pipe_redir)
@@ -26,7 +27,8 @@ void	free_parsed_data(t_data *data)
 			ft_free(data->pars[i].pipe_redir);
 			data->pars[i].pipe_redir = NULL;
 		}
-		i++;
+		if (data->pars[i].is_redir)
+			close (data->pars[i].fd);
 	}
 }
 

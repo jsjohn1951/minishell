@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 18:10:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/24 23:21:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_parsed
 	int		num;
 	int		is_redir;
 	int		fd;
+	int		perm;
 	char	*cmd_name;
 	char	**cmd;
 	char	*pipe_redir;

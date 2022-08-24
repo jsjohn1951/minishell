@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/24 17:08:10 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/24 22:45:03 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,19 +33,19 @@ SRCS = main/main\
 		parser/set_mode\
 		parser/split_by_pipe\
 		parser/env\
-		errhandle/err\
-		errhandle/quote_check\
-		expansions/cmd_check\
-		expansions/exp_tools\
-		expansions/extra\
+		err/err\
+		err/quote_check\
+		expand/cmd_check\
+		expand/exp_tools\
+		expand/extra\
 		\
 		\
-		builtins/builitins builtins/execve2\
+		builtins/builitins exec/execve2\
 		builtins/pwd builtins/env\
 		builtins/get_path builtins/cd\
 		builtins/export builtins/export2\
 		builtins/unset builtins/cd2\
-		builtins/redirecation builtins/redirecation2\
+		exec/redirecation exec/redirecation2\
 		builtins/testfile\
 
 # Objects used to compile
@@ -66,8 +66,9 @@ $(OBJDIR)/%.o : srcs/%.c
 	@mkdir -p $(OBJDIR)/cmdbus
 	@mkdir -p $(OBJDIR)/parser
 	@mkdir -p $(OBJDIR)/builtins
-	@mkdir -p $(OBJDIR)/errhandle
-	@mkdir -p $(OBJDIR)/expansions
+	@mkdir -p $(OBJDIR)/err
+	@mkdir -p $(OBJDIR)/expand
+	@mkdir -p $(OBJDIR)/exec
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)

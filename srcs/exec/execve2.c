@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 18:28:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/25 00:27:07 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_dup_fd(int i, t_data *data, int **fd)
 
 void	ft_process(t_data *data, int i, int **fd)
 {
-	t_list *redir_list = NULL;
+	// t_list *redir_list = NULL;
 	char *path;
 
 	path = accessibility_(data);
@@ -95,31 +95,22 @@ int	ft_exec_one(t_data *data)
 	char	*path;
 
 	path = accessibility_(data);
-	if (!path)
+	if (!path && !access(data->strip, X_OK) )
+		path = data->strip;
+	else if (!path)
 	{
-		if (!access(data->strip, X_OK))
-		{
-			if (!fork())
-				execve(data->strip, data->pars[0].cmd, data->env);
-			else
-				wait(NULL);
-		}
-		else
-		{
-			data->err = 127;
-			data->a_err = 1;
-			printf("SEA SHELL: %s: No such file or directory\n", data->strip);
-		}
+		data->err = 127;
+		printf("SEA SHELL: %s: No such file or directory\n", data->strip);
+		ft_free (data->strip);
+		return (0);
 	}
-	else
-	{
-		if (!fork())
+	if (!fork())
 			execve(path, data->pars[0].cmd, data->env);
 		else
 			wait(NULL);
-	}
+	if (path != data->strip)
+		ft_free (data->strip);
 	ft_free (path);
-	ft_free (data->strip);
 	return (0);
 }
 
@@ -127,7 +118,7 @@ int	ft_exec(t_data *data, int i)
 {
 	pid_t *id;
 	int **fd;
-	
+
 	i = -1;
 	id = malloc(sizeof(pid_t) * data->num_cmds);
 	fd = malloc(sizeof(int *) * (data->num_pipes));
@@ -137,7 +128,7 @@ int	ft_exec(t_data *data, int i)
 	{
 		if (data->num_cmds == 1)
 		{
-			data->strip = quote_strip_(data->pars[i].cmd[0]);
+			data->strip = quote_strip_(data->pars[0].cmd[0]);
 			if (is_builtin(data))
 				return (exec_builtin(data, 0));
 			else
@@ -146,10 +137,9 @@ int	ft_exec(t_data *data, int i)
 		i = data->num_cmds;
 		while (i)
 		{
-			if ((data->pars[i - 1].pipe_redir
-				&& data->pars[i - 1].pipe_redir[0] == '|') || !data->pars[i - 1].pipe_redir)
-				{
-					id [i] = fork();
+			if (!data->pars[i - 1].is_redir)
+			{
+				id [i] = fork();
 					if(id[i] == -1)
 					{
 						free_data(data);
@@ -161,36 +151,9 @@ int	ft_exec(t_data *data, int i)
 						// printf("errno : %d\n",errno);
 						ft_process(data, i, fd);
 					}
-					// printf("%s\n", data->pars[i - 1].cmd[0]);
-				}
+			}
 			i--;
 		}
-		// if ((ft_create_pipe(data, fd)) || !fd)
-		// 	return(1);
-		// while(i < data->num_pipes + 1)// we can while loop num_cmds
-		// {
-		// 	id[i] = fork();
-		// 	if(id[i] == -1)
-		// 	{
-		// 		free_data(data);
-		// 		exit(EXIT_FAILURE);
-		// 	}
-		// 	else if (id[i] == 0)
-		// 	{
-		// 		printf("errno : %d\n",errno);
-		// 		ft_process(data, i, fd);
-		// 	}
-		// 	else
-		// 		wait(NULL);
-		// 	i++;
-		// }
-		// ft_close_fd(fd, data);
-		// ft_wait_process(id, data);//finsh with
 	}
 	return (0);
 }
-				// printf("execve1 : %d\n", execve(path, data->pars[i].cmd, data->env));
-			// if (is_builtin(data))
-			// 	return (exec_builtin(data, 0));
-			// if (read_fd_check(&redir_list, 0 == -1))
-			// 	ft_lstclear(&redir_list, NULL);
