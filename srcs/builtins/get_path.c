@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:16:51 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/23 16:22:48 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/24 17:09:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char **get_path(t_data *data)
 
 	i = 0;
 	j = 0;
+	path = NULL;
 	while (data->env[i] && ft_strncmp(data->env[i], "PATH=" ,5))
 		i++;
 	while (j < 5)
@@ -35,9 +36,7 @@ char **get_path(t_data *data)
 		j++;
 	}
 	if(data->path[i] != NULL)
-	{
 		path = ft_split(data->env[i], ':');
-	}
 	return(path);
 }
 char *get_right_path(t_data *data)

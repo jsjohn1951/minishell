@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/23 16:21:50 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/24 18:10:51 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ typedef struct s_mode
 typedef struct s_parsed
 {
 	int		num;
+	int		is_redir;
+	int		fd;
+	char	*cmd_name;
 	char	**cmd;
 	char	*pipe_redir;
 }	t_parsed;

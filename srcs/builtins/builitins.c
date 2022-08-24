@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builitins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 16:44:00 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/24 17:16:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	is_builtin(t_data *data)
 	if (ft_strncmp(data->strip, "unset", 5) == 0)
 		return (1);
 	if (ft_strncmp(data->strip, "clear", 5) == 0)
+		return (1);
+	if (ft_strncmp(data->strip, "exit", 4) == 0)
 		return (1);
 	return (0);
 }

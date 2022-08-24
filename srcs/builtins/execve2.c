@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 16:57:48 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/24 18:28:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,18 @@ void	ft_dup_fd(int i, t_data *data, int **fd)
 void	ft_process(t_data *data, int i, int **fd)
 {
 	t_list *redir_list = NULL;
-	// char *path;
-	
-	// path = accessibility_(data);
-	ft_redir_init(data, &redir_list);
+	char *path;
+
+	path = accessibility_(data);
+	// ft_redir_init(data, &redir_list);
 	ft_dup_fd(i, data, fd);
 	if (is_builtin2(data, i))
 		exec_builtin2(data, i);
-	// else
-	// {
-	// 	printf("execve : %d\n", execve(path, data->pars[i].cmd, data->env));
-	// 	execve(path, data->pars[i].cmd, data->env);
-	// }		
+	else
+	{
+		printf("execve : %d\n", execve(path, data->pars[i].cmd, data->env));
+		execve(path, data->pars[i].cmd, data->env);
+	}		
 	exit(EXIT_SUCCESS);
 }
 
@@ -95,10 +95,29 @@ int	ft_exec_one(t_data *data)
 	char	*path;
 
 	path = accessibility_(data);
-	if (!fork())
-		execve(path, data->pars[0].cmd, data->env);
+	if (!path)
+	{
+		if (!access(data->strip, X_OK))
+		{
+			if (!fork())
+				execve(data->strip, data->pars[0].cmd, data->env);
+			else
+				wait(NULL);
+		}
+		else
+		{
+			data->err = 127;
+			data->a_err = 1;
+			printf("SEA SHELL: %s: No such file or directory\n", data->strip);
+		}
+	}
 	else
-		wait(NULL);
+	{
+		if (!fork())
+			execve(path, data->pars[0].cmd, data->env);
+		else
+			wait(NULL);
+	}
 	ft_free (path);
 	ft_free (data->strip);
 	return (0);
@@ -111,7 +130,7 @@ int	ft_exec(t_data *data, int i)
 	
 	i = -1;
 	id = malloc(sizeof(pid_t) * data->num_cmds);
-	fd = malloc(sizeof(int *) * (data->num_cmds - 1));
+	fd = malloc(sizeof(int *) * (data->num_pipes));
 	while (++i < data->num_cmds - 1)
 			fd[i] = malloc(sizeof(int ) * 2);
 	if (!(data->err && !data->a_err))
@@ -124,26 +143,47 @@ int	ft_exec(t_data *data, int i)
 			else
 				return (ft_exec_one(data));
 		}
-		i = 0;
-		if ((ft_create_pipe(data, fd)) || !fd)
-			return(1);
-		while(i < data->num_pipes + 1)// we can while loop num_cmds
+		i = data->num_cmds;
+		while (i)
 		{
-			id[i] = fork();
-			if(id[i] == -1)
-			{
-				free_data(data);
-				exit(EXIT_FAILURE);
-			}
-			else if (id[i] == 0)
-			{
-				printf("errno : %d\n",errno);
-				ft_process(data, i, fd);
-			}
-			else
-				wait(NULL);
-			i++;
+			if ((data->pars[i - 1].pipe_redir
+				&& data->pars[i - 1].pipe_redir[0] == '|') || !data->pars[i - 1].pipe_redir)
+				{
+					id [i] = fork();
+					if(id[i] == -1)
+					{
+						free_data(data);
+						exit(EXIT_FAILURE);
+					}
+					else if (id[i] == 0)
+					{
+						printf("its work\n");
+						// printf("errno : %d\n",errno);
+						ft_process(data, i, fd);
+					}
+					// printf("%s\n", data->pars[i - 1].cmd[0]);
+				}
+			i--;
 		}
+		// if ((ft_create_pipe(data, fd)) || !fd)
+		// 	return(1);
+		// while(i < data->num_pipes + 1)// we can while loop num_cmds
+		// {
+		// 	id[i] = fork();
+		// 	if(id[i] == -1)
+		// 	{
+		// 		free_data(data);
+		// 		exit(EXIT_FAILURE);
+		// 	}
+		// 	else if (id[i] == 0)
+		// 	{
+		// 		printf("errno : %d\n",errno);
+		// 		ft_process(data, i, fd);
+		// 	}
+		// 	else
+		// 		wait(NULL);
+		// 	i++;
+		// }
 		// ft_close_fd(fd, data);
 		// ft_wait_process(id, data);//finsh with
 	}
