@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 23:21:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/25 13:13:15 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,8 @@ void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 
 void	ft_close_fd(int *fd[2], t_data *data);
-void	ft_dup2(int i, int *fd);
+// void	ft_dup2(int i, int *fd);
+void	ft_dup2(int i, t_data *data, int **fd);
 void	ft_process(t_data *data, int i, int **fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);

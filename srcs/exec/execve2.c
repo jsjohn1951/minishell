@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/25 00:27:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/25 16:44:05 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,31 @@ int	ft_create_pipe(t_data *data, int **fd)
 // 	}
 // }
 
-void	ft_dup_fd(int i, t_data *data, int **fd)
+void	ft_dup2(int i, t_data *data, int **fd)
 {
-	if (i != 0)
-		dup2(fd[i - 1][0], STDIN_FILENO);
-	if (i != data->num_cmds - 1)
-		dup2(fd[i][1], STDOUT_FILENO);
+	if (data->num_pipes != 0)
+	{
+		// if (i != 0)
+		// {
+		// 	dup2(fd[i - 1][0], STDIN_FILENO);
+		// 	// printf("test\n");
+		// }
+		// if (i != data->num_cmds - 1)
+		// 	dup2(fd[i][1], STDOUT_FILENO);
+		if (i == 0)// first 
+		{
+			dup2(fd[i][1], STDOUT_FILENO);
+		}
+		else if (i == data->num_cmds) //last
+			dup2(fd[i - 1][0], STDIN_FILENO);
+		// else 
+		// 	dup2(fd[i - 1][0],STDIN_FILENO);
+			
+	}
 	return ;
 }
 
-void	ft_process(t_data *data, int i, int **fd)
-{
-	// t_list *redir_list = NULL;
-	char *path;
-
-	path = accessibility_(data);
-	// ft_redir_init(data, &redir_list);
-	ft_dup_fd(i, data, fd);
-	if (is_builtin2(data, i))
-		exec_builtin2(data, i);
-	else
-	{
-		printf("execve : %d\n", execve(path, data->pars[i].cmd, data->env));
-		execve(path, data->pars[i].cmd, data->env);
-	}		
-	exit(EXIT_SUCCESS);
-}
-
-int	ft_exec_one(t_data *data)
+int	ft_exec_one(t_data *data, int i)
 {
 	char	*path;
 
@@ -105,7 +102,7 @@ int	ft_exec_one(t_data *data)
 		return (0);
 	}
 	if (!fork())
-			execve(path, data->pars[0].cmd, data->env);
+			execve(path, data->pars[i].cmd, data->env);
 		else
 			wait(NULL);
 	if (path != data->strip)
@@ -113,6 +110,24 @@ int	ft_exec_one(t_data *data)
 	ft_free (path);
 	return (0);
 }
+
+void	ft_process(t_data *data, int i, int **fd)
+{
+	// t_list *redir_list = NULL;
+	// char *path;
+	
+	// path = accessibility_(data);
+	// ft_redir_init(data, &redir_list);
+	ft_dup2(i, data, fd);
+	if (is_builtin2(data, i))
+		exec_builtin2(data, i);
+	else
+	{
+		ft_exec_one(data , i);
+	}
+	exit(EXIT_SUCCESS);
+}
+
 
 int	ft_exec(t_data *data, int i)
 {
@@ -132,9 +147,10 @@ int	ft_exec(t_data *data, int i)
 			if (is_builtin(data))
 				return (exec_builtin(data, 0));
 			else
-				return (ft_exec_one(data));
+				return (ft_exec_one(data , i));
 		}
 		i = data->num_cmds;
+		ft_create_pipe(data, fd);
 		while (i)
 		{
 			if (!data->pars[i - 1].is_redir)
@@ -147,13 +163,15 @@ int	ft_exec(t_data *data, int i)
 					}
 					else if (id[i] == 0)
 					{
-						printf("its work\n");
-						// printf("errno : %d\n",errno);
 						ft_process(data, i, fd);
+						exit(EXIT_SUCCESS);
+						// printf("errno : %d\n",errno);
 					}
 			}
 			i--;
 		}
+		//close fd
+		//wait
 	}
 	return (0);
 }
