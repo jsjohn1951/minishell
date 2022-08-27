@@ -28,7 +28,7 @@ int	exec_builtin2(t_data *data, int i)
 	if (!ft_strncmp(data->strip, "clear", 5))
 		ft_printf(KCLR);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "echo", 4))
-		ft_echo(data->pars[i].cmd, data->strip);
+		ft_echo(data->pars[i].cmd);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "pwd", 3))
 		result = ft_pwd(data);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "env", 3))

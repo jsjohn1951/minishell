@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/25 13:13:15 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/27 18:03:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,10 @@ int		is_num_alpha(char c);
 int		is_env(char *s, t_data *data);
 void	init_dollar(t_dollar *d);
 
+/*exec */
+/* file: two */
+void	multi_pipe(t_data *data, int i);
+
 /*                     
 *       _____ _____ _____ _____ 
 *     |     |  |  |   | |  _  |
@@ -193,7 +197,7 @@ void	init_dollar(t_dollar *d);
 
 /* builtins */
 /*	file: echo */
-void	ft_echo(char **matrix, char *s);
+void	ft_echo(char **matrix);
 /*	file: exit */
 void	exit_(t_data *data);
 void	free_data(t_data *data);
@@ -202,7 +206,7 @@ void	free_parsed_data(t_data *data);
 void	ft_close_fd(int *fd[2], t_data *data);
 // void	ft_dup2(int i, int *fd);
 void	ft_dup2(int i, t_data *data, int **fd);
-void	ft_process(t_data *data, int i, int **fd);
+void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
 int		exec_builtin(t_data *data, int i);
