@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/27 18:07:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/29 14:42:22 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	close_fd(int **fd, t_data *data)
 
 void	spawn_process(int **fd, t_data *data, int *pid, int i)
 {
+	
 	while (++i < data->num_cmds)
 	{
 		pid[i] = fork();
@@ -78,6 +79,7 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 			else
 				dup2(fd[i - 1][0], STDIN_FILENO);
 			close_fd(fd, data);
+			ft_redir_init(data);
 			child_process(data, i);
 			exit (0);
 		}

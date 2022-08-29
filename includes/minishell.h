@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/27 18:03:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/29 13:17:56 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ int		error_path(char *str);
 int		error_path2(char *path);
 
 /*redirecation*/
-int		ft_redir_init(t_data *data, t_list **redir_list);
+int		ft_redir_init(t_data *data);
 int		read_fd_check(t_list **redir_lst, int fd_num);
 
 /*test*/
