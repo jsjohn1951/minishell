@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_pipes.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 21:51:45 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/30 14:30:37 by wismith          ###   ########.fr       */
+/*   Created: 2022/08/27 22:54:34 by wismith           #+#    #+#             */
+/*   Updated: 2022/08/28 14:42:05 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	pipe_count(t_data *data)
+void	set_err_status(t_data *data, int i)
 {
-	int	i;
-
-	i = -1;
-	while (++i < data->num_cmds)
-	{
-		if (data->pars[i].cmd)
-			data->pars[i].cmd_name = quote_strip_(data->pars[i].cmd[0]);
-		else
-			data->pars[i].cmd_name = NULL;
-		if (!data->pars[i].pipe_redir)
-			data->pars[i].is_redir = 0;
-		if (data->pars[i].pipe_redir
-			&& data->pars[i].pipe_redir[0] == '|')
-		{
-			data->pars[i].is_redir = 0;
-			data->num_pipes++;
-		}
-	}
+	data->err = i;
 }

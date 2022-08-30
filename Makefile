@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/29 13:00:47 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/08/28 14:52:30 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS = main/main\
 		parser/set_mode\
 		parser/split_by_pipe\
 		parser/env\
+		parser/strip_all_quotes\
 		err/err\
+		err/utils\
 		err/quote_check\
 		expand/cmd_check\
 		expand/exp_tools\
@@ -111,8 +113,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
-#   $(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+#	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :
@@ -133,7 +135,8 @@ printre :
 re : fclean printre all
 
 run : re
-	clear && ./minishell
+	@sleep 2
+	@clear && ./minishell
 
 # Phony rules... we don't have to obey them. Cuz they're phony ;) lol
 .PHONY: all clean fclean re printre execute

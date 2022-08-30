@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/30 14:03:39 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/30 14:24:47 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,18 @@ void	env(t_data *data);
 void	pipe_count(t_data *data);
 /* file: tools */
 char	*find_pwd(t_data *data);
+/* file:strip_all_quotes */
+void	strip_all_quotes(t_data *data);
 
-/*	errhandle */
+/*	err */
 /* file: err */
 int		pars_check_(t_data *data);
 void	set_err_(t_data *data, int type);
 int		before_pars_(char *s, t_data *data);
 /* file: quote_check_ */
 int		quote_check_(t_data *data);
+/* file: utils */
+void	set_err_status(t_data *data, int i);
 
 /*	expansions */
 /* file: cmd_check */
@@ -187,6 +191,7 @@ void	init_dollar(t_dollar *d);
 /*exec */
 /* file: two */
 void	multi_pipe(t_data *data, int i);
+void	exec_child(char *path, t_data *data, int i);
 
 /*                     
 *       _____ _____ _____ _____ 
@@ -205,7 +210,7 @@ void	free_parsed_data(t_data *data);
 
 void	ft_close_fd(int *fd[2], t_data *data);
 // void	ft_dup2(int i, int *fd);
-// void	ft_dup2(int i, t_data *data, int **fd);
+void	ft_dup2(int i, t_data *data, int **fd);
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data);
@@ -241,7 +246,7 @@ int		error_path2(char *path);
 /*redirecation*/
 int		ft_redir_init(t_data *data, int type_redir, int **fd);
 int		read_fd_check(t_list **redir_lst, int fd_num);
-int	    ft_redir_type(t_data *data);
+int		ft_redir_type(t_data *data);
 
 /*test*/
 int	is_builtin2(t_data *data, int i);

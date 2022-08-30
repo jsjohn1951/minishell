@@ -6,14 +6,15 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/26 16:54:59 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/28 22:11:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /* data->path = ft_matrix_add_elem(data->path, "/hello/world");
-	function: will add elem to the bottom of a 2D matrix */
+	function: will add elem to the bottom of a 2D matrix 
+	do_print_(data, -1) = function */
 
 void	cmd_control(t_data *data)
 {
@@ -22,6 +23,7 @@ void	cmd_control(t_data *data)
 		return ;
 	set_cmds(data, data->cmd);
 	expandable_check_(data);
+	strip_all_quotes(data);
 	pipe_count(data);
 	set_err_(data, 1);
 	ft_exec(data, -1);
@@ -77,7 +79,7 @@ int	cmd_(t_data *data)
 	signals_(0);
 	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
-	data->cmd = readline("SEA SHELL -> ");
+	data->cmd = readline("\x1B[36mSEA SHELL \x1B[32m➜ \x1B[0m");
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
