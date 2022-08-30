@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 21:51:45 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/29 14:17:03 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/08/30 13:34:38 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_fd(t_data *data, int i)
 	else if (data->pars[i].perm == W_OK)
 		data->pars[i].fd
 			= open(data->pars[i].cmd_name, O_CREAT | O_WRONLY | O_RDONLY, 0666);
+	// close (data->pars[i].fd);
 }
 
 void	pipe_count(t_data *data)
@@ -48,8 +49,8 @@ void	pipe_count(t_data *data)
 			data->pars[i].is_redir = 0;
 			data->num_pipes++;
 		}
-		else if (data->pars[i].pipe_redir
-			&& data->pars[i].pipe_redir[0] != '|')
-			set_fd(data, i);
+		// else if (data->pars[i].pipe_redir
+		// 	&& data->pars[i].pipe_redir[0] != '|')
+		// 	set_fd(data, i);
 	}
 }

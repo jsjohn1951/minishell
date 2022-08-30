@@ -22,40 +22,46 @@ int	ft_redir_type(t_data *data)
     return(redir->mode);
 }
 
-char *redir_file(int type_redir, char *file)
+char *redir_file(int type_redir, char *file, int **fd, int i)
 {
-    int fd;
-    // file = &redir->file;
+
     if (type_redir == MODE_READ)
     {
-        fd = open(file, O_RDONLY, 0444);
-        dup2(fd, STDIN_FILENO);
+        fd[i][0] = open(file, O_RDONLY);
+        dup2(fd[i - 1][1], STDIN_FILENO);
     }
     else if (type_redir == MODE_WRITE)
     {
-        fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-        dup2(fd, STDOUT_FILENO);
+        fd[i][0]= open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+        dup2(fd[i - 1][0], STDIN_FILENO);
+        dup2(fd[i][0], STDOUT_FILENO);
     }
     else if (type_redir == MODE_APPEND)
     {
-        fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
-        dup2(fd , STDOUT_FILENO);
+        fd[i][0] = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
+        dup2(fd[i][0] , STDOUT_FILENO);
     }
+    // close (fd);
+    // else if (type_redir == MODE_HEREDOC)
+    // {
+
+    // }
     return (0);
 }
 
-int ft_redir_init(t_data *data)
+int ft_redir_init(t_data *data, int type_redir, int **fd)
 {
-    int type_redir;
+    // int type_redir;
     int dupps;
     char *file;
     int i;
 
     i = 1;
     (void)dupps;
-    type_redir = ft_redir_type(data);
+    (void)type_redir;
+    // type_redir = ft_redir_type(data);
     file = *data->pars[i].cmd;// see that one 
-    redir_file(type_redir, file); // its work good 
+    redir_file(type_redir, file, fd, i); // its work good 
     // if (type_redir == MODE_WRITE || type_redir == MODE_APPEND)
     //     fd[1] = 1; //stdout (write)
     // if (type_redir == MODE_READ|| type_redir == MODE_HEREDOC)
