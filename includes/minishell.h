@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/30 14:24:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/01 16:54:05 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "../readline/includes/history.h"
 # include "../libft/include/libft.h"
 # include "../libft/include/ft_printf.h"
+# include "../libft/include/get_next_line.h"
 
 # include <unistd.h>
 # include <termios.h>
@@ -54,7 +55,7 @@ typedef struct s_parsed
 	int		is_redir;
 	int		fd;
 	int		perm;
-	char	*cmd_name;
+	char	*cmd_name; //name of cmd or file
 	char	**cmd;
 	char	*pipe_redir;
 }	t_parsed;
@@ -193,8 +194,8 @@ void	init_dollar(t_dollar *d);
 void	multi_pipe(t_data *data, int i);
 void	exec_child(char *path, t_data *data, int i);
 
-/*                     
-*       _____ _____ _____ _____ 
+/*
+*       _____ _____ _____ _____
 *     |     |  |  |   | |  _  |
 *    | | | |  |  | | | |     |
 *   |_|_|_|_____|_|___|__|__|
@@ -244,9 +245,9 @@ int		error_path(char *str);
 int		error_path2(char *path);
 
 /*redirecation*/
-int		ft_redir_init(t_data *data, int type_redir, int **fd);
+int		ft_redir_init(t_data *data, int type_redir, int **fd, int i);
 int		read_fd_check(t_list **redir_lst, int fd_num);
-int		ft_redir_type(t_data *data);
+int		ft_redir_type(t_data *data, int i);
 
 /*test*/
 int	is_builtin2(t_data *data, int i);

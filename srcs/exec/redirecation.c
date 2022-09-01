@@ -1,84 +1,63 @@
 #include "../../includes/minishell.h"
 
-int	ft_redir_type(t_data *data)
+int	ft_redir_type(t_data *data, int i)
 {
-    int     i;
+	// int		i;
 	t_redir	*redir;
 
-    i = 1;
+	// i = 1;
 	redir = malloc(sizeof(t_redir));
-    while (data->pars[i].pipe_redir)
-    {
-	    if (ft_strncmp(data->pars[i].pipe_redir, "<<", 2) == 0)
-		    redir->mode = MODE_HEREDOC;
-	    else if (!ft_strncmp(data->pars[i].pipe_redir, ">>", 2))
-		    redir->mode = MODE_APPEND;
-	    else if (!ft_strncmp(data->pars[i].pipe_redir, ">", 1))
-		    redir->mode = MODE_WRITE;
-    	else if (!ft_strncmp(data->pars[i].pipe_redir, "<", 1))
-		    redir->mode = MODE_READ;
-        i++;
-    }
-    return(redir->mode);
+	redir->mode = 0;
+	// while (data->pars[i].pipe_redir)
+	// {
+		if (data->pars[i].pipe_redir)
+		{
+			if (ft_strncmp(data->pars[i].pipe_redir, "<<", 2) == 0)
+				redir->mode = MODE_HEREDOC;
+			else if (!ft_strncmp(data->pars[i].pipe_redir, ">>", 2))
+				redir->mode = MODE_APPEND;
+			else if (!ft_strncmp(data->pars[i].pipe_redir, ">", 1))
+				redir->mode = MODE_WRITE;
+			else if (!ft_strncmp(data->pars[i].pipe_redir, "<", 1))
+				redir->mode = MODE_READ;
+		}
+		// i++;
+	// }
+	return (redir->mode);
 }
 
-char *redir_file(int type_redir, char *file, int **fd, int i)
+char	*redir_file(int type_redir, char *file, int **fd, int i)
 {
+	char	*s;
 
-    if (type_redir == MODE_READ)
-    {
-        fd[i][0] = open(file, O_RDONLY);
-        dup2(fd[i - 1][1], STDIN_FILENO);
-    }
-    else if (type_redir == MODE_WRITE)
-    {
-        fd[i][0]= open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-        dup2(fd[i - 1][0], STDIN_FILENO);
-        dup2(fd[i][0], STDOUT_FILENO);
-    }
-    else if (type_redir == MODE_APPEND)
-    {
-        fd[i][0] = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
-        dup2(fd[i][0] , STDOUT_FILENO);
-    }
-    // close (fd);
-    // else if (type_redir == MODE_HEREDOC)
-    // {
-
-    // }
-    return (0);
+	if (type_redir == MODE_READ)
+	{
+		fd[i][0] = open(file, O_RDONLY);
+		dup2(fd[i - 1][1], STDIN_FILENO);
+	}
+	else if (type_redir == MODE_WRITE)
+	{
+		close (fd[i][0]);
+		fd[i][0] = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		dup2(fd[i - 1][0], STDIN_FILENO);
+		dup2(fd[i][0], STDOUT_FILENO);
+		s = get_next_line(fd[i - 1][0]);
+		write(fd[i][0], s, ft_strlen(s));
+		free (s);
+	}
+	else if (type_redir == MODE_APPEND)
+	{
+		fd[i][0] = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
+		dup2(fd[i][0], STDOUT_FILENO);
+	}
+	return (0);
 }
 
-int ft_redir_init(t_data *data, int type_redir, int **fd)
+int	ft_redir_init(t_data *data, int type_redir, int **fd, int i)
 {
-    // int type_redir;
-    int dupps;
-    char *file;
-    int i;
+	char	*file;
 
-    i = 1;
-    (void)dupps;
-    (void)type_redir;
-    // type_redir = ft_redir_type(data);
-    file = *data->pars[i].cmd;// see that one 
-    redir_file(type_redir, file, fd, i); // its work good 
-    // if (type_redir == MODE_WRITE || type_redir == MODE_APPEND)
-    //     fd[1] = 1; //stdout (write)
-    // if (type_redir == MODE_READ|| type_redir == MODE_HEREDOC)
-    //     fd[1] = 0; // stdin (read)
-    // if (fd[0] == -1 || fd[1] == -1 )
-	// 	return (-1);
-    // if (read_fd_check(redir_list, fd[1] == -1))
-    //     return(-1);
-    // dupps = dup2(fd[0], fd[1]);//is open the file 
-    // if (dupps == -1)
-    // {
-    //     printf("error\n");
-    //     return (-1);
-    // }
-    // if (fd[0] != -1)
-	// 	close(fd[0]);
-    return(0);
-
+	file = data->pars[i].cmd_name;
+	redir_file(type_redir, file, fd, i);
+	return (0);
 }
-

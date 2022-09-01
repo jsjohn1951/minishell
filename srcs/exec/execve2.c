@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/27 18:03:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/01 16:16:51 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,6 @@ void	ft_close_fd(int *fd[2], t_data *data)
 	free(fd);
 }
 
-// static void	ft_wait_process(pid_t *id, t_data *data)
-// {
-// 	int		i;
-// 	int		ret;
-
-// 	i = 0;
-// 	while (i < data->num_cmds)
-// 	{
-// 		waitpid(id[i], &ret, 0);
-// 		i++;
-// 	}
-// }
-
 void	ft_dup2(int i, t_data *data, int **fd)
 {
 	if (data->num_pipes > 0)
@@ -56,13 +43,13 @@ void	ft_dup2(int i, t_data *data, int **fd)
 		}
 		if (i != data->num_cmds - 1)
 			dup2(fd[i][1], STDOUT_FILENO);
-		// if (i == 0)// first 
+		// if (i == 0)// first
 		// 	dup2(fd[i][1], STDOUT_FILENO);
 		// else if (i == data->num_cmds) //last
 		// 	dup2(fd[i - 1][0], STDIN_FILENO);
-		// else 
+		// else
 		// 	dup2(fd[i - 1][0],STDIN_FILENO);
-			
+
 	}
 	return ;
 }
@@ -72,7 +59,7 @@ int	ft_exec_one(t_data *data)
 	char	*path;
 
 	path = accessibility_(data);
-	if (!path && !access(data->strip, X_OK) )
+	if (!path && !access(data->strip, X_OK))
 		path = data->strip;
 	else if (!path)
 	{
@@ -82,9 +69,9 @@ int	ft_exec_one(t_data *data)
 		return (0);
 	}
 	if (!fork())
-			execve(path, data->pars[0].cmd, data->env);
-		else
-			wait(NULL);
+		execve(path, data->pars[0].cmd, data->env);
+	else
+		wait(NULL);
 	if (path != data->strip)
 		ft_free (data->strip);
 	ft_free (path);
@@ -95,7 +82,6 @@ int	ft_exec_one(t_data *data)
 // {
 // 	// t_list *redir_list = NULL;
 // 	char *path;
-	
 // 	data->strip = quote_strip_(data->pars[i - 1].cmd[0]);
 // 	path = accessibility_(data);
 // 	dup2(fd[0], STDOUT_FILENO);
@@ -103,7 +89,6 @@ int	ft_exec_one(t_data *data)
 // 		exit (EXIT_FAILURE);
 // 	exit(EXIT_SUCCESS);
 // }
-
 
 int	ft_exec(t_data *data, int i)
 {
