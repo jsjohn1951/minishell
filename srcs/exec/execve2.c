@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/01 16:16:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/03 22:58:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,9 @@ void	ft_dup2(int i, t_data *data, int **fd)
 		if (i != 0)
 		{
 			dup2(fd[i - 1][0], STDIN_FILENO);
-			// printf("test\n");
 		}
 		if (i != data->num_cmds - 1)
 			dup2(fd[i][1], STDOUT_FILENO);
-		// if (i == 0)// first
-		// 	dup2(fd[i][1], STDOUT_FILENO);
-		// else if (i == data->num_cmds) //last
-		// 	dup2(fd[i - 1][0], STDIN_FILENO);
-		// else
-		// 	dup2(fd[i - 1][0],STDIN_FILENO);
-
 	}
 	return ;
 }
@@ -78,17 +70,27 @@ int	ft_exec_one(t_data *data)
 	return (0);
 }
 
-// void	ft_process(t_data *data, int i, int *fd)
-// {
-// 	// t_list *redir_list = NULL;
-// 	char *path;
-// 	data->strip = quote_strip_(data->pars[i - 1].cmd[0]);
-// 	path = accessibility_(data);
-// 	dup2(fd[0], STDOUT_FILENO);
-// 	if (execve(path, data->pars[i - 1].cmd, data->env) == -1)
-// 		exit (EXIT_FAILURE);
-// 	exit(EXIT_SUCCESS);
-// }
+void	multi_pipe(t_data *data, int i)
+{
+	int	*pid;
+	int	**fd;
+
+	pid = (int *)malloc(sizeof(int) * (data->num_cmds));
+	fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
+	while (++i < data->num_cmds)
+	{
+		fd[i] = (int *)malloc(sizeof(int) * 3);
+		pipe(fd[i]);
+	}
+	spawn_process(fd, data, pid, -1);
+	i = -1;
+	while (++i < data->num_cmds)
+		waitpid (pid[i], NULL, 0);
+	while (++i < data->num_cmds)
+		ft_free (fd[i]);
+	ft_free (fd);
+	ft_free (pid);
+}
 
 int	ft_exec(t_data *data, int i)
 {
@@ -102,7 +104,8 @@ int	ft_exec(t_data *data, int i)
 			else
 				return (ft_exec_one(data));
 		}
-		multi_pipe(data, i);
+		else
+			multi_pipe(data, i);
 	}
 	return (0);
 }

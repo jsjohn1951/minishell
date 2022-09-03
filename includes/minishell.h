@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/01 16:54:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/03 22:03:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,13 @@
 # include <signal.h>
 # include <sys/wait.h>
 
-typedef struct s_mode
-{
-	int	pipe;
-	int	redir;
-}	t_mode;
-
 typedef struct s_parsed
 {
 	int		num;
 	int		is_redir;
 	int		fd;
 	int		perm;
-	char	*cmd_name; //name of cmd or file
+	char	*cmd_name;
 	char	**cmd;
 	char	*pipe_redir;
 }	t_parsed;
@@ -104,23 +98,9 @@ typedef struct s_data
 	int			a_err;
 
 	int			end_pipe;
-	t_mode		mode;
 	t_parsed	pars[150000];
 	t_flags		flags;
 }	t_data;
-
-typedef struct s_redir
-{
-	char	*name;
-	char	mode;
-	char	*file;
-}				t_redir;
-
-typedef struct s_redir_list
-{
-	int	fd_num;
-	int	str_dup;
-}				t_redir_list;
 
 /*	main */
 /* file: main */
@@ -190,9 +170,10 @@ int		is_env(char *s, t_data *data);
 void	init_dollar(t_dollar *d);
 
 /*exec */
-/* file: two */
+/* file: execve2 */
 void	multi_pipe(t_data *data, int i);
-void	exec_child(char *path, t_data *data, int i);
+/* file: redirection */
+void	spawn_process(int **fd, t_data *data, int *pid, int i);
 
 /*
 *       _____ _____ _____ _____
@@ -245,12 +226,12 @@ int		error_path(char *str);
 int		error_path2(char *path);
 
 /*redirecation*/
-int		ft_redir_init(t_data *data, int type_redir, int **fd, int i);
+int		ft_redir_init(t_data *data, int i);
 int		read_fd_check(t_list **redir_lst, int fd_num);
 int		ft_redir_type(t_data *data, int i);
 
 /*test*/
-int	is_builtin2(t_data *data, int i);
-int	exec_builtin2(t_data *data, int i);
+int		is_builtin2(t_data *data, int i);
+int		exec_builtin2(t_data *data, int i);
 char	*accessibility_(t_data *data);
 #endif

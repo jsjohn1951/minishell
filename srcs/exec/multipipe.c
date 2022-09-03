@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/01 17:14:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/03 22:58:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	close_fd(int **fd, t_data *data)
 
 void	ft_dup2_fd(t_data *data, int **fd, int i)
 {
-	if (!i)
+	if (!i && ft_redir_type(data, i + 1) != MODE_READ)
 		dup2(fd[i][1], STDOUT_FILENO);
 	else if (i < data->num_cmds - 1 && !data->pars[i].is_redir)
 	{
@@ -76,43 +76,18 @@ void	ft_dup2_fd(t_data *data, int **fd, int i)
 
 void	spawn_process(int **fd, t_data *data, int *pid, int i)
 {
-	int	type_redir;
-
 	while (++i < data->num_cmds)
 	{
-		type_redir = ft_redir_type(data, i);
 		pid[i] = fork();
 		if (!pid[i])
 		{
 			ft_dup2_fd(data, fd, i);
-			if (type_redir)
-				ft_redir_init(data, type_redir, fd, i);
+			ft_redir_init(data, i);
 			close_fd(fd, data);
 			child_process(data, i);
+			close_fd(fd, data);
 			exit (0);
 		}
 	}
 	close_fd(fd, data);
-}
-
-void	multi_pipe(t_data *data, int i)
-{
-	int	*pid;
-	int	**fd;
-
-	pid = (int *)malloc(sizeof(int) * (data->num_cmds));
-	fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
-	while (++i < data->num_cmds)
-	{
-		fd[i] = (int *)malloc(sizeof(int) * 3);
-		pipe(fd[i]);
-	}
-	spawn_process(fd, data, pid, -1);
-	i = -1;
-	while (++i < data->num_cmds)
-		waitpid (pid[i], NULL, 0);
-	while (++i < data->num_cmds)
-		ft_free (fd[i]);
-	ft_free (fd);
-	ft_free (pid);
 }

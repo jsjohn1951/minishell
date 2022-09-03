@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/08/28 14:52:30 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/03 23:05:04 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,11 @@ SRCS = main/main\
 		parser/split_tools\
 		parser/count_pipes\
 		parser/tools\
-		builtins/echo\
-		builtins/exit\
-		parser/set_mode\
 		parser/split_by_pipe\
 		parser/env\
 		parser/strip_all_quotes\
+		builtins/echo\
+		builtins/exit\
 		err/err\
 		err/utils\
 		err/quote_check\
@@ -43,12 +42,17 @@ SRCS = main/main\
 		exec/multipipe\
 		\
 		\
-		builtins/builitins exec/execve2\
-		builtins/pwd builtins/env\
-		builtins/get_path builtins/cd\
-		builtins/export builtins/export2\
-		builtins/unset builtins/cd2\
-		exec/redirecation exec/redirecation2\
+		builtins/builitins\
+		exec/execve2\
+		builtins/pwd\
+		builtins/env\
+		builtins/get_path\
+		builtins/cd\
+		builtins/export\
+		builtins/export2\
+		builtins/unset\
+		builtins/cd2\
+		exec/redirecation\
 		builtins/testfile\
 
 # Objects used to compile
@@ -134,9 +138,13 @@ printre :
 # Incase you want to redo everything... lol
 re : fclean printre all
 
+valgrind: re
+	@clear
+	@echo "\033[0;32mRunning in Valgrind.\033[0m"
+	@valgrind --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all --suppressions=readline/readline_ig ./minishell
+
 run : re
 	@sleep 2
 	@clear && ./minishell
-
 # Phony rules... we don't have to obey them. Cuz they're phony ;) lol
 .PHONY: all clean fclean re printre execute
