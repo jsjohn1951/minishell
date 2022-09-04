@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/03 22:57:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/04 21:19:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ void	write_append(char *file, t_data *data, int i)
 	}
 }
 
+void	read_heredoc(char *file, t_data *data, int i)
+{
+	int	file_d;
+
+	if (ft_redir_type(data, i + 1) == MODE_READ)
+	{
+		file_d = open(file, O_RDONLY);
+		dup2(file_d, STDIN_FILENO);
+		dup2(data->fd.stdout_, STDOUT_FILENO);
+		close (file_d);
+	}
+}
+
 int	ft_redir_init(t_data *data, int i)
 {
 	char	*file;
@@ -54,6 +67,7 @@ int	ft_redir_init(t_data *data, int i)
 	{
 		file = data->pars[i + 1].cmd_name;
 		write_append(file, data, i);
+		read_heredoc(file, data, i);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/03 22:58:09 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/04 21:21:46 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	close_fd(int **fd, t_data *data)
 
 void	ft_dup2_fd(t_data *data, int **fd, int i)
 {
-	if (!i && ft_redir_type(data, i + 1) != MODE_READ)
+	if (!i)
 		dup2(fd[i][1], STDOUT_FILENO);
 	else if (i < data->num_cmds - 1 && !data->pars[i].is_redir)
 	{
@@ -76,6 +76,8 @@ void	ft_dup2_fd(t_data *data, int **fd, int i)
 
 void	spawn_process(int **fd, t_data *data, int *pid, int i)
 {
+	data->fd.stdin_ = dup(STDIN_FILENO);
+	data->fd.stdout_ = dup(STDOUT_FILENO);
 	while (++i < data->num_cmds)
 	{
 		pid[i] = fork();

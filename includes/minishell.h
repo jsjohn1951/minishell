@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/03 22:03:44 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/04 20:57:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ typedef struct s_dollar
 	char	*key;
 }	t_dollar;
 
+typedef struct s_fd
+{
+	int	stdin_;
+	int	stdout_;
+}	t_fd;
+
+
 typedef struct s_data
 {
 	char		**env;
@@ -100,6 +107,7 @@ typedef struct s_data
 	int			end_pipe;
 	t_parsed	pars[150000];
 	t_flags		flags;
+	t_fd		fd;
 }	t_data;
 
 /*	main */
