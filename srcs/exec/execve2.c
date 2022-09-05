@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/03 22:58:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/05 23:42:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,10 @@ void	multi_pipe(t_data *data, int i)
 	spawn_process(fd, data, pid, -1);
 	i = -1;
 	while (++i < data->num_cmds)
+	{
 		waitpid (pid[i], NULL, 0);
-	while (++i < data->num_cmds)
 		ft_free (fd[i]);
+	}
 	ft_free (fd);
 	ft_free (pid);
 }
