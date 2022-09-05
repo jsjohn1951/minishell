@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/04 20:57:31 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/05 12:43:58 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ int		error_path2(char *path);
 int		ft_redir_init(t_data *data, int i);
 int		read_fd_check(t_list **redir_lst, int fd_num);
 int		ft_redir_type(t_data *data, int i);
+int		ft_heredoc(char *eof);
 
 /*test*/
 int		is_builtin2(t_data *data, int i);

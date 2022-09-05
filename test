@@ -1,0 +1,5 @@
+all : $(NAME)
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
+# 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+	rm -f $(NAME)
