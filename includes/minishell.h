@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 14:16:35 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/06 15:35:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,4 +241,8 @@ int		ft_heredoc(char *eof);
 
 /*test*/
 char	*accessibility_(t_data *data);
+
+/* heredoc*/
+/* file: pars_heredoc */
+void	here_pars(t_data *data);
 #endif

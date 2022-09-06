@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/06 14:25:44 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/09/06 15:37:25 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS = main/main\
 		builtins/cd2\
 		exec/redirecation\
 		exec/Heredoc\
+		heredoc/pars_heredoc\
 
 # Objects used to compile
 OBJDIR = Objects
@@ -76,6 +77,7 @@ $(OBJDIR)/%.o : srcs/%.c
 	@mkdir -p $(OBJDIR)/err
 	@mkdir -p $(OBJDIR)/expand
 	@mkdir -p $(OBJDIR)/exec
+	@mkdir -p $(OBJDIR)/heredoc
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # in case of bonus... use all? :)
@@ -117,8 +119,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
-# 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+#	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :

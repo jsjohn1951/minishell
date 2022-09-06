@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 14:13:55 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/06 17:00:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ void	child_process(t_data *data, int i)
 			&& ft_strncmp(data->strip, "unset", 5)
 			&& (ft_strncmp(data->strip, "export", 6)
 				|| ft_matrix_size(data->pars[i].cmd) == 1))
-			{
 				exec_builtin(data, i);
-				ft_putstr_fd("test\n", 2);
-			}
 }
 
 void	close_fd(int **fd, t_data *data)
