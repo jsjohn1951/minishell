@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/05 12:55:26 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/06 14:13:55 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_executable(t_data *data, int i)
 	char	*path;
 
 	data->strip = quote_strip_(data->pars[i].cmd[0]);
-	if (is_builtin(data))
+	if (is_builtin(data, i))
 		return (data->strip);
 	path = accessibility_(data);
 	if (!path)
@@ -36,7 +36,7 @@ void	child_process(t_data *data, int i)
 	char	*path;
 
 	path = ft_executable(data, i);
-	if (path && !is_builtin(data))
+	if (path && !is_builtin(data, i))
 	{
 		execve(path, data->pars[i].cmd, data->env);
 		ft_free (path);
@@ -46,7 +46,10 @@ void	child_process(t_data *data, int i)
 			&& ft_strncmp(data->strip, "unset", 5)
 			&& (ft_strncmp(data->strip, "export", 6)
 				|| ft_matrix_size(data->pars[i].cmd) == 1))
-			exec_builtin(data, i);
+			{
+				exec_builtin(data, i);
+				ft_putstr_fd("test\n", 2);
+			}
 }
 
 void	close_fd(int **fd, t_data *data)

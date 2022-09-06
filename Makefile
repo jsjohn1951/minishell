@@ -6,7 +6,7 @@
 #    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/05 12:48:18 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/09/06 14:25:44 by mnyalhdrmy       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRCS = main/main\
 		builtins/unset\
 		builtins/cd2\
 		exec/redirecation\
-		builtins/testfile\
 		exec/Heredoc\
 
 # Objects used to compile

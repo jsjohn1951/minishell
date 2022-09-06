@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/05 23:42:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/06 14:20:57 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	ft_exec(t_data *data, int i)
 		if (data->num_cmds == 1)
 		{
 			data->strip = quote_strip_(data->pars[0].cmd[0]);
-			if (is_builtin(data))
+			if (is_builtin(data, 0))
 				return (exec_builtin(data, 0));
 			else
 				return (ft_exec_one(data));

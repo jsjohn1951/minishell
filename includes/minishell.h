@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/05 12:43:58 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/06 14:16:35 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,11 +199,11 @@ void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 
 void	ft_close_fd(int *fd[2], t_data *data);
-// void	ft_dup2(int i, int *fd);
+/*seeeeeeeeee*/
 void	ft_dup2(int i, t_data *data, int **fd);
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
-int		is_builtin(t_data *data);
+int		is_builtin(t_data *data, int i);
 int		exec_builtin(t_data *data, int i);
 /*	file: pwd */
 int		ft_pwd(t_data *data);
@@ -240,7 +240,5 @@ int		ft_redir_type(t_data *data, int i);
 int		ft_heredoc(char *eof);
 
 /*test*/
-int		is_builtin2(t_data *data, int i);
-int		exec_builtin2(t_data *data, int i);
 char	*accessibility_(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 16:32:32 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/06 14:21:09 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	is_command(char *join, t_data *data)
 void	condition_(t_data *data, char **argv)
 {
 	char	*join;
-
+	
 	if (!access(data->strip, X_OK))
 	{
 		if (!fork())
@@ -63,7 +63,7 @@ void	condition_(t_data *data, char **argv)
 	}
 	else
 	{
-		if (!is_builtin(data))
+		if (!is_builtin(data, 0))
 		{
 			join = accessibility_(data);
 			is_command(join, data);
