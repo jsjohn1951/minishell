@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirecation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 17:08:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/11 16:13:48 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,8 @@ void	read_heredoc(char *file, t_data *data, int i)
 	}
 	else if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
 	{
-		// dup2(data->fd.stdout_, STDOUT_FILENO);
-		// printf("ites work\n");
-		// file_d = STDOUT_FILENO;
-		// dup2(file_d, STDIN_FILENO);
-		dup2(data->fd.stdin_, STDIN_FILENO);
 		dup2(data->fd.stdout_, STDOUT_FILENO);
-		// while (data->pars[i + 1].cmd && data->pars[i + 1].cmd[++ind])
-		// {
-		// 	if (line)
-		// 		line = ft_strjoin_mod(line, "\n", 1);
-		// 	line = ft_strjoin_mod(line, data->pars[i + 1].cmd[ind],
-		// 		ft_strlen(data->pars[i + 1].cmd[ind]));
-		// }
-		// write(data->fd.stdin_, line, ft_strlen(line));
-		// close (file_d);
-		ft_heredoc(file);
+		ft_heredoc(file, data);
 	}
 }
 

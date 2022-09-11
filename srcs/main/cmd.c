@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 17:23:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/11 16:20:12 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cmd_control(t_data *data)
 	if (quote_check_(data))
 		return ;
 	set_cmds(data, data->cmd);
-	here_pars(data);
+	// here_pars(data);
 	expandable_check_(data);
 	strip_all_quotes(data);
 	pipe_count(data);
