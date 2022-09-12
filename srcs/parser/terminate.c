@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/24 23:39:30 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 23:20:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	free_parsed_data(t_data *data)
 			ft_free(data->pars[i].pipe_redir);
 			data->pars[i].pipe_redir = NULL;
 		}
-		if (data->pars[i].is_redir)
-			close (data->pars[i].fd);
 	}
 }
 

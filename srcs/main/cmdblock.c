@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:54:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 12:40:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 23:19:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	do_print_(t_data *data, int i)
 			if (!i)
 				printf("\nerr status ($?): %s%d%s\n", KRED, data->err, KNRM);
 			print_cmd(data, i);
-			free (data->strip);
-			data->strip = NULL;
 		}
 	}
 }
