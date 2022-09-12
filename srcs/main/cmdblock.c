@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:54:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 16:53:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 12:40:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,8 @@ void	do_print_(t_data *data, int i)
 {
 	while (++i < data->num_cmds)
 	{
-		if (data->pars[i].cmd)
+		if (data->pars[i].cmd && data->pars[i].cmd[0])
 		{
-			data->strip = quote_strip_(data->pars[i].cmd[0]);
-			if (!ft_strncmp(data->strip, "exit", 4)
-				|| !ft_strncmp(data->strip, "echo", 4)
-				|| !ft_strncmp(data->strip, "clear", 5)
-				|| !ft_strncmp(data->strip, "env", 3)
-				|| !ft_strncmp(data->strip, "pwd", 3)
-				|| !ft_strncmp(data->strip, "export", 6)
-				|| !ft_strncmp(data->strip, "unset", 5)
-				|| !ft_strncmp(data->strip, "cd", 2))
-				return (free (data->strip));
 			if (!i)
 				printf("\nerr status ($?): %s%d%s\n", KRED, data->err, KNRM);
 			print_cmd(data, i);

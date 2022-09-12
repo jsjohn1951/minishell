@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/11 16:14:11 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/09/12 14:06:33 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,8 +119,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	@make -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
-# 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
+#	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LINUX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 # Cleans the objects (including libft)
 clean :

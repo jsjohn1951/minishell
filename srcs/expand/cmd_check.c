@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:16:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 01:34:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 12:07:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,6 @@ char	*key_(char *s, int in)
 	else
 		key = NULL;
 	return (key);
-}
-
-int	is_dollar_(char *s, t_data *data)
-{
-	t_dollar	d;
-
-	init_dollar(&d);
-	while (s[++d.i])
-	{
-		if (is_quote_(s[d.i]) && !d.flags.quote)
-			d.flags.quote = s[d.i];
-		else if (s[d.i] == d.flags.quote)
-			d.flags.quote = 0;
-		if (s[d.i] == '$' && s[d.i + 1])
-			d.is_num = is_num_alpha(s[d.i + 1]);
-		if (d.is_num == 2)
-			d.key = key_(s, d.i);
-		if (s[d.i] == '$' && d.flags.quote != 39
-			&& d.is_num == 2 && is_env(d.key, data))
-			d.truth = 1;
-		else if (s[d.i] == '$' && d.flags.quote != 39
-			&& (d.is_num == 1 || d.is_num == 3))
-			d.truth = 1;
-		ft_free(d.key);
-		d.key = NULL;
-	}
-	return (d.truth);
 }
 
 void	env_key_(t_data *data, t_expand *exp, int j)
@@ -111,6 +84,35 @@ void	expand(t_data *data, int i, int j)
 	}
 }
 
+void	expand_extra_dollar(char *s)
+{
+	t_expand	exp;
+
+	exp.in = -1;
+	flag_init(&exp.flags);
+	while (s[++exp.in])
+	{
+		if (is_quote_(s[exp.in]) && !exp.flags.quote)
+			exp.flags.quote = s[exp.in];
+		else if (exp.flags.quote == s[exp.in])
+			exp.flags.quote = 0;
+		if (!exp.flags.quote && s[exp.in] == '$')
+		{
+			if (exp.in)
+				exp.tmp1 = ft_substr(s, 0, exp.in);
+			else
+				exp.tmp1 = NULL;
+			exp.tmp2 = ft_substr(s, exp.in + 1, ft_strlen(s) - exp.in + 1);
+			exp.tmp1 = ft_strjoin_mod(exp.tmp1, exp.tmp2, ft_strlen(exp.tmp2));
+			ft_free(s);
+			s = ft_strdup(exp.tmp1);
+			ft_freer(2, exp.tmp1, exp.tmp2);
+			exp.in = -1;
+			flag_init(&exp.flags);
+		}
+	}
+}
+
 void	expandable_check_(t_data *data)
 {
 	int	i;
@@ -124,9 +126,14 @@ void	expandable_check_(t_data *data)
 			if (!ft_strncmp(data->pars[i].pipe_redir, "<<", 2))
 				j++;
 		if (data->pars[i].cmd)
+		{
 			while (data->pars[i].cmd[++j])
+			{
 				while (is_dollar_(data->pars[i].cmd[j], data))
 					expand(data, i, j);
+				expand_extra_dollar(data->pars[i].cmd[j]);
+			}
+		}
 		i++;
 		j = -1;
 	}

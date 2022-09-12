@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 16:52:51 by wismith           #+#    #+#              #
-#    Updated: 2022/08/14 16:14:26 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/12 12:04:35 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ LIST =	ft_atoi ft_bzero ft_calloc\
 		ft_split_mod ft_strrev\
 		new_funcs/ft_matrix_len new_funcs/ft_matrix_dup\
 		new_funcs/ft_print_matrix new_funcs/ft_free_matrix\
-		new_funcs/ft_free new_funcs/ft_add_matrix_elem
+		new_funcs/ft_free new_funcs/ft_add_matrix_elem\
+		new_funcs/ft_freer
 
 CFLAGS = -Wall -Wextra -Werror
 

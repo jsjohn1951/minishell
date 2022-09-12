@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/19 00:27:11 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:40:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,13 @@ void	exit_(t_data *data)
 
 	if (!data->pars[0].cmd)
 		return ;
-	s = quote_strip_(data->pars[0].cmd[0]);
+	s = data->pars[0].cmd[0];
 	if (data->pars[0].cmd && !ft_strncmp(s, "exit", 4))
 	{
-		ft_free (s);
 		if (data->pars[0].cmd[1] && data->pars[0].cmd[1][0])
 		{
-			s = quote_strip_(data->pars[0].cmd[1]);
+			s = data->pars[0].cmd[1];
 			exit_num = exit_err(s);
-			ft_free (s);
 		}
 		else
 			exit_num = ft_exit_status(data->err);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/11 16:13:24 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 11:45:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_expand
 	int		in;
 	int		par_i;
 	char	*key;
+	char	*tmp1;
+	char	*tmp2;
 	t_flags	flags;
 }	t_expand;
 
@@ -168,6 +170,7 @@ void	set_err_status(t_data *data, int i);
 /*	expansions */
 /* file: cmd_check */
 void	expandable_check_(t_data *data);
+char	*key_(char *s, int in);
 /* file: exp_tools */
 void	exit_shellname_exp_(t_data *data, t_expand *exp, int j);
 void	exp_other(t_data *data, t_expand *exp, int j, int i);
@@ -176,6 +179,7 @@ int		is_num_alpha(char c);
 /* file: extra */
 int		is_env(char *s, t_data *data);
 void	init_dollar(t_dollar *d);
+int		is_dollar_(char *s, t_data *data);
 
 /*exec */
 /* file: execve2 */
