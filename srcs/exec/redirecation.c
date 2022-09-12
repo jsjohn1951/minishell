@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirecation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 14:47:28 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 15:32:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,13 @@ int	ft_redir_init(t_data *data, int i)
 
 	if (i < data->num_cmds && ft_redir_type(data, i + 1))
 	{
-		file = data->pars[i + 1].cmd_name;
-		write_append(file, data, i);
-		read_heredoc(file, data, i);
+		while (ft_redir_type(data, i + 1))
+		{
+			file = data->pars[i + 1].cmd_name;
+			write_append(file, data, i);
+			read_heredoc(file, data, i);
+			i++;
+		}
 	}
 	return (0);
 }
