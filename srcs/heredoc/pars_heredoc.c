@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/11 18:31:16 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/11 19:01:33 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	here_entries(t_data *data, int i)
 		data->strip = quote_strip_(data->pars[i].cmd[0]);
 		while (!line || ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 		{
-			line = readline("heredoc -> ");
+			line = readline("Heredoc -> ");
 			if (ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 			{
 				data->pars[i].cmd = ft_matrix_add_elem(data->pars[i].cmd, line);

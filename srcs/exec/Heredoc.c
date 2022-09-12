@@ -1,13 +1,5 @@
 #include "../../includes/minishell.h"
 
-int     ft_break_multheredoc(int eof, int nb)
-{
-    if (eof == nb)
-    {
-        return(1);
-    }
-    return(0);
-}
 int ft_nb_files(t_data *data)
 {
 	int i;
@@ -28,13 +20,12 @@ int	check_eof_multi(t_data *data, char *line, char *file, int i)
 	int	size;
 
 	size = ft_strlen(line);
-    while (data->pars[++i + 1].cmd_name)
-	    if (ft_strncmp(line, data->pars[i + 1].cmd_name, size) == 0)
-	    {
-		    file = data->pars[i + 1].cmd_name;
-            printf("file : %s\n", file);
-	        return (1);
-    	}
+	if (ft_strncmp(line, data->pars[i + 1].cmd_name, size - 1) == 0)
+	{
+		file = data->pars[i + 1].cmd_name;
+        printf("file : %s\n", file);
+	    return (1);
+    }
 	return (0);
 }
 int check_eof(char *line, char *eof)
@@ -49,32 +40,6 @@ int check_eof(char *line, char *eof)
         
     }
     return(0);
-}
-
-char  *ft_value(char *line, t_data *data)
-{
-    int i;
-    int size;
-  
-
-    i = 0;
-    size = ft_strlen(line);
-    size--;
-    while (data->env[i])
-    {
-        if (ft_strncmp(&line[1], data->env[i], size - 1) == 0)
-        {
-            if (data->env[i][size] && data->env[i][size] == '=' && data->env[i][size + 1])
-            {
-                printf("its work\n");
-                // line = get_path_cd(data, &line[1], &i);
-                // return(&data->env[i][size + 1]);
-            }
-            // i++;
-        }
-        i++;
-    }
-    return(NULL);
 }
 
 void	close_heredoc(int pipe_fd[2], char *line)
@@ -94,26 +59,26 @@ void    print_herdoc(int pipe_fd[2], char *line)
 int	ft_heredoc_multiple(int nb, t_data *data, char *file, int temp_stdout, int fd[2])
 {
 	char		*line;
-	int			eof;
-    int         i;
+	// int			eof;
+    int         i = -1;
+    int         ind = 0;
 
-	eof = 0;
-    i = -1;
-	while (1)
+	// eof = 0;
+    (void)nb;
+    (void)file;
+	while (++i < data->num_cmds)
 	{
-		line = readline("Heredoc -> ");
-		if (line)
+		while (data->pars[i].cmd[++ind])
 		{
-			eof += check_eof_multi(data, line, file, i);
-                // printf("eof :%d\n", eof);
-            // if (ft_break_multheredoc(eof, nb))
-            if (eof == nb)
-                break ;
+            printf("test\n");
+            line = data->pars[i].cmd[ind];
+			// eof += check_eof_multi(data, line, file, i);
+            // if (eof == nb)
+            //     break ;
             print_herdoc(fd, line);
-            free(line);
         }
+        close_heredoc(fd, line);
 	}
-    close_heredoc(fd, line);
 	return (temp_stdout);
 }
 int ft_heredoc(char *eof, t_data *data)
