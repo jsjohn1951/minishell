@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argargv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 14:21:09 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 16:57:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	is_command(char *join, t_data *data)
 void	condition_(t_data *data, char **argv)
 {
 	char	*join;
-	
+
 	if (!access(data->strip, X_OK))
 	{
 		if (!fork())

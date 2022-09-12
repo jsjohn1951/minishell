@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/06 14:20:57 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 16:58:02 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,19 @@ int	ft_exec_one(t_data *data)
 {
 	char	*path;
 
+	data->strip = data->pars[0].cmd[0];
 	path = accessibility_(data);
-	if (!path && !access(data->strip, X_OK))
-		path = data->strip;
-	else if (!path)
+	if (!path)
 	{
+		path = data->pars[0].cmd[0];
 		data->err = 127;
-		printf("SEA SHELL: %s: No such file or directory\n", data->strip);
-		ft_free (data->strip);
+		printf("SEA SHELL: %s: No such file or directory\n", path);
 		return (0);
 	}
 	if (!fork())
 		execve(path, data->pars[0].cmd, data->env);
 	else
 		wait(NULL);
-	if (path != data->strip)
-		ft_free (data->strip);
 	ft_free (path);
 	return (0);
 }
@@ -99,7 +96,6 @@ int	ft_exec(t_data *data, int i)
 	{
 		if (data->num_cmds == 1)
 		{
-			data->strip = quote_strip_(data->pars[0].cmd[0]);
 			if (is_builtin(data, 0))
 				return (exec_builtin(data, 0));
 			else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 14:48:01 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 17:47:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,11 @@ typedef struct s_fd
 	int	stdout_;
 }	t_fd;
 
-
 typedef struct s_data
 {
 	char		**env;
 	char		**path;
-	char        **path_execve;
+	char		**path_execve;
 	char		*strip;
 	char		*cmd;
 	char		*pwd;
@@ -100,12 +99,8 @@ typedef struct s_data
 	int			num_cmds;
 	int			num_pipes;
 	int			argc;
-
-/* last exit status */
 	int			err;
-/* if true allows for one iterations with exit status */
 	int			a_err;
-
 	int			end_pipe;
 	t_parsed	pars[150000];
 	t_flags		flags;

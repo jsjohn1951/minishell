@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 15:32:22 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 17:59:07 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,53 @@ int	ft_redir_type(t_data *data, int i)
 	return (0);
 }
 
-void	write_append(char *file, t_data *data, int i)
+void	write_append(t_data *data, int i)
 {
-	int	file_d;
+	int		file_d;
+	char	*file;
 
 	if (ft_redir_type(data, i + 1) == MODE_WRITE)
 	{
+		file = data->pars[i + 1].cmd_name;
 		file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);
 	}
 	else if (ft_redir_type(data, i + 1) == MODE_APPEND)
 	{
+		file = data->pars[i + 1].cmd_name;
 		file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);
 	}
 }
 
-void	read_heredoc(char *file, t_data *data, int i)
+void	reader(t_data *data, int i)
 {
 	int		file_d;
+	char	*file;
 
-	if (ft_redir_type(data, i + 1) == MODE_READ)
+	while (ft_redir_type(data, i + 1) == MODE_READ)
 	{
+		file = data->pars[i + 1].cmd_name;
 		file_d = open(file, O_RDONLY);
 		dup2(file_d, STDIN_FILENO);
 		dup2(data->fd.stdout_, STDOUT_FILENO);
 		close (file_d);
-	}
-	else if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
-	{
-		dup2(data->fd.stdout_, STDOUT_FILENO);
-		ft_heredoc(data, i + 1);
+		i++;
 	}
 }
 
 int	ft_redir_init(t_data *data, int i)
 {
-	char	*file;
-
-	if (i < data->num_cmds && ft_redir_type(data, i + 1))
+	if (i < data->num_cmds - 1 && ft_redir_type(data, i + 1))
 	{
-		while (ft_redir_type(data, i + 1))
+		write_append(data, i);
+		reader(data, i);
+		if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
 		{
-			file = data->pars[i + 1].cmd_name;
-			write_append(file, data, i);
-			read_heredoc(file, data, i);
-			i++;
+			dup2(data->fd.stdout_, STDOUT_FILENO);
+			ft_heredoc(data, i + 1);
 		}
 	}
 	return (0);

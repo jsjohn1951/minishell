@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 14:34:40 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 17:42:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 /* data->path = ft_matrix_add_elem(data->path, "/hello/world");
-	function: will add elem to the bottom of a 2D matrix 
+	function: will add elem to the bottom of a 2D matrix
 	do_print_(data, -1) = function */
 
 void	cmd_control(t_data *data)

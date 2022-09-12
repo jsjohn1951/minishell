@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 15:25:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/12 18:01:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	child_process(t_data *data, int i)
 			&& ft_strncmp(data->strip, "unset", 5)
 			&& (ft_strncmp(data->strip, "export", 6)
 				|| ft_matrix_size(data->pars[i].cmd) == 1))
-				exec_builtin(data, i);
+			exec_builtin(data, i);
 }
 
 void	close_fd(int **fd, t_data *data)
@@ -59,6 +59,8 @@ void	close_fd(int **fd, t_data *data)
 		close (fd[i][1]);
 		close (fd[i][0]);
 	}
+	close (data->fd.stdin_);
+	close (data->fd.stdout_);
 }
 
 void	ft_dup2_fd(t_data *data, int **fd, int i)
@@ -84,11 +86,12 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 		if (!pid[i])
 		{
 			ft_dup2_fd(data, fd, i);
-			if (!ft_redir_type(data, i))
-				ft_redir_init(data, i);
 			close_fd(fd, data);
-			if (!ft_redir_type(data, i))
+			if (!data->pars[i].is_redir)
+			{
+				ft_redir_init(data, i);
 				child_process(data, i);
+			}
 			close_fd(fd, data);
 			exit (0);
 		}
