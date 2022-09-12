@@ -1,47 +1,5 @@
 #include "../../includes/minishell.h"
 
-int ft_nb_files(t_data *data)
-{
-	int i;
-	int nb;
-	
-	i = 0;
-	nb = 0;
-    while (data->pars[i + 1].cmd_name && ft_redir_type(data, i + 1) == MODE_HEREDOC)
-    {
-		i++;
-		nb++;
-    }
-    return(nb);
-}
-
-int	check_eof_multi(t_data *data, char *line, char *file, int i)
-{
-	int	size;
-
-	size = ft_strlen(line);
-	if (ft_strncmp(line, data->pars[i + 1].cmd_name, size - 1) == 0)
-	{
-		file = data->pars[i + 1].cmd_name;
-        printf("file : %s\n", file);
-	    return (1);
-    }
-	return (0);
-}
-int check_eof(char *line, char *eof)
-{
-    int size;
-
-    if (line != NULL)
-    {
-        size =  ft_strlen(line);
-        if (size != 0 && ft_strncmp(eof, line ,size) == 0)
-            return(1);
-        
-    }
-    return(0);
-}
-
 void	close_heredoc(int pipe_fd[2], char *line)
 {
 	free(line);
@@ -56,56 +14,20 @@ void    print_herdoc(int pipe_fd[2], char *line)
     ft_putstr_fd(line, pipe_fd[1]);
     ft_putstr_fd("\n", pipe_fd[1]);
 }
-int	ft_heredoc_multiple(int nb, t_data *data, char *file, int temp_stdout, int fd[2])
-{
-	char		*line;
-	// int			eof;
-    int         i = -1;
-    int         ind = 0;
-
-	// eof = 0;
-    (void)nb;
-    (void)file;
-	while (++i < data->num_cmds)
-	{
-		while (data->pars[i].cmd[++ind])
-		{
-            printf("test\n");
-            line = data->pars[i].cmd[ind];
-			// eof += check_eof_multi(data, line, file, i);
-            // if (eof == nb)
-            //     break ;
-            print_herdoc(fd, line);
-        }
-        close_heredoc(fd, line);
-	}
-	return (temp_stdout);
-}
-int ft_heredoc(char *eof, t_data *data)
+int ft_heredoc(t_data *data, int i)
 {
     char *line;
     int fd[2];
-    int nb;
-    int i = -1;
     int ind = 0;
-    int temp_stdout;
 
-    temp_stdout = dup(STDOUT_FILENO);
     pipe(fd);
-    nb = ft_nb_files(data);
-    if (nb == 1)
+    while (ft_redir_type(data, i + 1) && ft_redir_type(data, i + 1) == MODE_HEREDOC)
+        i++;
+    while (data->pars[i].cmd[++ind])
     {
-        while (++i < data->num_cmds)
-        {
-            while (data->pars[i].cmd[++ind])
-            {
-                line = data->pars[i].cmd[ind];
-                print_herdoc(fd, line);
-            }
-        }
-        close_heredoc(fd, line);
+        line = data->pars[i].cmd[ind];
+        print_herdoc(fd, line);
     }
-    else 
-        temp_stdout = ft_heredoc_multiple(nb , data, eof, temp_stdout, fd);
-    return(temp_stdout);
+    close_heredoc(fd, line);
+    return(0);
 }

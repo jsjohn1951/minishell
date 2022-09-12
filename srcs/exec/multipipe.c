@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/11 18:09:03 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 14:36:25 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,8 @@ void	ft_dup2_fd(t_data *data, int **fd, int i)
 
 void	spawn_process(int **fd, t_data *data, int *pid, int i)
 {
-	char *file;
 	data->fd.stdin_ = dup(STDIN_FILENO);
 	data->fd.stdout_ = dup(STDOUT_FILENO);
-	if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
-	{
-		file = data->pars[i + 1].cmd_name;
-		dup2(data->fd.stdout_, STDOUT_FILENO);
-		ft_heredoc(file, data);
-	}
 	while (++i < data->num_cmds)
 	{
 		pid[i] = fork();

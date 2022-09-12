@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/11 17:46:07 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/12 14:47:28 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	read_heredoc(char *file, t_data *data, int i)
 	else if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
 	{
 		dup2(data->fd.stdout_, STDOUT_FILENO);
-		ft_heredoc(file, data);
+		ft_heredoc(data, i + 1);
 	}
 }
 
