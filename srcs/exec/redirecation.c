@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 17:59:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/14 00:05:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,21 @@ void	write_append(t_data *data, int i)
 	int		file_d;
 	char	*file;
 
-	if (ft_redir_type(data, i + 1) == MODE_WRITE)
+	while (ft_redir_type(data, i + 1) == MODE_WRITE)
 	{
 		file = data->pars[i + 1].cmd_name;
 		file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);
+		i++;
 	}
-	else if (ft_redir_type(data, i + 1) == MODE_APPEND)
+	while (ft_redir_type(data, i + 1) == MODE_APPEND)
 	{
 		file = data->pars[i + 1].cmd_name;
 		file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);
+		i++;
 	}
 }
 
@@ -54,23 +56,24 @@ void	reader(t_data *data, int i)
 	int		file_d;
 	char	*file;
 
-	while (ft_redir_type(data, i + 1) == MODE_READ)
+	while (i < data->num_cmds - 1 && ft_redir_type(data, i + 1) == MODE_READ)
+		i++;
+	if (ft_redir_type(data, i) == MODE_READ)
 	{
-		file = data->pars[i + 1].cmd_name;
+		file = data->pars[i].cmd_name;
 		file_d = open(file, O_RDONLY);
 		dup2(file_d, STDIN_FILENO);
-		dup2(data->fd.stdout_, STDOUT_FILENO);
 		close (file_d);
-		i++;
 	}
 }
 
 int	ft_redir_init(t_data *data, int i)
 {
-	if (i < data->num_cmds - 1 && ft_redir_type(data, i + 1))
+	if (i < data->num_cmds - 1 && !ft_redir_type(data, i)
+		&& ft_redir_type(data, i + 1))
 	{
-		write_append(data, i);
 		reader(data, i);
+		write_append(data, i);
 		if (ft_redir_type(data, i + 1) == MODE_HEREDOC)
 		{
 			dup2(data->fd.stdout_, STDOUT_FILENO);

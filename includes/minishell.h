@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 17:47:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/14 00:32:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ int		is_dollar_(char *s, t_data *data);
 void	multi_pipe(t_data *data, int i);
 /* file: redirection */
 void	spawn_process(int **fd, t_data *data, int *pid, int i);
+/* file: tools */
+void	ft_free_fd(t_data *data, int **fd, int *pid);
+int		data_iter(t_data *data, int i);
 
 /*
 *       _____ _____ _____ _____

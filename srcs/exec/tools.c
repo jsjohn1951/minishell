@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_pipes.c                                      :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 21:51:45 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/13 16:12:57 by wismith          ###   ########.fr       */
+/*   Created: 2022/09/13 12:43:09 by wismith           #+#    #+#             */
+/*   Updated: 2022/09/14 00:34:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	pipe_count(t_data *data)
+int	data_iter(t_data *data, int i)
+{
+	while (i < data->num_cmds - 1
+		&& ft_redir_type(data, i + 1) == MODE_READ)
+		i++;
+	return (i);
+}
+
+void	ft_free_fd(t_data *data, int **fd, int *pid)
 {
 	int	i;
 
 	i = -1;
 	while (++i < data->num_cmds)
-	{
-		data->pars[i].is_redir = 1;
-		if (data->pars[i].cmd)
-			data->pars[i].cmd_name = quote_strip_(data->pars[i].cmd[0]);
-		else
-			data->pars[i].cmd_name = NULL;
-		if (!data->pars[i].pipe_redir)
-			data->pars[i].is_redir = 0;
-		if (data->pars[i].pipe_redir
-			&& data->pars[i].pipe_redir[0] == '|')
-		{
-			data->pars[i].is_redir = 0;
-			data->num_pipes++;
-		}
-	}
+		ft_free(fd[i]);
+	ft_free(fd);
+	ft_free(pid);
+	close (data->fd.stdin_);
+	close (data->fd.stdout_);
 }

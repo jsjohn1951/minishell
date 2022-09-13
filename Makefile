@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/12 17:34:06 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/13 16:08:05 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS = main/main\
 		expand/exp_tools\
 		expand/extra\
 		exec/multipipe\
+		exec/tools\
 		\
 		\
 		builtins/builitins\
