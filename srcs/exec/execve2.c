@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/13 23:46:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/15 11:44:34 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	multi_pipe(t_data *data, int i)
 {
 	int	*pid;
 	int	**fd;
+	int	status;
 
 	pid = (int *)malloc(sizeof(int) * (data->num_cmds));
 	fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
@@ -83,7 +84,8 @@ void	multi_pipe(t_data *data, int i)
 	i = -1;
 	while (++i < data->num_cmds)
 	{
-		waitpid (pid[i], NULL, 0);
+		if (!data->pars[i].is_redir)
+			waitpid (pid[i], &status, 0);
 		ft_free (fd[i]);
 	}
 	ft_free (fd);

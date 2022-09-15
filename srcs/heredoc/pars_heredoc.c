@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/11 19:01:33 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/14 01:20:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	here_entries(t_data *data, int i)
 		while (!line || ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 		{
 			line = readline("Heredoc -> ");
-			if (ft_strncmp(data->strip, line, ft_strlen(data->strip)))
+			if (ft_strlen(line) && ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 			{
 				data->pars[i].cmd = ft_matrix_add_elem(data->pars[i].cmd, line);
-				free(line);
+				ft_free(line);
 			}
 		}
-		free(line);
+		ft_free(line);
 		ft_free(data->strip);
 	}
 }

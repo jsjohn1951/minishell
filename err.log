@@ -1,7 +1,10 @@
-1)
-	rm test test2
-
-		minishell(16061,0x10f3b8600) malloc: *** error for object 0x7fa7e6706400: pointer being freed was not allocated
-		minishell(16061,0x10f3b8600) malloc: *** set a breakpoint in malloc_error_break to debug
-		/bin/sh: line 1: 16061 Abort trap: 6           ./minishell
-		make: *** [run] Error 134
+1.
+	echo $T$T$TE$Hekki$HOME
+2.
+	echo "$Elol|cat"
+3.
+	echo $HOME$kl
+4.
+	cd l|echol|l
+5.
+	cd l | echol | l
