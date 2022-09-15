@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 23:56:27 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/14 01:10:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:47:35 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_heredoc(t_data *data, int i)
 
 	ind = 0;
 	pipe(fd);
-	while (ft_redir_type(data, i + 1)
+	while (i < data->num_cmds - 1 && ft_redir_type(data, i + 1)
 		&& ft_redir_type(data, i + 1) == MODE_HEREDOC)
 		i++;
 	while (data->pars[i].cmd[++ind])

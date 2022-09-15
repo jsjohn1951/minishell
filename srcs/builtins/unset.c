@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/28 21:20:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:38:08 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	**unset_in_env(char *key, t_data *data)
 	i = -1;
 	j = 0;
 	len_key = ft_strlen(key);
-	printf("its work\n");
 	temp = malloc(sizeof(char *) * (ft_matrix_size(data->env) + 1));
 	i = -1;
 	while (data->env[++i])

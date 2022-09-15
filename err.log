@@ -3,8 +3,9 @@
 2.
 	echo "$Elol|cat"
 3.
-	echo $HOME$kl
+	echo $HOME$kl 
 4.
-	cd l|echol|l
+	cd l | echol | l // sloved 
+
 5.
-	cd l | echol | l
+	test="echo hello world" 

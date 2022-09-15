@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/02 10:05:46 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/15 15:10:25 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ int	ft_cd(t_data *data)
     }
     if (!ft_strncmp(path_cd, "-", 1))
 		return (ft_cd_minus(data, path_cd));
-    // printf("path2 : %s\n", path_cd);
     else
 	{
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
-            printf("its work\n");
 		if (chdir(path_cd) == -1)
 			return (error_path2(path_cd));
 		change_env(data, "PWD", getcwd(buffer, 4096));

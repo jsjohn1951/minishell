@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 11:42:59 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:41:57 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*ft_executable(t_data *data, int i)
 	path = accessibility_(data);
 	if (!path)
 		path = data->strip;
-	if (path != data->strip)
-		ft_free (data->strip);
+	// if (path != data->strip)
+	// 	ft_free (data->strip);
 	if (!access(path, X_OK))
 		return (path);
 	else
@@ -41,12 +41,12 @@ void	child_process(t_data *data, int i)
 		execve(path, data->pars[i].cmd, data->env);
 		ft_free (path);
 	}
-	else
-		if (ft_strncmp(data->strip, "cd", 2)
-			&& ft_strncmp(data->strip, "unset", 5)
-			&& (ft_strncmp(data->strip, "export", 6)
-				|| ft_matrix_size(data->pars[i].cmd) == 1))
-			exec_builtin(data, i);
+	else if (!is_builtin(data, i))
+	{
+		ft_putstr_fd("err\n", 2);
+		return ;
+	}
+	exec_builtin(data, i);
 }
 
 void	close_fd(int **fd, t_data *data)
