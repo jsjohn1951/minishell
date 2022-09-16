@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 10:58:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/02/20 22:34:31 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 00:12:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	i = start;
 	index = 0;
-	while (index < len && start < ft_strlen(s))
+	while (s && s[i] && index < len && start < ft_strlen(s))
 	{
 		sub[index] = s[i];
 		i++;

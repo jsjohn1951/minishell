@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/15 15:02:34 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/09/17 02:15:11 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,9 @@ SRCS = main/main\
 		err/err\
 		err/utils\
 		err/quote_check\
-		expand/cmd_check\
-		expand/exp_tools\
-		expand/extra\
+		expand/expand\
+		expand/expand2\
+		expand/tools\
 		exec/multipipe\
 		exec/tools\
 		\

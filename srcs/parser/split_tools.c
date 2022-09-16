@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:05:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/11 00:04:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/15 12:34:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	cancel_flags(t_flags *flags, char *cmd, int i)
 int	is_quote_(char c)
 {
 	if (c == 34 || c == 39)
-		return (1);
+		return (c);
 	return (0);
 }

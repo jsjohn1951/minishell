@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/14 00:32:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 01:56:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,10 @@ typedef struct s_universal_flags
 
 typedef struct s_expand
 {
-	int		in;
-	int		par_i;
-	char	*key;
-	char	*tmp1;
-	char	*tmp2;
+	int		i;
+	int		j;
 	t_flags	flags;
 }	t_expand;
-
-typedef struct s_dollar
-{
-	t_flags	flags;
-	int		i;
-	int		truth;
-	int		is_num;
-	char	*key;
-}	t_dollar;
 
 typedef struct s_fd
 {
@@ -163,18 +151,19 @@ int		quote_check_(t_data *data);
 void	set_err_status(t_data *data, int i);
 
 /*	expansions */
-/* file: cmd_check */
-void	expandable_check_(t_data *data);
-char	*key_(char *s, int in);
-/* file: exp_tools */
-void	exit_shellname_exp_(t_data *data, t_expand *exp, int j);
-void	exp_other(t_data *data, t_expand *exp, int j, int i);
-void	exp_num(t_data *data, t_expand *exp, int j);
-int		is_num_alpha(char c);
-/* file: extra */
-int		is_env(char *s, t_data *data);
-void	init_dollar(t_dollar *d);
-int		is_dollar_(char *s, t_data *data);
+/* file: expand */
+void	expand_all(t_data *data);
+int		is_key_elem(char c);
+char	*rtn_key(char *s, int *i);
+/* file: expand2 */
+char	*find_env_elem(t_data *data, char *key);
+char	*expand(t_data *data, char *s, char *key, int *i);
+char	*expand_other(t_data *data, char *s, int *i, t_flags *flags);
+int		key_expansion(t_data *data, int n, t_expand *exp);
+/* file: tools */
+char	*last_exit(t_data *data, char *s, int *i);
+char	*no_expansion(char *s, int *i);
+char	*other_(char *s, int *i);
 
 /*exec */
 /* file: execve2 */

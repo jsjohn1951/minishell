@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:26:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/04/17 14:55:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 01:32:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ char	*ft_strjoin_mod(char *s1, char *s2, int s2size)
 	res = (char *)ft_calloc((ft_strlen_moder(s1) + s2size + 1), sizeof (char));
 	if (!res)
 		return (NULL);
-	while (s1 && s1[i] != '\0')
+	while (s1 && s1[i])
 	{
 		res[i] = s1[i];
 		i++;
 	}
-	while (s2 && s2[index] != '\0')
+	while (s2 && s2[index])
 		res[i++] = s2[index++];
-	if (s1)
-		ft_free_fat(s1);
+	ft_free_fat(s1);
 	return (res);
 }
