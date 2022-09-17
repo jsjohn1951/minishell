@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:06:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 01:21:59 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 20:47:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	expand_all(t_data *data)
 	{
 		j = -1;
 		while (data->pars[i].cmd && data->pars[i].cmd[++j])
+		{
 			expandable(data, i, j);
+			if (!j)
+				sep_cmd(data, i);
+		}
 	}
 }

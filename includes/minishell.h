@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 01:56:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 23:00:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ typedef struct s_expand
 	t_flags	flags;
 }	t_expand;
 
+typedef struct s_sep
+{
+	char	**tmp;
+	char	**res;
+	int		size;
+	int		size1;
+	int		size2;
+	int		i;
+	int		j;
+}	t_sep;
+
 typedef struct s_fd
 {
 	int	stdin_;
@@ -93,6 +104,7 @@ typedef struct s_data
 	t_parsed	pars[150000];
 	t_flags		flags;
 	t_fd		fd;
+	t_expand	*exp;
 }	t_data;
 
 /*	main */
@@ -170,6 +182,8 @@ char	*other_(char *s, int *i);
 void	multi_pipe(t_data *data, int i);
 /* file: redirection */
 void	spawn_process(int **fd, t_data *data, int *pid, int i);
+/* file: seperate_cmd */
+void	sep_cmd(t_data *data, int i);
 /* file: tools */
 void	ft_free_fd(t_data *data, int **fd, int *pid);
 int		data_iter(t_data *data, int i);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:37:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 02:06:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/17 20:50:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	key_expansion(t_data *data, int n, t_expand *exp)
 {
 	char	*key;
 
+	data->exp = exp;
 	n++;
 	key = rtn_key(data->pars[exp->i].cmd[exp->j], &n);
 	if (key)

@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/17 02:15:11 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/17 16:24:48 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = main/main\
 		err/quote_check\
 		expand/expand\
 		expand/expand2\
+		expand/seperate_cmd\
 		expand/tools\
 		exec/multipipe\
 		exec/tools\
