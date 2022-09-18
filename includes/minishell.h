@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 23:00:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/18 22:14:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int		data_iter(t_data *data, int i);
 
 /* builtins */
 /*	file: echo */
-void	ft_echo(char **matrix);
+int		ft_echo(char **matrix);
 /*	file: exit */
 void	exit_(t_data *data);
 void	free_data(t_data *data);

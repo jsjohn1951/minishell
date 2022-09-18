@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 14:34:13 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 00:18:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ void	not_cmd_(t_data *data, char *cmd)
 	}
 }
 
+int	all_spaces(char	*s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] != ' ')
+			return (0);
+	return (1);
+}
+
 /* cmd_() will collect the user input from the
 readline function &
 if (cmd)
@@ -84,7 +95,8 @@ int	cmd_(t_data *data)
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
-		cmd_control(data);
+		if (!all_spaces(data->cmd))
+			cmd_control(data);
 		add_history(data->cmd);
 		signals_(1);
 		ft_free_matrix(data->path);

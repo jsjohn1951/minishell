@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strip_all_quotes.c                                 :+:      :+:    :+:   */
+/*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 14:49:50 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 00:29:27 by wismith          ###   ########.fr       */
+/*   Created: 2022/09/18 15:37:17 by wismith           #+#    #+#             */
+/*   Updated: 2022/09/18 15:37:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	strip_cmds(t_parsed *pars)
+char	*accessibility_(t_data *data)
 {
 	int		i;
-	char	*tmp;
+	char	*join;
 
 	i = -1;
-	while (pars->cmd && pars->cmd[++i])
+	while (data->path[++i])
 	{
-		tmp = quote_strip_(pars->cmd[i]);
-		ft_free(pars->cmd[i]);
-		pars->cmd[i] = tmp;
+		join = ft_strjoin(data->path[i], "/");
+		join = ft_strjoin_mod(join, data->strip, ft_strlen(data->strip));
+		if (!access(join, X_OK))
+			return (join);
+		ft_free(join);
 	}
-}
-
-void	strip_all_quotes(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->num_cmds)
-		if (data->pars[i].cmd)
-			strip_cmds(&data->pars[i]);
-	return ;
+	if (!access(data->strip, X_OK))
+		return (data->strip);
+	return (NULL);
 }

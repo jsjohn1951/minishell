@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:57:11 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 14:49:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/18 21:48:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ char	*other_(char *s, int *i)
 	char	*res;
 	char	*tmp;
 
-	res = ft_substr(s, 0, *i - 1);
+	if (is_quote_(s[*i]))
+		res = ft_substr(s, 0, *i - 1);
+	else
+		res = ft_substr(s, 0, *i);
 	tmp = ft_substr(s, *i, ft_strlen(s) - *i);
 	*i = ft_strlen(res) - 1;
 	res = ft_strjoin_mod(res, tmp, ft_strlen(tmp));
