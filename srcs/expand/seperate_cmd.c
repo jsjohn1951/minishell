@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:25:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 23:24:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:26:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sep_cmd(t_data *data, int n)
 	sep.i = 0;
 	if (!data->pars[n].cmd[0][0] || is_quote_(data->pars[n].cmd[0][0]))
 		return ;
-	sep.tmp = ft_split(data->pars[n].cmd[0], ' ');
+	sep.tmp = split(data->pars[n].cmd[0]);
 	sep.size1 = ft_matrix_size(sep.tmp);
 	sep.size2 = ft_matrix_size(data->pars[n].cmd);
 	sep.res = (char **)malloc(sizeof(char *) * (sep.size1 + sep.size2 + 2));

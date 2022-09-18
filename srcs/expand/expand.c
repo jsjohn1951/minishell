@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:06:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/17 20:47:28 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/18 14:46:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@ int	is_key_elem(char c)
 
 char	*rtn_key(char *s, int *i)
 {
-	int	j;
+	int		j;
+	char	*tmp;
 
 	j = *i;
 	while (s[j] && is_key_elem(s[j]))
 		j++;
 	if (j > *i)
-		return (ft_substr(s, *i, j - *i));
+	{
+		tmp = ft_substr(s, *i, j - *i);
+		tmp = ft_strjoin_mod(tmp, "=", 1);
+		return (tmp);
+	}
 	return (NULL);
 }
 
