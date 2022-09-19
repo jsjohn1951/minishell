@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 23:16:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/20 00:48:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	ft_exec_one(t_data *data)
 {
 	char	*path;
+	int		status;
 
+	status = 0;
 	data->strip = data->pars[0].cmd[0];
 	path = accessibility_(data);
 	if (!path)
@@ -28,7 +30,9 @@ int	ft_exec_one(t_data *data)
 	if (!fork())
 		execve(path, data->pars[0].cmd, data->env);
 	else
-		wait(NULL);
+		wait(&status);
+	if (status)
+		data->err = 1;
 	ft_free (path);
 	return (0);
 }
@@ -49,7 +53,11 @@ void	multi_pipe(t_data *data, int i)
 	while (++i < data->num_cmds)
 	{
 		if (!data->pars[i].is_redir)
+		{
 			waitpid (data->fd.pid[i], &status, 0);
+			if (status)
+				data->err = 1;
+		}
 		ft_free (data->fd.fd[i]);
 	}
 	ft_free (data->fd.fd);

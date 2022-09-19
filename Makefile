@@ -6,11 +6,9 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/19 13:43:38 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/20 00:31:35 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-#.SILENT:
 
 # Cuz Names Are Important
 NAME = minishell
@@ -146,10 +144,17 @@ re : fclean printre all
 valgrind: re
 	@clear
 	@echo "\033[0;32mRunning in Valgrind.\033[0m"
-	@valgrind --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all --suppressions=readline/readline_ig ./minishell
+	@valgrind \
+	--leak-check=full \
+	--track-fds=yes \
+	--track-origins=yes \
+	--show-leak-kinds=all \
+	--suppressions=readline/readline_ig2.supp \
+	./minishell\
 
 run : re
 	@sleep 2
 	@clear && ./minishell
+
 # Phony rules... we don't have to obey them. Cuz they're phony ;) lol
 .PHONY: all clean fclean re printre execute

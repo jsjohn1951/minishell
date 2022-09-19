@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 23:16:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/20 00:41:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int		ft_echo(char **matrix);
 void	exit_(t_data *data);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
+int		ft_exit_status(int i);
 
 /*seeeeeeeeee*/
 void	ft_process(t_data *data, int i, int *fd);
