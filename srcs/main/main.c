@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/03 21:57:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 16:16:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv, char **envp)
 	env(&data);
 	data.err = 0;
 	data.a_err = 0;
+	signals_(0);
 	while (isatty(STDIN_FILENO))
 		cmd_(&data);
 	return (0);

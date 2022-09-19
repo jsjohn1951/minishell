@@ -1,7 +1,21 @@
+
+Diagnostic purposes
+	1) run htop -t
+
 1. ./minishell args - Segfaults
 
 2. echo "" $HOME$USER $'' - memory leaks & open file descriptor
 
-3. ls << ll | ls << j | << j
+3. cd '//'
 
-4.chat cds , Mkfile sdf , cron hfh
+4. Memleaks
+
+5. | |
+
+6. ||
+
+Still required
+	1) last exit status for child processes
+	2) signals for child processes
+	4) handle heredoc with NULL argument in front
+		e.g.  ls << ll | << j

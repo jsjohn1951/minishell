@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 17:41:18 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:05:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	exit_err(char *s)
 	int	i;
 
 	i = -1;
+	if (s[0] == '+' || s[0] == '-')
+		i++;
 	while (s[++i])
 	{
 		if (s[i] < '0' || s[i] > '9')
@@ -65,6 +67,8 @@ void	exit_(t_data *data)
 	s = data->pars[0].cmd[0];
 	if (data->pars[0].cmd && !ft_strncmp(s, "exit", 4))
 	{
+		if (arg_counters(data->pars[0].cmd) == 255)
+			return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
 		if (data->pars[0].cmd[1] && data->pars[0].cmd[1][0])
 		{
 			s = data->pars[0].cmd[1];
@@ -72,8 +76,6 @@ void	exit_(t_data *data)
 		}
 		else
 			exit_num = ft_exit_status(data->err);
-		if (arg_counters(data->pars[0].cmd) == 255 && exit_num != 255)
-			return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
 		free_data(data);
 		ft_free(data->cmd);
 		printf("exit\n");

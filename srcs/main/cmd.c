@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 00:18:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 16:16:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	cmd_control(t_data *data)
 	set_err_(data, 1);
 	// do_print_(data, -1);
 	ft_exec(data, -1);
-	exit_(data);
 	set_err_(data, 0);
 }
 
@@ -88,17 +87,16 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
-	signals_(0);
 	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
 	data->cmd = readline("\x1B[36mSEA SHELL \x1B[32m➜ \x1B[0m");
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
+		signals_(1);
 		if (!all_spaces(data->cmd))
 			cmd_control(data);
 		add_history(data->cmd);
-		signals_(1);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
 		free_parsed_data(data);
@@ -106,5 +104,6 @@ int	cmd_(t_data *data)
 	}
 	else
 		free (data->cmd);
+	signals_(0);
 	return (0);
 }

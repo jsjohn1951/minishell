@@ -6,11 +6,13 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 16:46:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:37:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+/* Need to add exit to builtins */
 
 int	is_builtin(t_data *data, int i)
 {
@@ -48,5 +50,7 @@ int	exec_builtin(t_data *data, int i)
 		ft_export(data, i);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "unset", 5))
 		ft_unset(data, i);
+	else if (!ft_strncmp(*data->pars[i].cmd, "exit", 4))
+		exit_(data);
 	return (result);
 }
