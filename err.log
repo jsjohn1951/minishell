@@ -1,3 +1,7 @@
 1. ./minishell args - Segfaults
 
 2. echo "" $HOME$USER $'' - memory leaks & open file descriptor
+
+3. ls << ll | ls << j | << j
+
+4.chat cds , Mkfile sdf , cron hfh
