@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 23:20:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 22:45:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	free_parsed_data(t_data *data)
 		if (data->pars[i].cmd)
 			ft_free_matrix(data->pars[i].cmd);
 		if (data->pars[i].pipe_redir)
-		{
 			ft_free(data->pars[i].pipe_redir);
-			data->pars[i].pipe_redir = NULL;
-		}
 	}
 }
 

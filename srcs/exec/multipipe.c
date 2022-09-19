@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 15:41:57 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/19 23:17:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*ft_executable(t_data *data, int i)
 	path = accessibility_(data);
 	if (!path)
 		path = data->strip;
-	// if (path != data->strip)
-	// 	ft_free (data->strip);
 	if (!access(path, X_OK))
 		return (path);
 	else
@@ -42,10 +40,7 @@ void	child_process(t_data *data, int i)
 		ft_free (path);
 	}
 	else if (!is_builtin(data, i))
-	{
-		ft_putstr_fd("err\n", 2);
-		return ;
-	}
+		err_child_exit(data, MODE_CHILD, 0, data->pars[i].cmd[0]);
 	exec_builtin(data, i);
 }
 
@@ -77,8 +72,6 @@ void	ft_dup2_fd(t_data *data, int **fd, int i)
 
 void	spawn_process(int **fd, t_data *data, int *pid, int i)
 {
-	data->fd.stdin_ = dup(STDIN_FILENO);
-	data->fd.stdout_ = dup(STDOUT_FILENO);
 	while (++i < data->num_cmds)
 	{
 		if (!data->pars[i].is_redir)

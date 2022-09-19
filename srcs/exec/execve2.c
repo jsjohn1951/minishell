@@ -6,45 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 11:44:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 23:16:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_close_fd(int *fd[2], t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->num_cmds - 1)
-	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i++;
-	}
-	i = 0;
-	while (i < data->num_cmds - 1)
-	{
-		free(fd[i]);
-		i++;
-	}
-	free(fd);
-}
-
-void	ft_dup2(int i, t_data *data, int **fd)
-{
-	if (data->num_pipes > 0)
-	{
-		if (i != 0)
-		{
-			dup2(fd[i - 1][0], STDIN_FILENO);
-		}
-		if (i != data->num_cmds - 1)
-			dup2(fd[i][1], STDOUT_FILENO);
-	}
-	return ;
-}
 
 int	ft_exec_one(t_data *data)
 {
@@ -56,7 +22,7 @@ int	ft_exec_one(t_data *data)
 	{
 		path = data->pars[0].cmd[0];
 		data->err = 127;
-		printf("SEA SHELL: %s: No such file or directory\n", path);
+		printf("SEA SHELL: %s: command not found\n", path);
 		return (0);
 	}
 	if (!fork())
@@ -69,27 +35,25 @@ int	ft_exec_one(t_data *data)
 
 void	multi_pipe(t_data *data, int i)
 {
-	int	*pid;
-	int	**fd;
 	int	status;
 
-	pid = (int *)malloc(sizeof(int) * (data->num_cmds));
-	fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
+	data->fd.pid = (int *)malloc(sizeof(int) * (data->num_cmds));
+	data->fd.fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
 	while (++i < data->num_cmds)
 	{
-		fd[i] = (int *)malloc(sizeof(int) * 3);
-		pipe(fd[i]);
+		data->fd.fd[i] = (int *)malloc(sizeof(int) * 3);
+		pipe(data->fd.fd[i]);
 	}
-	spawn_process(fd, data, pid, -1);
+	spawn_process(data->fd.fd, data, data->fd.pid, -1);
 	i = -1;
 	while (++i < data->num_cmds)
 	{
 		if (!data->pars[i].is_redir)
-			waitpid (pid[i], &status, 0);
-		ft_free (fd[i]);
+			waitpid (data->fd.pid[i], &status, 0);
+		ft_free (data->fd.fd[i]);
 	}
-	ft_free (fd);
-	ft_free (pid);
+	ft_free (data->fd.fd);
+	ft_free (data->fd.pid);
 }
 
 int	ft_exec(t_data *data, int i)

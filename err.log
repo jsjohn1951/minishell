@@ -2,6 +2,12 @@
 Diagnostic purposes
 	1) run htop -t
 
+Remember
+	fix norm
+	change err message
+	unset   TESTjkndfv='"kuhku"hk'
+		place err message for unset
+
 1. ./minishell args - Segfaults
 
 2. echo "" $HOME$USER $'' - memory leaks & open file descriptor
@@ -13,6 +19,10 @@ Diagnostic purposes
 5. | |
 
 6. ||
+
+7.	> $USER
+
+8. cat err.log | cat -e > test < tester 
 
 Still required
 	1) last exit status for child processes

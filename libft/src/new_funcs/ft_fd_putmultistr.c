@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   ft_fd_putmultistr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/13 12:43:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 23:17:00 by wismith          ###   ########.fr       */
+/*   Created: 2022/09/19 22:28:44 by wismith           #+#    #+#             */
+/*   Updated: 2022/09/19 22:35:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/libft.h"
+#include <stdarg.h>
 
-int	data_iter(t_data *data, int i)
-{
-	while (i < data->num_cmds - 1
-		&& (ft_redir_type(data, i + 1) == MODE_READ
-			|| ft_redir_type(data, i + 1) == MODE_HEREDOC))
-		i++;
-	return (i);
-}
+/* second element is always the fd */
 
-void	ft_free_fd(t_data *data, int **fd, int *pid)
+void	ft_fd_putmultistr(int num, ...)
 {
-	int	i;
+	va_list	args;
+	int		i;
+	int		fd;
 
 	i = -1;
-	while (++i < data->num_cmds)
-		ft_free(fd[i]);
-	ft_free(fd);
-	ft_free(pid);
+	va_start(args, num);
+	fd = va_arg(args, int);
+	while (++i < num)
+		ft_putstr_fd(va_arg(args, char *), fd);
+	va_end(args);
 }

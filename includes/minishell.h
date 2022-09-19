@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 22:14:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/19 23:16:34 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MODE_READ 2
 # define MODE_WRITE 3
 # define MODE_HEREDOC 4
+# define MODE_CHILD 5
 
 # include "../readline/includes/readline.h"
 # include "../readline/includes/history.h"
@@ -82,8 +83,8 @@ typedef struct s_sep
 
 typedef struct s_fd
 {
-	int	stdin_;
-	int	stdout_;
+	int	*pid;
+	int	**fd;
 }	t_fd;
 
 typedef struct s_data
@@ -161,6 +162,7 @@ int		before_pars_(char *s, t_data *data);
 int		quote_check_(t_data *data);
 /* file: utils */
 void	set_err_status(t_data *data, int i);
+void	err_child_exit(t_data *data, int mod, int status, char *file);
 
 /*	expansions */
 /* file: expand */
@@ -203,9 +205,7 @@ void	exit_(t_data *data);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 
-void	ft_close_fd(int *fd[2], t_data *data);
 /*seeeeeeeeee*/
-void	ft_dup2(int i, t_data *data, int **fd);
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data, int i);

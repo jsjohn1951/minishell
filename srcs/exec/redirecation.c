@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirecation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 16:44:04 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/19 22:49:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,25 @@ int	reader(t_data *data, int i)
 	char	*file;
 
 	while (i < data->num_cmds - 1 && (ft_redir_type(data, i + 1) == MODE_READ
-		|| ft_redir_type(data, i + 1) == MODE_HEREDOC))
+			|| ft_redir_type(data, i + 1) == MODE_HEREDOC))
+	{
+		if (ft_redir_type(data, i + 1)
+			&& ft_redir_type(data, i + 1) == MODE_READ)
+		{
+			file = data->pars[i + 1].cmd_name;
+			if (access(file, R_OK))
+				err_child_exit(data, MODE_READ, 1, file);
+		}
 		i++;
+	}
 	if (ft_redir_type(data, i) == MODE_READ)
 	{
-		file = data->pars[i].cmd_name;
 		file_d = open(file, O_RDONLY);
 		dup2(file_d, STDIN_FILENO);
 		close (file_d);
 	}
 	if (ft_redir_type(data, i) == MODE_HEREDOC)
-			ft_heredoc(data, i);
+		ft_heredoc(data, i);
 	return (i);
 }
 
@@ -77,7 +85,7 @@ int	ft_redir_init(t_data *data, int i)
 		i = reader(data, i);
 		while (i < data->num_cmds - 1
 			&& (ft_redir_type(data, i + 1) == MODE_APPEND
-			|| ft_redir_type(data, i + 1) == MODE_WRITE))
+				|| ft_redir_type(data, i + 1) == MODE_WRITE))
 		{
 			write_append(data, i);
 			i++;
