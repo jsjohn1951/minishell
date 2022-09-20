@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 17:06:43 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/20 17:22:36 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ char	**ft_export(t_data *data, int num_cmd)
 		ft_print_export(data->env);
 	while (data->pars[num_cmd].cmd[++i])
 	{
-		if (!ft_check_arg(data->pars[num_cmd].cmd[i]))
+		if (!ft_check_arg(data->pars[num_cmd].cmd[i], data))
 				flag = 1;
 		if (!flag)
 		{

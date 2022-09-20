@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 13:57:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/20 17:23:23 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ char	**ft_print_export(char **env);
 char	**ft_copy_env(char **envp);
 void	ft_print_env(char **tab);
 void	free_env(char **env);
-int		ft_check_arg(char *arg);
+int		ft_check_arg(char *arg, t_data *data);
 int		ft_parse_env(char *tab, char **key, char **value);
 char	*ft_strndup(const char *s1, int n);
 int		ft_is_in_env(t_data *data, char *key);
