@@ -3,7 +3,7 @@ Diagnostic purposes
 	1) run htop -t
 
 Remember
-	fix norm
+	fix normUU
 	change err message
 	unset   TESTjkndfv='"kuhku"hk'
 		place err message for unset
