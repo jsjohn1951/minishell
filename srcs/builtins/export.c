@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/26 15:50:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/20 17:06:43 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,25 +111,6 @@ char	*ft_strtrim_first_letter(char *line)
 	return (new);
 }
 
-// char	*get_path2(t_data *data, char *to_find, int *i)
-// {
-// 	int		size;
-// 	char	*ret_ptr;
-// 	char	*path;
-
-// 	size = ft_strlen(to_find);
-// 	while (data->env[++(*i)])
-// 	{
-// 		ret_ptr = ft_strnstr(data->env[*i], to_find, size);
-// 		if (ret_ptr != 0)
-// 		{
-// 			path = ft_strdup(ret_ptr + (size + 1));
-// 			return (path);
-// 		}
-// 	}
-// 	return (NULL);
-// }
-
 char	*get_path2(t_data *data, char *to_find, int *i)
 {
 	int		size;
@@ -164,28 +145,33 @@ int	change_env(t_data *data, char *path, char *new_path)
 char	**ft_export(t_data *data, int num_cmd)
 {
 	int		i;
+	int		flag;
 	char	*key;
 	char	*value;
 
 	key = NULL;
 	value = NULL;
 	i = 0;
+	flag = 0;
 	if (!data->pars[num_cmd].cmd[1])
 		ft_print_export(data->env);
 	while (data->pars[num_cmd].cmd[++i])
 	{
 		if (!ft_check_arg(data->pars[num_cmd].cmd[i]))
-			return (data->env);
-		ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
-		if (!ft_is_in_env(data, key))
-			data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
-		else if (ft_is_in_env(data, key))
+				flag = 1;
+		if (!flag)
 		{
-			value = ft_strtrim_first_letter(value);
-			change_env(data, key, value);
-			free(value);
+			ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
+			if (!ft_is_in_env(data, key))
+				data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
+			else if (ft_is_in_env(data, key))
+			{
+				value = ft_strtrim_first_letter(value);
+				change_env(data, key, value);
+				free(value);
+			}
+			free(key);
 		}
-		free(key);
 	}
 	return (data->env);
 }
