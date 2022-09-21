@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 23:17:06 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 16:32:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_executable(t_data *data, int i)
 {
 	char	*path;
 
-	data->strip = quote_strip_(data->pars[i].cmd[0]);
+	data->strip = data->pars[i].cmd[0];
 	if (is_builtin(data, i))
 		return (data->strip);
 	path = accessibility_(data);
@@ -42,18 +42,6 @@ void	child_process(t_data *data, int i)
 	else if (!is_builtin(data, i))
 		err_child_exit(data, MODE_CHILD, 0, data->pars[i].cmd[0]);
 	exec_builtin(data, i);
-}
-
-void	close_fd(int **fd, t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->num_cmds)
-	{
-		close (fd[i][1]);
-		close (fd[i][0]);
-	}
 }
 
 void	ft_dup2_fd(t_data *data, int **fd, int i)
@@ -85,6 +73,7 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 				ft_redir_init(data, i);
 				close_fd(fd, data);
 				child_process(data, i);
+				close_std();
 				free_data(data);
 				ft_free_fd(data, fd, pid);
 				ft_free(data->cmd);

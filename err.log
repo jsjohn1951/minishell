@@ -24,6 +24,9 @@ Remember
 
 8. cat err.log | cat -e > test < tester 
 
+Leaks cases
+	echo $?$?$?$?$?$?$?$
+
 Still required
 	1) last exit status for child processes
 	2) signals for child processes

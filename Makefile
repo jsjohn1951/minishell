@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/20 00:31:35 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/21 16:29:37 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS = main/main\
 		exec/multipipe\
 		exec/tools\
 		exec/access\
+		exec/close_fds\
 		\
 		\
 		builtins/builitins\
@@ -147,6 +148,7 @@ valgrind: re
 	@valgrind \
 	--leak-check=full \
 	--track-fds=yes \
+	--trace-children=yes \
 	--track-origins=yes \
 	--show-leak-kinds=all \
 	--suppressions=readline/readline_ig2.supp \

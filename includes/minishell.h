@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 14:30:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 16:30:56 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,9 @@ void	sep_cmd(t_data *data, int i);
 /* file: tools */
 void	ft_free_fd(t_data *data, int **fd, int *pid);
 int		data_iter(t_data *data, int i);
+/* file: close_fds */
+void	close_fd(int **fd, t_data *data);
+void	close_std(void);
 
 /*
 *       _____ _____ _____ _____
