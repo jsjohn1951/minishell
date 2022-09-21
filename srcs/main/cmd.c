@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 13:48:13 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 00:34:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	cmd_control(t_data *data)
 	if (quote_check_(data))
 		return ;
 	set_cmds(data, data->cmd);
+	if (check_cmds(data))
+		return ;
 	here_pars(data);
 	expand_all(data);
 	strip_all_quotes(data);

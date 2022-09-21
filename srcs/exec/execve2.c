@@ -6,11 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 00:48:03 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 14:21:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	single_child(char *path, t_data *data)
+{
+	execve(path, data->pars[0].cmd, data->env);
+	free_data(data);
+	exit(0);
+}
 
 int	ft_exec_one(t_data *data)
 {
@@ -23,12 +30,12 @@ int	ft_exec_one(t_data *data)
 	if (!path)
 	{
 		path = data->pars[0].cmd[0];
-		data->err = 127;
+		data->err = 77;
 		printf("SEA SHELL: %s: command not found\n", path);
 		return (0);
 	}
 	if (!fork())
-		execve(path, data->pars[0].cmd, data->env);
+		single_child(path, data);
 	else
 		wait(&status);
 	if (status)

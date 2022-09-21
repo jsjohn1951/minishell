@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:07:15 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 22:34:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 00:27:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	ft_free(void *data);
 void	*ft_freer(int num, ...);
 char	**ft_matrix_add_elem(char **matrix, char *elem);
 /* second element is always the fd */
-void	ft_fd_putmultistr(int num, ...);
+int		ft_fd_putmultistr(int num, ...);
 
 #endif
