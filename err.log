@@ -12,14 +12,8 @@ Remember
 
 4. Memleaks
 
-7.	> $USER
-
-9. exit | exit 44
-	change last exit status
+7.	> $USER /mem
 
 Still required
 	4) handle heredoc with NULL argument in front
 		e.g.  ls << ll | << j
-
-Double free 
-	echo hi |  sleepasdf3 | echo o

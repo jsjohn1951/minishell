@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 14:27:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 22:36:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_executable(t_data *data, int i)
 		path = data->strip;
 	if (!access(path, X_OK))
 		return (path);
-	else
-		ft_free (path);
+	else if (path != data->pars[i].cmd[0])
+		path = ft_free (path);
 	return (NULL);
 }
 

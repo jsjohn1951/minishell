@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 16:04:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 21:36:28 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,31 @@ int	exit_err(char *s)
 	return (ft_exit_status(ft_atoi(s)));
 }
 
-void	exit_(t_data *data, int	i)
+void	exit_(t_data *data, int i)
 {
 	char	*s;
 	int		exit_num;
 
-	if (!data->pars[0].cmd)
+	if (!data->pars[i].cmd)
 		return ;
-	s = data->pars[0].cmd[0];
-	if (data->pars[0].cmd && !ft_strncmp(s, "exit", 4))
+	if (arg_counters(data->pars[i].cmd) == 255)
+		return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
+	if (data->pars[i].cmd[1] && data->pars[i].cmd[1][0])
 	{
-		if (arg_counters(data->pars[0].cmd) == 255)
-			return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
-		if (data->pars[0].cmd[1] && data->pars[0].cmd[1][0])
-		{
-			s = data->pars[0].cmd[1];
-			exit_num = exit_err(s);
-		}
-		else
-			exit_num = ft_exit_status(data->err);
-		free_data(data);
-		ft_free(data->cmd);
-		printf("exit\n");
-		if (i)
-		{
-			ft_free_fds(data);
-			close (0);
-			close (1);
-			close (2);
-		}
-		exit(exit_num);
+		s = data->pars[i].cmd[1];
+		exit_num = exit_err(s);
 	}
+	else
+		exit_num = ft_exit_status(data->err);
+	free_data(data);
+	ft_free(data->cmd);
+	if (data->num_cmds == 1)
+		printf("exit\n");
+	if (i)
+	{
+		ft_free_fds(data);
+		close (0);
+		close (1);
+	}
+	exit(exit_num);
 }

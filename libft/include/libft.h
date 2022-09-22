@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:07:15 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 00:27:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 22:30:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	*ft_strrev(void *a);
 int		ft_matrix_size(char **m);
 char	**ft_matrix_dup(char **m);
 void	ft_print_matrix(char **matrix);
-void	ft_free_matrix(char **matrix);
-void	ft_free(void *data);
+void	*ft_free_matrix(char **matrix);
+void	*ft_free(void *data);
 void	*ft_freer(int num, ...);
 char	**ft_matrix_add_elem(char **matrix, char *elem);
 /* second element is always the fd */

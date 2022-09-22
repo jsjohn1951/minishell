@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 13:40:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 22:15:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,20 @@ int	pars_check_(t_data *data)
 	return (0);
 }
 
-void	set_err_(t_data *data, int type)
+void    set_err_(t_data *data, int type)
 {
-	int	err;
+        int     err;
 
-	if (type)
-	{
-		err = pars_check_(data);
-		if (err)
-		{
-			data->err = err;
-			data->a_err = 0;
-		}
-		else if (!err && !data->a_err)
-			data->err = 0;
-	}
-	else
-	{
-		if (data->err && !data->a_err)
-			data->a_err = 1;
-		else if (data->a_err)
-			data->a_err = 0;
-	}
+        data->a_err = 0;
+        if (type)
+        {
+                err = pars_check_(data);
+                if (err)
+                        data->err = err;
+                else if (!err && !data->a_err)
+                        data->err = 0;
+        }
+        else
+                if (data->err && !data->a_err)
+                        data->a_err = 1;
 }
