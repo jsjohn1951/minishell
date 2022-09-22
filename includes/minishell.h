@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 16:30:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 15:51:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ void	pipe_count(t_data *data);
 char	*find_pwd(t_data *data);
 /* file:strip_all_quotes */
 void	strip_all_quotes(t_data *data);
+/* file: terminate */
+void	ft_free_fds(t_data *data);
 
 /*	err */
 /* file: err */
@@ -205,7 +207,7 @@ void	close_std(void);
 /*	file: echo */
 int		ft_echo(char **matrix);
 /*	file: exit */
-void	exit_(t_data *data);
+void	exit_(t_data *data, int	i);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 int		ft_exit_status(int i);
@@ -240,8 +242,8 @@ int		ft_is_in_env2(char *key, t_data *data);
 int		ft_cd(t_data *data);
 int		check_cd_arg(t_data *data);
 char	*ft_strnstr2(const char *haystack, const char *needle, size_t len);
-int		error_path(char *str);
-int		error_path2(char *path);
+int		error_path(char *str, t_data *data);
+int		error_path2(char *path, t_data *data);
 
 /*redirecation*/
 int		ft_redir_init(t_data *data, int i);

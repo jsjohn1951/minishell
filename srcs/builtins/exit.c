@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 15:05:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 16:04:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	exit_err(char *s)
 	return (ft_exit_status(ft_atoi(s)));
 }
 
-void	exit_(t_data *data)
+void	exit_(t_data *data, int	i)
 {
 	char	*s;
 	int		exit_num;
@@ -79,6 +79,13 @@ void	exit_(t_data *data)
 		free_data(data);
 		ft_free(data->cmd);
 		printf("exit\n");
+		if (i)
+		{
+			ft_free_fds(data);
+			close (0);
+			close (1);
+			close (2);
+		}
 		exit(exit_num);
 	}
 }

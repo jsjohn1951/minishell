@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 15:10:25 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/22 15:52:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_cd_minus(t_data *data, char *path)
 	free(path);
 	path = get_path_cd(data, "OLDPWD", &i);
 	if (!path)
-		return (error_path("OLDPWD"));
+		return (error_path("OLDPWD", data));
 	return (ft_cd(data));
 }
 int	ft_cd(t_data *data)
@@ -66,7 +66,7 @@ int	ft_cd(t_data *data)
     {
         path_cd = ft_get_home(data);
         if (!path_cd)
-            return (error_path("HOME"));
+            return (error_path("HOME", data));
     }
     if (!ft_strncmp(path_cd, "-", 1))
 		return (ft_cd_minus(data, path_cd));
@@ -74,7 +74,7 @@ int	ft_cd(t_data *data)
 	{
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
 		if (chdir(path_cd) == -1)
-			return (error_path2(path_cd));
+			return (error_path2(path_cd, data));
 		change_env(data, "PWD", getcwd(buffer, 4096));
 		return (0);
 	}

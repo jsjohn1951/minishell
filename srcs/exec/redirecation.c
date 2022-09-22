@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 22:49:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 16:17:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	write_append(t_data *data, int i)
 	if (ft_redir_type(data, i + 1) == MODE_WRITE)
 	{
 		file = data->pars[i + 1].cmd_name;
+		if (!ft_strlen(file))
+		{
+			ft_putstr_fd("SEASHELL: : does not exist", 2);
+			data->err = 1;
+			return ;
+		}
 		file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);
@@ -43,6 +49,12 @@ void	write_append(t_data *data, int i)
 	if (ft_redir_type(data, i + 1) == MODE_APPEND)
 	{
 		file = data->pars[i + 1].cmd_name;
+		if (!ft_strlen(file))
+		{
+			ft_putstr_fd("SEASHELL: : does not exist", 2);
+			data->err = 1;
+			return ;
+		}
 		file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
 		dup2(file_d, STDOUT_FILENO);
 		close (file_d);

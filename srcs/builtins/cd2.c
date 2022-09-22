@@ -4,12 +4,14 @@ int	check_cd_arg(t_data *data)
 {
     if ((data->pars[0].cmd[0] && data->pars[0].cmd[1] && data->pars[0].cmd[2]) && data->pars[0].cmd[3])
     {
-        printf("cd: too many arguments\n");
+		ft_fd_putmultistr(1, 2, "SEASHELL: cd: too many arguments\n");
+		data->err = 1;
 		return (0);
     }
 	else if ((data->pars[0].cmd[0] && data->pars[0].cmd[1]) && data->pars[0].cmd[2])
 	{
-		printf("cd: string not in pwd: %s\n", data->pars[0].cmd[1]);
+		ft_fd_putmultistr(3, 2, "SEASHELL: cd: string not in pwd: ", data->pars[0].cmd[1], "\n");
+		data->err = 1;
 		return (0);
 	}
 	else 
@@ -37,15 +39,17 @@ char	*ft_strnstr2(const char *haystack, const char *needle, size_t len)
 	return (0);
 }
 
-int error_path(char *str)
+int error_path(char *str, t_data *data)
 {
-	printf("minishell: cd: %s not set\n", str);
+	ft_fd_putmultistr(3, 2, "SEASHELL: cd: ", str, " not set\n");
+	data->err = 1;
 	return (0);
 }
 
-int	error_path2(char *path)
+int	error_path2(char *path, t_data *data)
 {
 	perror(path);
 	free(path);
+	data->err = 1;
 	return (2);
 }

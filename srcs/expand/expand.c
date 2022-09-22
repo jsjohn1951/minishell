@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:06:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 14:46:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 22:47:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void	expandable(t_data *data, int i, int j)
 	int			n;
 	t_expand	exp;
 
-	n = -1;
+	n = 0;
 	exp.i = i;
 	exp.j = j;
-	while (data->pars[i].cmd && data->pars[i].cmd[j][++n])
+	while (data->pars[i].cmd
+		&& data->pars[i].cmd[j] && data->pars[i].cmd[j][n])
 	{
 		if (!n)
 			flag_init(&exp.flags);
@@ -58,6 +59,7 @@ void	expandable(t_data *data, int i, int j)
 			exp.flags.quote = 0;
 		if (exp.flags.quote != 39 && data->pars[i].cmd[j][n] == '$')
 			n = key_expansion(data, n, &exp);
+		n++;
 	}
 }
 
@@ -69,12 +71,13 @@ void	expand_all(t_data *data)
 	i = -1;
 	while (++i < data->num_cmds)
 	{
-		j = -1;
-		while (data->pars[i].cmd && data->pars[i].cmd[++j])
+		j = 0;
+		while (data->pars[i].cmd && data->pars[i].cmd[j])
 		{
 			expandable(data, i, j);
 			if (!j)
 				sep_cmd(data, i);
+			j++;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:57:11 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 21:48:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/21 22:49:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*no_expansion(char *s, int *i)
 	tmp2 = ft_substr(s, *i, ft_strlen(s) - *i);
 	else
 	tmp2 = NULL;
-	res = ft_strjoin_mod(tmp, tmp2, ft_strlen(tmp2));
+	res = ft_strjoin_mod(tmp, tmp2, ft_strlen(tmp2) + 1);
 	ft_freer(2, tmp2, s);
 	return (res);
 }

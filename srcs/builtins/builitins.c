@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 14:37:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 14:02:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int	exec_builtin(t_data *data, int i)
 	else if (!ft_strncmp(data->pars[i].cmd[0], "unset", 5))
 		ft_unset(data, i);
 	else if (!ft_strncmp(*data->pars[i].cmd, "exit", 4))
-		exit_(data);
+		exit_(data, data->num_pipes);
 	return (result);
 }

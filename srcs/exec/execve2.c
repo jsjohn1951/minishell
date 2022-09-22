@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 16:28:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 14:18:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	multi_pipe(t_data *data, int i)
 		{
 			waitpid (data->fd.pid[i], &status, 0);
 			if (status)
-				data->err = 1;
+				data->err = status;
 		}
 		ft_free (data->fd.fd[i]);
 	}

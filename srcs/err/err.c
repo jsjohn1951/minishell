@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 14:11:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 13:40:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	before_pars_(char *s, t_data *data)
 	c = 0;
 	if (!is_pipe_redir(s[i - 1], &flags))
 		return (0);
-	while (is_pipe_redir(s[--i], &flags))
+	while (i && is_pipe_redir(s[--i], &flags))
 		;
 	while (s[++i])
 	{
