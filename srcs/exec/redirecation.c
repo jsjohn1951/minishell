@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 17:09:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 23:23:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ int	reader(t_data *data, int i)
 
 int	ft_redir_init(t_data *data, int i)
 {
-	if (i < data->num_cmds - 1 && !ft_redir_type(data, i)
-		&& ft_redir_type(data, i + 1))
+	if (i < data->num_cmds - 1 && ft_redir_type(data, i + 1))
 	{
 		i = reader(data, i);
 		while (i < data->num_cmds - 1

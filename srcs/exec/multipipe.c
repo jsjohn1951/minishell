@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 22:36:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 23:18:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 				if (data->num_pipes)
 					ft_dup2_fd(data, fd, i);
 				close_fd(fd, data);
-				ft_redir_init(data, i);
+				if (!ft_redir_type(data, i))
+					ft_redir_init(data, i);
 				close_fd(fd, data);
 				child_process(data, i);
 				close_std();

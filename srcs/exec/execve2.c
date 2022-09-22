@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 19:38:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 23:29:02 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_exec(t_data *data, int i)
 {
 	if (!(data->err && !data->a_err))
 	{
-		if (data->num_cmds == 1)
+		if (data->num_cmds == 1 || ft_redir_type(data, 0))
 		{
 			if (is_builtin(data, 0))
 				return (exec_builtin(data, 0));

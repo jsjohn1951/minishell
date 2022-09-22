@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 22:15:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 23:40:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	before_pars_(char *s, t_data *data)
 
 int	pars_check_(t_data *data)
 {
-	int	i;
+	// int	i;
 
-	i = -1;
+	// i = -1;
 	if (before_pars_(data->cmd, data))
 		return (258);
 	if (data->pars[0].pipe_redir
@@ -66,15 +66,17 @@ int	pars_check_(t_data *data)
 			data->pars[0].pipe_redir, "'\n");
 		return (258);
 	}
-	while (++i < data->num_cmds)
-	{
-		if (!data->pars[i].cmd)
-		{
-			ft_printf("SEA SHELL: syntax error near unexpected token `%s'\n",
-				data->pars[i].pipe_redir);
-			return (258);
-		}
-	}
+	// while (++i < data->num_cmds)
+	// {
+	// 	if (data->pars[0].pipe_redir && !ft_redir_type(data, i)
+	// 		&& !(ft_strlen(data->pars[0].pipe_redir) == 1
+	// 		&& data->pars[0].pipe_redir[0] == '|'))
+	// 	{
+	// 		ft_fd_putmultistr(3, 2, "SEA SHELL: syntax error near unexpected token `",
+	// 			data->pars[0].pipe_redir, "'\n");
+	// 		return (258);
+	// 	}
+	// }
 	return (0);
 }
 
