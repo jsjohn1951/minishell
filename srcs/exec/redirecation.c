@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 16:17:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 17:09:15 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	write_append(t_data *data, int i)
 			return ;
 		}
 		file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
-		dup2(file_d, STDOUT_FILENO);
+		if (data->num_cmds > 1)
+			dup2(file_d, STDOUT_FILENO);
 		close (file_d);
 	}
 	if (ft_redir_type(data, i + 1) == MODE_APPEND)
@@ -56,7 +57,8 @@ void	write_append(t_data *data, int i)
 			return ;
 		}
 		file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
-		dup2(file_d, STDOUT_FILENO);
+		if (data->num_cmds > 1)
+			dup2(file_d, STDOUT_FILENO);
 		close (file_d);
 	}
 }
@@ -81,10 +83,11 @@ int	reader(t_data *data, int i)
 	if (ft_redir_type(data, i) == MODE_READ)
 	{
 		file_d = open(file, O_RDONLY);
-		dup2(file_d, STDIN_FILENO);
+		if (data->num_cmds > 1)
+			dup2(file_d, STDIN_FILENO);
 		close (file_d);
 	}
-	if (ft_redir_type(data, i) == MODE_HEREDOC)
+	if (ft_redir_type(data, i) == MODE_HEREDOC && data->num_cmds > 1)
 		ft_heredoc(data, i);
 	return (i);
 }

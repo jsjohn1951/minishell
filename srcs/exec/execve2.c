@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 14:18:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 17:19:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	single_child(char *path, t_data *data)
 {
-	execve(path, data->pars[0].cmd, data->env);
+	if (!ft_redir_type(data, 0))
+		execve(path, data->pars[0].cmd, data->env);
+	else
+		ft_redir_init(data, -1);
 	free_data(data);
 	exit(0);
 }
@@ -26,14 +29,19 @@ int	ft_exec_one(t_data *data)
 
 	status = 0;
 	data->strip = data->pars[0].cmd[0];
-	path = accessibility_(data);
-	if (!path)
+	if (!ft_redir_type(data, 0))
 	{
-		path = data->pars[0].cmd[0];
-		data->err = 77;
-		printf("SEA SHELL: %s: command not found\n", path);
-		return (0);
+		path = accessibility_(data);
+		if (!path)
+		{
+			path = data->pars[0].cmd[0];
+			data->err = 77;
+			printf("SEA SHELL: %s: command not found\n", path);
+			return (0);
+		}
 	}
+	else
+		path = NULL;
 	if (!fork())
 		single_child(path, data);
 	else

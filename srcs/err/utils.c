@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 22:54:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 14:23:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/22 17:17:35 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ void	err_child_exit(t_data *data, int mod, int status, char *file)
 		ft_fd_putmultistr(3, 2, "SEA SHELL: ", file, ": command not found\n");
 	free_data(data);
 	i = -1;
-	while (++i < data->num_cmds)
-		ft_free (data->fd.fd[i]);
-	ft_free (data->fd.fd);
-	ft_free (data->fd.pid);
+	if (data->num_cmds > 1)
+	{
+		while (++i < data->num_cmds)
+			ft_free (data->fd.fd[i]);
+		ft_free (data->fd.fd);
+		ft_free (data->fd.pid);
+	}
 	exit (status);
 }
