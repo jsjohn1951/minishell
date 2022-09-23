@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 15:51:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:05:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_sep
 
 typedef struct s_fd
 {
+	int	initial;
 	int	*pid;
 	int	**fd;
 }	t_fd;
@@ -166,7 +167,6 @@ void	set_err_status(t_data *data, int i);
 void	err_child_exit(t_data *data, int mod, int status, char *file);
 int		check_cmds(t_data *data);
 
-
 /*	expansions */
 /* file: expand */
 void	expand_all(t_data *data);
@@ -195,6 +195,8 @@ int		data_iter(t_data *data, int i);
 /* file: close_fds */
 void	close_fd(int **fd, t_data *data);
 void	close_std(void);
+/* file: multipipe */
+char	*ft_executable(t_data *data, int i);
 
 /*
 *       _____ _____ _____ _____

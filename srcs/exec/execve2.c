@@ -6,49 +6,45 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 14:55:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:43:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	single_child(char *path, t_data *data)
+void	single_child(t_data *data)
 {
-	if (!ft_redir_type(data, 0))
+	char	*path;
+
+	path = ft_executable(data, 0);
+	if (path)
+	{
 		execve(path, data->pars[0].cmd, data->env);
+		path = ft_free (path);
+	}
 	else
-		ft_redir_init(data, -1);
+		err_child_exit(data, MODE_CHILD, 0, data->pars[0].cmd[0]);
 	free_data(data);
 	exit(0);
 }
 
 int	ft_exec_one(t_data *data)
 {
-	char	*path;
 	int		status;
 
 	status = 0;
-	data->strip = data->pars[0].cmd[0];
+	data->fd.initial = 1;
 	if (!ft_redir_type(data, 0))
 	{
-		path = accessibility_(data);
-		if (!path)
-		{
-			path = data->pars[0].cmd[0];
-			data->err = 77;
-			printf("SEA SHELL: %s: command not found\n", path);
-			return (0);
-		}
+		if (!fork())
+			single_child(data);
+		else
+			wait(&status);
 	}
 	else
-		path = NULL;
-	if (!fork())
-		single_child(path, data);
-	else
-		wait(&status);
+		ft_redir_init(data, -1);
 	if (status)
-		data->err = 1;
-	path = ft_free (path);
+		data->err = WEXITSTATUS(status);
 	return (0);
 }
 
@@ -82,6 +78,7 @@ void	multi_pipe(t_data *data, int i)
 
 int	ft_exec(t_data *data, int i)
 {
+	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
 		if (data->num_cmds == 1 || ft_redir_type(data, 0))

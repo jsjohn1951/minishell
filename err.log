@@ -8,12 +8,6 @@ Remember
 	unset   TESTjkndfv='"kuhku"hk'
 		place err message for unset
 
-1. ./minishell args - Segfaults
-
 4. Memleaks
 
 7.	> $USER /mem
-
-Still required
-	4) handle heredoc with NULL argument in front
-		e.g.  ls << ll | << j

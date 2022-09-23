@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 14:49:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 18:14:46 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	is_builtin(t_data *data, int i)
 	if (ft_strncmp(*data->pars[i].cmd, "echo", 4) == 0)
 		return (1);
 	if (ft_strncmp(*data->pars[i].cmd, "cd", 2) == 0)
-		return (1);
+		return (2);
 	if (ft_strncmp(*data->pars[i].cmd, "pwd", 3) == 0)
-		return (1);
+		return (3);
 	if (ft_strncmp(*data->pars[i].cmd, "env", 3) == 0)
-		return (1);
+		return (4);
 	if (ft_strncmp(*data->pars[i].cmd, "export", 6) == 0)
-		return (1);
+		return (5);
 	if (ft_strncmp(*data->pars[i].cmd, "unset", 5) == 0)
-		return (1);
+		return (6);
 	if (ft_strncmp(*data->pars[i].cmd, "exit", 4) == 0)
-		return (1);
+		return (7);
 	return (0);
 }
 

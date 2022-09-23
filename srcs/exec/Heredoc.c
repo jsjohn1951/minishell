@@ -6,15 +6,14 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 23:56:27 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 14:41:09 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 17:33:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	close_heredoc(int pipe_fd[2], char *line)
+void	close_heredoc(int pipe_fd[2])
 {
-	free(line);
 	dup2(pipe_fd[0], STDIN_FILENO);
 	close(pipe_fd[1]);
 	close(pipe_fd[0]);
@@ -43,6 +42,6 @@ int	ft_heredoc(t_data *data, int i)
 		line = data->pars[i].cmd[ind];
 		print_herdoc(fd, line);
 	}
-	close_heredoc(fd, line);
+	close_heredoc(fd);
 	return (0);
 }
