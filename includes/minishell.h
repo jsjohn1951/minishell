@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 18:05:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 19:53:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_sep
 typedef struct s_fd
 {
 	int	initial;
+	int	err;
 	int	*pid;
 	int	**fd;
 }	t_fd;
