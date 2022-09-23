@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/18 15:37:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:21:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	condition_(t_data *data, char **argv)
 		{
 			join = accessibility_(data);
 			is_command(join, data);
-			ft_free (join);
+			join = ft_free (join);
 		}
 	}
 }
@@ -66,7 +66,7 @@ void	accessible_(t_data *data)
 	free_env(data->env);
 	ft_free_matrix(data->path);
 	ft_free_matrix(argv);
-	ft_free(data->strip);
+	data->strip = ft_free(data->strip);
 	exit(err);
 }
 

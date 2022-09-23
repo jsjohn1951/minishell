@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 23:18:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:11:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_executable(t_data *data, int i)
 {
 	char	*path;
 
+	if (!data->pars[i].cmd)
+		return (NULL);
 	data->strip = data->pars[i].cmd[0];
 	if (is_builtin(data, i))
 		return (data->strip);
@@ -37,7 +39,7 @@ void	child_process(t_data *data, int i)
 	if (path && !is_builtin(data, i))
 	{
 		execve(path, data->pars[i].cmd, data->env);
-		ft_free (path);
+		path = ft_free (path);
 	}
 	else if (!is_builtin(data, i))
 		err_child_exit(data, MODE_CHILD, 0, data->pars[i].cmd[0]);
@@ -69,7 +71,6 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 			{
 				if (data->num_pipes)
 					ft_dup2_fd(data, fd, i);
-				close_fd(fd, data);
 				if (!ft_redir_type(data, i))
 					ft_redir_init(data, i);
 				close_fd(fd, data);
@@ -77,7 +78,7 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 				close_std();
 				free_data(data);
 				ft_free_fd(data, fd, pid);
-				ft_free(data->cmd);
+				data->cmd = ft_free(data->cmd);
 				exit (0);
 			}
 		}

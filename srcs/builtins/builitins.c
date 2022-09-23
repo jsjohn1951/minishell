@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 14:02:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:49:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int	is_builtin(t_data *data, int i)
 {
+	if (!data->pars[i].cmd)
+		return (0);
 	if (ft_strncmp(*data->pars[i].cmd, "echo", 4) == 0)
 		return (1);
 	if (ft_strncmp(*data->pars[i].cmd, "cd", 2) == 0)

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 14:49:50 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 00:29:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:22:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	strip_cmds(t_parsed *pars)
 	while (pars->cmd && pars->cmd[++i])
 	{
 		tmp = quote_strip_(pars->cmd[i]);
-		ft_free(pars->cmd[i]);
+		pars->cmd[i] = ft_free(pars->cmd[i]);
 		pars->cmd[i] = tmp;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:37:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 13:41:28 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:54:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*accessibility_(t_data *data)
 		join = ft_strjoin_mod(join, data->strip, ft_strlen(data->strip));
 		if (!access(join, X_OK))
 			return (join);
-		ft_free(join);
+		join = ft_free(join);
 	}
 	if (!access(data->strip, X_OK))
 		return (data->strip);

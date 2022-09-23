@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:43:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 23:17:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:58:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_free_fd(t_data *data, int **fd, int *pid)
 
 	i = -1;
 	while (++i < data->num_cmds)
-		ft_free(fd[i]);
-	ft_free(fd);
-	ft_free(pid);
+		fd[i] = ft_free(fd[i]);
+	fd = ft_free(fd);
+	pid = ft_free(pid);
 }

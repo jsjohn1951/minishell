@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 23:29:02 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 14:55:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_exec_one(t_data *data)
 		wait(&status);
 	if (status)
 		data->err = 1;
-	ft_free (path);
+	path = ft_free (path);
 	return (0);
 }
 
@@ -74,10 +74,10 @@ void	multi_pipe(t_data *data, int i)
 			if (status)
 				data->err = WEXITSTATUS(status);
 		}
-		ft_free (data->fd.fd[i]);
+		data->fd.fd[i] = ft_free (data->fd.fd[i]);
 	}
-	ft_free (data->fd.fd);
-	ft_free (data->fd.pid);
+	data->fd.fd = ft_free (data->fd.fd);
+	data->fd.pid = ft_free (data->fd.pid);
 }
 
 int	ft_exec(t_data *data, int i)

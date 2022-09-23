@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:33:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/16 14:41:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/23 15:22:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	rm_elem_matrix(t_data *data)
 			data->env[i] = ft_strdup(data->env[i + 1]);
 			i++;
 		}
-		ft_free (data->env[i]);
+		data->env[i] = ft_free (data->env[i]);
 	}
 }
 
