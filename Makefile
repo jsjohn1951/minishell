@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/22 16:03:46 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/24 00:18:40 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS = main/main\
 		builtins/export2\
 		builtins/unset\
 		builtins/cd2\
-		exec/redirecation\
+		exec/redir\
 		exec/Heredoc\
 		heredoc/pars_heredoc\
 
