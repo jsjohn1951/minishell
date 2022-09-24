@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/24 15:36:29 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:19:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,16 @@ if (cmd)
 
 int	cmd_(t_data *data)
 {
+	char	*str;
+
+	if (!data->err)
+		str = ft_multi_strjoin(5, KCYN, "SEA SHELL", KGRN, " ➜ ", KNRM);
+	else
+		str = ft_multi_strjoin(5, KCYN, "SEA SHELL", KRED, " ➜ ", KNRM);
 	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
-	data->cmd = readline("\x1B[36mSEA SHELL \x1B[32m➜ \x1B[0m");
+	data->cmd = readline(str);
+	str = ft_free(str);
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
