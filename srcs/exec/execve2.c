@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 18:43:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 14:01:59 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,19 @@ int	ft_exec_one(t_data *data)
 
 	status = 0;
 	data->fd.initial = 1;
-	if (!ft_redir_type(data, 0))
+	if (!fork())
 	{
-		if (!fork())
+		if (!ft_redir_type(data, 0))
 			single_child(data);
 		else
-			wait(&status);
+		{
+			ft_redir_init(data, -1);
+			free_data(data);
+			exit (0);
+		}
 	}
 	else
-		ft_redir_init(data, -1);
+		wait(&status);
 	if (status)
 		data->err = WEXITSTATUS(status);
 	return (0);
@@ -81,9 +85,9 @@ int	ft_exec(t_data *data, int i)
 	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
-		if (data->num_cmds == 1 || ft_redir_type(data, 0))
+		if (!data->num_pipes)
 		{
-			if (is_builtin(data, 0))
+			if (!ft_redir_type(data, 0) && is_builtin(data, 0))
 				return (exec_builtin(data, 0));
 			else
 				return (ft_exec_one(data));

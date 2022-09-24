@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirecation.c                                     :+:      :+:    :+:   */
+/*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 23:44:17 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:59:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_mode_read(t_data *data, int i)
 	else
 	{
 		file_d = open(file, O_RDONLY);
-		if (i)
+		if (!data->fd.initial)
 			dup2(file_d, STDIN_FILENO);
 		close (file_d);
 	}
@@ -62,7 +62,7 @@ void	ft_mode_append(t_data *data, int i)
 		return ;
 	}
 	file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
-	if (i)
+	if (!data->fd.initial)
 		dup2(file_d, STDOUT_FILENO);
 	close (file_d);
 }
@@ -80,7 +80,7 @@ void	ft_mode_write(t_data *data, int i)
 		return ;
 	}
 	file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (i)
+	if (!data->fd.initial)
 		dup2(file_d, STDOUT_FILENO);
 	close (file_d);
 }
