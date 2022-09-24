@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 17:22:36 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/24 17:50:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_print_env(char **env_sorted)
 		ft_putstr("declare -x ");
 		while (env_sorted[i] && env_sorted[i][j])
 		{
-			if (env_sorted[i][j - 1] == '=')
+			if (j && env_sorted[i][j - 1] == '=')
 				ft_putstr("\"");
 			ft_flag = 1;
 			ft_putchr(env_sorted[i][j]);

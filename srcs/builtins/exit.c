@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 18:23:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 17:18:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_exit_status(int i)
 	return (rem);
 }
 
-int	arg_counters(char **matrix)
+int	arg_counters(t_data *data, char **matrix)
 {
 	int	i;
 
@@ -31,7 +31,10 @@ int	arg_counters(char **matrix)
 	while (matrix[i])
 	{
 		if (i > 1)
+		{
+			data->err = 1;
 			return (255);
+		}
 		i++;
 	}
 	return (i);
@@ -64,8 +67,8 @@ void	exit_(t_data *data, int i)
 
 	if (!data->pars[i].cmd)
 		return ;
-	if (arg_counters(data->pars[i].cmd) == 255)
-		return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
+	if (data->num_cmds == 1)
+		printf("exit\n");
 	if (data->pars[i].cmd[1] && data->pars[i].cmd[1][0])
 	{
 		s = data->pars[i].cmd[1];
@@ -73,10 +76,10 @@ void	exit_(t_data *data, int i)
 	}
 	else
 		exit_num = ft_exit_status(data->err);
+	if (exit_num != 255 && arg_counters(data, data->pars[i].cmd) == 255)
+		return (ft_putstr_fd("SEASHELL-S: exit: too many arguments\n", 2));
 	free_data(data);
 	ft_free(data->cmd);
-	if (data->num_cmds == 1)
-		printf("exit\n");
 	if (i)
 	{
 		ft_free_fds(data);

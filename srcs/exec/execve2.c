@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/24 14:49:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 16:29:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ int	ft_exec_one(t_data *data)
 		if (!ft_redir_type(data, 0))
 			single_child(data);
 		else
-		{
 			ft_redir_init(data, -1);
-			free_data(data);
-			exit (0);
-		}
+		free_data(data);
+		exit (0);
 	}
 	else
 		wait(&status);
