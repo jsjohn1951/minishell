@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 19:38:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:38:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	child_process(t_data *data, int i)
 		path = ft_free (path);
 	}
 	else if (!is_builtin(data, i))
-		err_child_exit(data, MODE_CHILD, 0, data->pars[i].cmd[0]);
+		err_child_exit(data, MODE_CHILD, 127, data->pars[i].cmd[0]);
 	exec_builtin(data, i);
 }
 
