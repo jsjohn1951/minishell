@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 14:30:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 14:59:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,6 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 				ft_free_fd(data, fd, pid);
 				data->cmd = ft_free(data->cmd);
 				exit (0);
-			}
-		}
-		else if (!i)
-		{
-			pid[i] = fork();
-			if (pid[i])
-			{
-				ft_redir_init(data, -1);
-				free_data(data);
-				ft_free_fd(data, fd, pid);
-				data->cmd = ft_free(data->cmd);
-				exit(0);
 			}
 		}
 	}

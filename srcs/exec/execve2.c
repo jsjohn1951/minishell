@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 12:05:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 15:17:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	wait_(t_data *data, int status)
 		if (!data->pars[i].is_redir)
 		{
 			waitpid (data->fd.pid[i], &status, 0);
-			data->err = WEXITSTATUS(status);
+			if (WEXITSTATUS(status))
+				data->err = WEXITSTATUS(status);
 			if (WIFSIGNALED(status))
 			{
 				if (WTERMSIG(status) == 2)
@@ -55,8 +56,15 @@ int	ft_exec(t_data *data, int i)
 	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
-		if (data->num_cmds == 1 && is_builtin(data, 0) == 7)
-			exit_(data, 0);
+		if (data->num_cmds == 1)
+		{
+			if (is_builtin(data, 0) == 7)
+				exit_(data, 0);
+			else if (is_builtin(data, 0) == 5)
+				ft_export(data, 0);
+			else if (is_builtin(data, 0) == 6)
+				ft_unset(data, 0);
+		}
 		multi_pipe(data, i);
 	}
 	return (0);
