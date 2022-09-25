@@ -6,7 +6,7 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/20 17:24:05 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/25 14:37:32 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,6 @@ char	*ft_strndup(const char *s1, int n)
 	s2[i] = '\0';
 	return (s2);
 }
-
-// int	ft_check_arg(char *arg)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if ((arg[i] && (arg[i] >= '0' && arg[i] <= '9')) || 
-// 	(arg[0] && arg[0] == '$' && !arg[1]))
-// 	{
-// 		ft_putstr_fd("export: `", 1);
-// 		ft_putstr_fd(arg, 1);
-// 		ft_putstr_fd("': not a valid identifier\n", 1);
-// 		return (0);
-// 	}
-// 	return (1);
-// }
-
 int	ft_check_arg(char *arg, t_data *data)
 {
 	int	i;
@@ -59,9 +42,7 @@ int	ft_check_arg(char *arg, t_data *data)
 			j = 1;
 		if((arg[i] && (arg[i] >= '0' && arg[i] <= '9') && !j) || (arg[0] && arg[0] == '$' && !arg[1]) || arg[0] == '=' || arg[0] == '-' || arg[0] == '+')
 		{
-			ft_putstr_fd("export: `", 1);
-			ft_putstr_fd(arg, 1);
-			ft_putstr_fd("': not a valid identifier\n", 1);
+			ft_fd_putmultistr(3, 2, "SEASHELL: export: `", arg, "': not a valid identifier\n");
 			data->err = 1;
 			return (0);
 		}
