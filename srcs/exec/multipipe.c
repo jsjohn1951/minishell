@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 14:59:19 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:01:25 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 			{
 				if (data->num_pipes)
 					ft_dup2_fd(data, fd, i);
-				ft_redir_init(data, i);
+				ft_redir_init(data, i, 1);
 				if (data->pars[i].cmd)
 				{
 					child_process(data, i);
@@ -79,9 +79,9 @@ void	spawn_process(int **fd, t_data *data, int *pid, int i)
 				}
 				close_std();
 				free_data(data);
-				ft_free_fd(data, fd, pid);
+				ft_free_fds(data);
 				data->cmd = ft_free(data->cmd);
-				exit (0);
+				exit (data->err);
 			}
 		}
 	}

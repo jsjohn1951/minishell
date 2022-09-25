@@ -1,5 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export3.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/25 18:08:20 by wismith           #+#    #+#             */
+/*   Updated: 2022/09/25 18:20:47 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	export2(t_data *data, int i, int num_cmd, int flag)
+{
+	char	*key;
+	char	*value;
+
+	key = NULL;
+	value = NULL;
+	while (data->pars[num_cmd].cmd[++i])
+	{
+		if (!ft_check_arg(data->pars[num_cmd].cmd[i], data))
+				flag = 1;
+		if (!flag)
+		{
+			ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
+			if (!ft_is_in_env(data, key))
+				data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
+			else if (ft_is_in_env(data, key))
+			{
+				value = ft_strtrim_first_letter(value);
+				change_env(data, key, value);
+				free(value);
+			}
+			free(key);
+		}
+	}
+}
 
 void	free_env(char **env)
 {

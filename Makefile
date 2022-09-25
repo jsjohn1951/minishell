@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
+#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/25 16:22:13 by mnyalhdrmy       ###   ########.fr        #
+#    Updated: 2022/09/25 18:28:09 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main/main\
 		main/cmdblock\
 		main/argargv\
 		main/signalhandlr\
+		main/rtn_prompt\
 		parser/quote_strip\
 		parser/terminate\
 		parser/printer\

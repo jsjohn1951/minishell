@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 15:17:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 16:57:17 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,38 @@ void	multi_pipe(t_data *data, int i)
 	wait_(data, 0);
 }
 
+void	init_redir_found(t_data *data)
+{
+	int	pid;
+	int	status;
+
+	pid = fork();
+	status = 0;
+	if (!pid)
+	{
+		ft_redir_init(data, -1, 0);
+		free_data(data);
+		exit(data->err);
+	}
+	else
+		waitpid(pid, &status, 0);
+	if (WEXITSTATUS(status))
+		data->err = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == 2)
+			data->err = 130;
+		else if (WTERMSIG(status) == 3)
+			data->err = 131;
+	}
+}
+
 int	ft_exec(t_data *data, int i)
 {
 	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
-		if (data->num_cmds == 1)
+		if (data->num_cmds == 1 && !data->pars[0].is_redir)
 		{
 			if (is_builtin(data, 0) == 7)
 				exit_(data, 0);
@@ -64,6 +90,12 @@ int	ft_exec(t_data *data, int i)
 				ft_export(data, 0);
 			else if (is_builtin(data, 0) == 6)
 				ft_unset(data, 0);
+		}
+		else if (data->pars[0].is_redir)
+		{
+			data->fd.initial = 1;
+			init_redir_found(data);
+			data->fd.initial = 0;
 		}
 		multi_pipe(data, i);
 	}

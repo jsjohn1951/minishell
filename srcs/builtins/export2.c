@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 16:23:11 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/25 18:32:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_print_env(char **env_sorted)
 		i++;
 	}
 }
+
 int	ft_check_arg(char *arg, t_data *data)
 {
 	int	i;
@@ -54,7 +55,8 @@ int	ft_check_arg(char *arg, t_data *data)
 		|| (arg[0] && arg[0] == '$' && !arg[1]) \
 		|| arg[0] == '=' || arg[0] == '-' || arg[0] == '+')
 		{
-			ft_fd_putmultistr(3, 2, "SEASHELL: export: `", arg, "': not a valid identifier\n");
+			ft_fd_putmultistr(3, 2, "SEASHELL: export: `", arg,
+				"': not a valid identifier\n");
 			data->err = 1;
 			return (0);
 		}

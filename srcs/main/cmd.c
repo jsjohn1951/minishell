@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/24 18:19:19 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 18:27:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ int	cmd_(t_data *data)
 {
 	char	*str;
 
-	if (!data->err)
-		str = ft_multi_strjoin(5, KCYN, "SEA SHELL", KGRN, " ➜ ", KNRM);
-	else
-		str = ft_multi_strjoin(5, KCYN, "SEA SHELL", KRED, " ➜ ", KNRM);
+	str = prompt_str(data);
 	data->pwd = find_pwd(data);
 	data->num_cmds = 0;
 	data->cmd = readline(str);

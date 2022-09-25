@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/24 19:22:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 18:27:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void	join_cmds_(t_data *data);
 void	signals_(int mod);
 /* file: argargv */
 void	exec_single_non_term(int argc, char **argv, t_data *data);
+/* file: rtn_prompt*/
+char	*prompt_str(t_data *data);
 
 /* parser */
 /*	file: printer */
@@ -226,7 +228,6 @@ void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 int		ft_exit_status(int i);
 
-
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data, int i);
@@ -253,6 +254,7 @@ char	*ft_strndup2(const char *s1, int n);
 char	*get_path2(t_data *data, char *to_find, int *i);
 void	ft_print_env(char **env_sorted);
 char	*ft_strtrim_first_letter(char *line);
+void	export2(t_data *data, int i, int num_cmd, int flag);
 /*	file: unset */
 char	**ft_unset(t_data *data, int num_cmd);
 int		ft_is_in_env2(char *key, t_data *data);
@@ -264,7 +266,7 @@ int		error_path(char *str, t_data *data);
 int		error_path2(char *path, t_data *data);
 
 /*redirecation*/
-int		ft_redir_init(t_data *data, int i);
+int		ft_redir_init(t_data *data, int i, int mod);
 int		read_fd_check(t_list **redir_lst, int fd_num);
 int		ft_redir_type(t_data *data, int i);
 int		ft_heredoc(t_data *data, int i);

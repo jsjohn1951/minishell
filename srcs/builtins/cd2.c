@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd2.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
+/*   Updated: 2022/09/25 18:08:55 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -13,7 +24,8 @@ int	check_cd_arg(t_data *data)
 	else if ((data->pars[0].cmd[0] && data->pars[0].cmd[1]) \
 	&& data->pars[0].cmd[2])
 	{
-		ft_fd_putmultistr(3, 2, "SEASHELL: cd: string not in pwd: ", data->pars[0].cmd[1], "\n");
+		ft_fd_putmultistr(3, 2, "SEASHELL: cd: string not in pwd: ",
+			data->pars[0].cmd[1], "\n");
 		data->err = 1;
 		return (0);
 	}

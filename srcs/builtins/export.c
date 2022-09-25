@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/24 17:50:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 18:22:17 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,32 +88,11 @@ char	**ft_export(t_data *data, int num_cmd)
 {
 	int		i;
 	int		flag;
-	char	*key;
-	char	*value;
 
-	key = NULL;
-	value = NULL;
 	i = 0;
 	flag = 0;
 	if (!data->pars[num_cmd].cmd[1])
 		ft_print_export(data->env);
-	while (data->pars[num_cmd].cmd[++i])
-	{
-		if (!ft_check_arg(data->pars[num_cmd].cmd[i], data))
-				flag = 1;
-		if (!flag)
-		{
-			ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
-			if (!ft_is_in_env(data, key))
-				data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
-			else if (ft_is_in_env(data, key))
-			{
-				value = ft_strtrim_first_letter(value);
-				change_env(data, key, value);
-				free(value);
-			}
-			free(key);
-		}
-	}
+	export2(data, i, num_cmd, flag);
 	return (data->env);
 }
