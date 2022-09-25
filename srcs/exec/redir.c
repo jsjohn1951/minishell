@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 16:34:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 22:42:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	ft_mode_append(t_data *data, int i)
 	char	*file;
 	int		file_d;
 
-	file = data->pars[i + 1].cmd_name;
+	file = data->pars[i].cmd_name;
 	if (!ft_strlen(file))
 	{
-		ft_putstr_fd("SEASHELL: : does not exist", 2);
+		ft_putstr_fd("SEASHELL: : does not exist\n", 2);
 		data->fd.err = 1;
 		data->err = 1;
 		return ;
@@ -77,7 +77,7 @@ void	ft_mode_write(t_data *data, int i)
 	file = data->pars[i].cmd_name;
 	if (!ft_strlen(file))
 	{
-		ft_putstr_fd("SEASHELL: : does not exist", 2);
+		ft_putstr_fd("SEASHELL: : does not exist\n", 2);
 		data->fd.err = 1;
 		data->err = 1;
 		return ;

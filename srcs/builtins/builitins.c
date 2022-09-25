@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 22:32:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 22:38:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	exec_builtin(t_data *data, int i)
 		ft_env(data);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "cd", 2))
 		ft_cd(data);
-	else if (ft_strncmp(*data->pars[i].cmd, "export", 6) == 0)
+	else if (!ft_strncmp(*data->pars[i].cmd, "export", 6)
+		&& ft_matrix_size(data->pars[i].cmd) == 1)
 		ft_export(data, i);
 	else if (!ft_strncmp(*data->pars[i].cmd, "exit", 4))
 		exit_(data, data->num_pipes);
