@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 18:27:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 22:08:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_data
 	int			argc;
 	int			err;
 	int			a_err;
+	int			status;
 	int			end_pipe;
 	t_parsed	pars[150000];
 	t_flags		flags;

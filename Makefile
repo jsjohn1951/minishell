@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/25 18:28:09 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/25 22:17:37 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))
 
 # Compiler / Flags / libft library
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -I/readline/includes/*
+CFLAGS = -Wall -Wextra -Werror -I/readline/includes/*
 LIBFT = ./libft/Library/libft.a
 LDFLAGS = -lreadline -L ./readline/lib/
 LINUX = -lreadline
