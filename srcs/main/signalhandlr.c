@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:18:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 17:47:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/25 13:28:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ void	signals_(int mod)
 	{
 		signal(SIGQUIT, &handlr2_);
 		signal(SIGINT, &handlr2_);
-		signal(SIGPIPE, SIG_IGN);
 	}
 }
