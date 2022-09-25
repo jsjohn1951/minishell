@@ -23,13 +23,15 @@ int	ft_in_env(t_data *data, char *key, char *line)
 	{
 		if (ft_strlen(line) != ft_strlen(key))
 		{
-			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `", line, "': not a valid identifier\n");
+			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
+				line, "': not a valid identifier\n");
 			data->err = 1;
-			return(0);
+			return (0);
 		}
 		else if (ft_strncmp(key, data->env[i], size - 1) && size > 1)
 		{
-			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `", line, "': not a valid identifier\n");
+			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
+				line, "': not a valid identifier\n");
 			data->err = 1;
 			return (0);
 		}
@@ -67,7 +69,7 @@ char	**ft_unset(t_data *data, int num_cmd)
 {
 	char	*key;
 	char	*value;
-	char 	*line;
+	char	*line;
 	int		i;
 
 	key = NULL;

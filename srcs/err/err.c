@@ -54,29 +54,16 @@ int	before_pars_(char *s, t_data *data)
 
 int	pars_check_(t_data *data)
 {
-	// int	i;
-
-	// i = -1;
 	if (before_pars_(data->cmd, data))
 		return (258);
 	if (data->pars[0].pipe_redir
 		&& data->pars[0].pipe_redir[0] == '|')
 	{
-		ft_fd_putmultistr(3, 2, "SEA SHELL: syntax error near unexpected token `",
+		ft_fd_putmultistr(3, 2,
+			"SEA SHELL: syntax error near unexpected token `",
 			data->pars[0].pipe_redir, "'\n");
 		return (258);
 	}
-	// while (++i < data->num_cmds)
-	// {
-	// 	if (data->pars[0].pipe_redir && !ft_redir_type(data, i)
-	// 		&& !(ft_strlen(data->pars[0].pipe_redir) == 1
-	// 		&& data->pars[0].pipe_redir[0] == '|'))
-	// 	{
-	// 		ft_fd_putmultistr(3, 2, "SEA SHELL: syntax error near unexpected token `",
-	// 			data->pars[0].pipe_redir, "'\n");
-	// 		return (258);
-	// 	}
-	// }
 	return (0);
 }
 

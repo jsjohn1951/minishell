@@ -6,33 +6,43 @@
 /*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 14:37:32 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/25 16:23:11 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_strndup(const char *s1, int n)
+void	ft_print_env(char **env_sorted)
 {
-	char	*s2;
-	int		i;
+	int	i;
+	int	j;
+	int	ft_flag;
 
 	i = 0;
-	s2 = malloc(sizeof(char) * (n + 1));
-	if (!(s2))
-		return (NULL);
-	while (s1[i] && i < n)
+	ft_flag = 0;
+	while (env_sorted[i])
 	{
-		s2[i] = s1[i];
+		j = 0;
+		ft_putstr("declare -x ");
+		while (env_sorted[i] && env_sorted[i][j])
+		{
+			if (j && env_sorted[i][j - 1] == '=')
+				ft_putstr("\"");
+			ft_flag = 1;
+			ft_putchr(env_sorted[i][j]);
+			j++;
+		}
+		if (ft_flag == 1)
+			ft_putchr('\"');
+		ft_flag = 0;
+		ft_putchr('\n');
 		i++;
 	}
-	s2[i] = '\0';
-	return (s2);
 }
 int	ft_check_arg(char *arg, t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	j = 0;
 	i = 0;
@@ -40,7 +50,9 @@ int	ft_check_arg(char *arg, t_data *data)
 	{
 		if (arg[i] == '=')
 			j = 1;
-		if((arg[i] && (arg[i] >= '0' && arg[i] <= '9') && !j) || (arg[0] && arg[0] == '$' && !arg[1]) || arg[0] == '=' || arg[0] == '-' || arg[0] == '+')
+		if ((arg[i] && (arg[i] >= '0' && arg[i] <= '9') && !j) \
+		|| (arg[0] && arg[0] == '$' && !arg[1]) \
+		|| arg[0] == '=' || arg[0] == '-' || arg[0] == '+')
 		{
 			ft_fd_putmultistr(3, 2, "SEASHELL: export: `", arg, "': not a valid identifier\n");
 			data->err = 1;
@@ -64,7 +76,7 @@ int	ft_parse_env(char *tab, char **key, char **value)
 		i++;
 	if (dollar == 1)
 		i -= 1;
-	*key = ft_strndup(tab, i);
+	*key = ft_strndup2(tab, i);
 	*value = ft_strchr(tab, '=');
 	return (0);
 }
@@ -114,25 +126,4 @@ char	**set_in_env(t_data *data, char *line)
 	tmp[i] = NULL;
 	free_env(data->env);
 	return (tmp);
-}
-
-void	free_env(char **env)
-{
-	int	i;
-
-	i = 0;
-	if (env)
-	{
-		while (env[i])
-		{
-			if (env[i])
-			{
-				free(env[i]);
-				env[i] = NULL;
-			}
-			i++;
-		}
-	}
-	free(env);
-	env = NULL;
 }

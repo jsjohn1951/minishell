@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
+#    By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/24 00:18:40 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/25 16:22:13 by mnyalhdrmy       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,10 @@ SRCS = main/main\
 		exec/execve2\
 		builtins/pwd\
 		builtins/env\
-		builtins/get_path\
 		builtins/cd\
 		builtins/export\
 		builtins/export2\
+		builtins/export3\
 		builtins/unset\
 		builtins/cd2\
 		exec/redir\

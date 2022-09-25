@@ -12,34 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_print_env(char **env_sorted)
-{
-	int	i;
-	int	j;
-	int	ft_flag;
-
-	i = 0;
-	ft_flag = 0;
-	while (env_sorted[i])
-	{
-		j = 0;
-		ft_putstr("declare -x ");
-		while (env_sorted[i] && env_sorted[i][j])
-		{
-			if (j && env_sorted[i][j - 1] == '=')
-				ft_putstr("\"");
-			ft_flag = 1;
-			ft_putchr(env_sorted[i][j]);
-			j++;
-		}
-		if (ft_flag == 1)
-			ft_putchr('\"');
-		ft_flag = 0;
-		ft_putchr('\n');
-		i++;
-	}
-}
-
 char	**ft_copy_env(char **envp)
 {
 	int		i;
@@ -94,36 +66,6 @@ char	**ft_print_export(char **env)
 {
 	ft_sort_env(env);
 	return (env);
-}
-
-char	*ft_strtrim_first_letter(char *line)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	new = malloc(sizeof(char) * ft_strlen(line));
-	while (line[++i])
-	{
-		new[i - 1] = line[i];
-	}
-	new[i - 1] = '\0';
-	return (new);
-}
-
-char	*get_path2(t_data *data, char *to_find, int *i)
-{
-	int		size;
-
-	size = ft_strlen(to_find);
-	while (data->env[++(*i)])
-	{
-		if (!ft_strncmp(data->env[*i], to_find, size - 1) && size > 1)
-			return (ft_strdup(data->env[*i]));
-		else if (size <= 1 && data->env[*i][0] == to_find[0])
-			return (ft_strdup(data->env[*i]));
-	}
-	return (NULL);
 }
 
 int	change_env(t_data *data, char *path, char *new_path)

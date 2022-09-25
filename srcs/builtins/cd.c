@@ -16,8 +16,9 @@ char	*get_path_cd(t_data *data, char *to_find, int *i)
 {
 	int		size;
 	char	*ret;
-	char	*path = NULL;
+	char	*path;
 
+	path = NULL;
 	size = ft_strlen(to_find);
 	while (data->env[++(*i)])
 	{
@@ -54,23 +55,24 @@ int	ft_cd_minus(t_data *data, char *path)
 		return (error_path("OLDPWD", data));
 	return (ft_cd(data));
 }
+
 int	ft_cd(t_data *data)
 {
-    char *path_cd;
+	char	*path_cd;
 	char	buffer[4096];
-    
-    path_cd = data->pars[0].cmd[1];
+
+	path_cd = data->pars[0].cmd[1];
 	if (!check_cd_arg(data))
-        return (1);
-    if (path_cd == NULL)
-    {
-        path_cd = ft_get_home(data);
-        if (!path_cd)
-            return (error_path("HOME", data));
-    }
-    if (!ft_strncmp(path_cd, "-", 1))
+		return (1);
+	if (path_cd == NULL)
+	{
+		path_cd = ft_get_home(data);
+		if (!path_cd)
+			return (error_path("HOME", data));
+	}
+	if (!ft_strncmp(path_cd, "-", 1))
 		return (ft_cd_minus(data, path_cd));
-    else
+	else
 	{
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
 		if (chdir(path_cd) == -1)
@@ -78,5 +80,5 @@ int	ft_cd(t_data *data)
 		change_env(data, "PWD", getcwd(buffer, 4096));
 		return (0);
 	}
-    return(0);
+	return (0);
 }

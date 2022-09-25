@@ -221,12 +221,12 @@ char	*ft_executable(t_data *data, int i);
 /*	file: echo */
 int		ft_echo(char **matrix);
 /*	file: exit */
-void	exit_(t_data *data, int	i);
+void	exit_(t_data *data, int i);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 int		ft_exit_status(int i);
 
-/*seeeeeeeeee*/
+
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
 int		is_builtin(t_data *data, int i);
@@ -249,6 +249,10 @@ char	*ft_strndup(const char *s1, int n);
 int		ft_is_in_env(t_data *data, char *key);
 char	**set_in_env(t_data *data, char *line);
 int		change_env(t_data *data, char *path, char *new_path);
+char	*ft_strndup2(const char *s1, int n);
+char	*get_path2(t_data *data, char *to_find, int *i);
+void	ft_print_env(char **env_sorted);
+char	*ft_strtrim_first_letter(char *line);
 /*	file: unset */
 char	**ft_unset(t_data *data, int num_cmd);
 int		ft_is_in_env2(char *key, t_data *data);
