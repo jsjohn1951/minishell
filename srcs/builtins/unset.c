@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 11:40:23 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/26 13:30:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char	**ft_unset(t_data *data, int num_cmd)
 
 	key = NULL;
 	value = NULL;
-	(void)value;
 	i = 0;
 	flag = 0;
 	line = data->pars[num_cmd].cmd[1];
@@ -104,11 +103,8 @@ char	**ft_unset(t_data *data, int num_cmd)
 		ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
 		if (!ft_check_env(data->pars[num_cmd].cmd[i], data, key))
 			flag = 1;
-		printf("flag -> %d\n", flag);
 		if (!flag)
 		{
-			printf("muna\n");
-			// ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
 			if (ft_in_env(data, key, line))
 				data->env = unset_in_env(key, data);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 00:04:22 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/26 13:29:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,9 @@ int	ft_is_in_env(t_data *data, char *key)
 	while (data->env[++i])
 	{
 		if (!ft_strncmp(key, data->env[i], size - 1) && size > 1)
-		{
-			if (data->env[i][size] == '=')
-				return (1);
-		}
+			return (1);
 		else if (size <= 1 && data->env[i][0] == key[0])
-		{
-			if (data->env[i][size] == '=')
-				return (1);
-		}
+			return (1);
 	}
 	return (0);
 }
