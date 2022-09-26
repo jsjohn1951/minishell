@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:37:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 12:44:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 21:06:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*accessibility_(t_data *data)
 	char	*join;
 
 	i = -1;
-	while (data->path && ft_matrix_size(data->path) && data->path[++i])
+	while (data->path && ft_strlen(data->strip)
+		&& ft_matrix_size(data->path) && data->path[++i])
 	{
 		join = ft_strjoin(data->path[i], "/");
 		join = ft_strjoin_mod(join, data->strip, ft_strlen(data->strip));
