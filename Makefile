@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/25 22:17:37 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/26 10:54:35 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,12 @@ SRCS = main/main\
 		parser/quote_strip\
 		parser/terminate\
 		parser/printer\
-		parser/customsplit\
-		parser/split_tools\
+		parser/split/customsplit\
+		parser/split/split_tools\
+		parser/split/split_by_pipe\
+		parser/split/utils\
 		parser/count_pipes\
 		parser/tools\
-		parser/split_by_pipe\
 		parser/env\
 		parser/strip_all_quotes\
 		builtins/echo\
@@ -83,6 +84,7 @@ $(OBJDIR)/%.o : srcs/%.c
 	@mkdir -p $(OBJDIR)/main
 	@mkdir -p $(OBJDIR)/cmdbus
 	@mkdir -p $(OBJDIR)/parser
+	@mkdir -p $(OBJDIR)/parser/split
 	@mkdir -p $(OBJDIR)/builtins
 	@mkdir -p $(OBJDIR)/err
 	@mkdir -p $(OBJDIR)/expand

@@ -6,11 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:05:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/15 12:34:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:56:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	flag_init(t_flags *flags)
 {
@@ -39,12 +39,12 @@ void	is_quoted_message(t_flags *flags, char *cmd, int i)
 void	cancel_flags(t_flags *flags, char *cmd, int i)
 {
 	if (cmd[i + 1] && flags->word)
-		if (cmd[i + 1] == ' ' || cmd[i + 1] == '\0')
+		if (white_space(cmd[i + 1]) || cmd[i + 1] == '\0')
 			flags->word = 0;
 	if (flags->quote == cmd[i])
 	{
 		if (cmd[i + 1])
-			if (cmd[i + 1] != ' ')
+			if (!white_space(cmd[i + 1]))
 				flags->word = 1;
 		flags->quote = 0;
 	}

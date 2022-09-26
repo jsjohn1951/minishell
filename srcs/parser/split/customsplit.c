@@ -6,11 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:08:31 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/13 22:23:53 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 11:00:29 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	count_(char *cmd, t_flags flags)
 {
@@ -19,9 +19,9 @@ int	count_(char *cmd, t_flags flags)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
-			if (i == 0 || cmd[i - 1] == ' ')
+			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
 		else if (is_quote_(cmd[i]) && !flags.quote)
@@ -47,9 +47,9 @@ int	count_start_(char *cmd, t_flags flags, int word)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
-			if (i == 0 || cmd[i - 1] == ' ')
+			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
 		else if (is_quote_(cmd[i]) && !flags.quote)
@@ -74,9 +74,9 @@ int	count_end_(char *cmd, t_flags flags, int word)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && cmd[i] != ' ')
+		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
-			if (i == 0 || cmd[i - 1] == ' ')
+			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
 		else if (is_quote_(cmd[i]) && !flags.quote)

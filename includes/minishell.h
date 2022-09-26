@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 00:48:48 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:54:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ char	*prompt_str(t_data *data);
 /* parser */
 /*	file: printer */
 void	print_cmd(t_data *data, int pars_i);
+
 /*	file: customsplit */
 char	**split(char *cmd);
 /*	file: split_by_pipe */
@@ -150,6 +151,9 @@ void	isword(t_flags *flags);
 int		is_quote_(char c);
 void	is_quoted_message(t_flags *flags, char *cmd, int i);
 void	cancel_flags(t_flags *flags, char *cmd, int i);
+/*	file: utils */
+int		white_space(char c);
+
 /*	file: quote_strip */
 char	*quote_strip_(char *s);
 /*	file: init */

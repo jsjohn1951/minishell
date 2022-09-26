@@ -6,11 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/17 01:34:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:57:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	is_pipe_redir(char c, t_flags *flags)
 {
@@ -35,7 +35,7 @@ int	num_of_cmds(t_data *data, char *s)
 
 	i = -1;
 	num = 0;
-	if (!is_pipe_redir(s[0], &data->flags) && s[0] != ' ')
+	if (!is_pipe_redir(s[0], &data->flags) && !white_space(s[0]))
 		num++;
 	while (s[++i])
 	{
@@ -89,7 +89,7 @@ void	set_cmds(t_data *data, char *cmd)
 	data->pars[0].pipe_redir = NULL;
 	data->num_cmds = num_of_cmds(data, cmd);
 	data->num_pipes = 0;
-	while (cmd[i] && cmd[i] == ' ')
+	while (cmd[i] && white_space(cmd[i]))
 		i++;
 	split_pipe(data, cmd, i - 1, j);
 }
