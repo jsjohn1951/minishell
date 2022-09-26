@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 01:22:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 02:08:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	checker_(t_data *data, char *arg, char *key, int i)
 	int	j;
 
 	j = data->unset.j;
+	if (ft_strlen(key) == 1 && key[0] == '_')
+		return (0);
 	if (ft_strlen(arg) != ft_strlen(key))
 	{
 		ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
@@ -43,7 +45,7 @@ int	ft_check_env(char *arg, t_data *data, char *key)
 
 	j = 0;
 	i = 0;
-	while (arg[i])
+	while (arg && arg[i])
 	{
 		if (arg[i] == '=')
 			j = 1;
