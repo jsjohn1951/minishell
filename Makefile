@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/09/26 12:54:06 by wismith          ###   ########.fr        #
+#    Updated: 2022/09/26 23:20:50 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,6 +162,18 @@ valgrind: re
 	--show-leak-kinds=all \
 	--suppressions=readline/readline_ig2.supp \
 	./minishell\
+
+noenv: re
+	@clear
+	@echo "\033[0;32mRunning in Valgrind.\033[0m"
+	@valgrind \
+	--leak-check=full \
+	--track-fds=yes \
+	--trace-children=yes \
+	--track-origins=yes \
+	--show-leak-kinds=all \
+	--suppressions=readline/readline_ig2.supp \
+	env -i ./minishell\
 
 run : re
 	@sleep 2

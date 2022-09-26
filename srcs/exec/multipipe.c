@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:19:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 17:01:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 23:28:14 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	child_process(t_data *data, int i)
 	}
 	else if (!is_builtin(data, i))
 		err_child_exit(data, MODE_CHILD, 127, data->pars[i].cmd[0]);
+	if (is_builtin(data, i) == 7)
+		close_fd(data->fd.fd, data);
 	exec_builtin(data, i);
 }
 

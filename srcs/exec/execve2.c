@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 00:25:59 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 01:28:15 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ int	ft_exec(t_data *data, int i)
 	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
+		if (data->pars[0].cmd && data->num_cmds == 1
+			&& !data->pars[0].is_redir)
+			change_env(data, "_",
+				data->pars[0].cmd[ft_matrix_size(data->pars[0].cmd) - 1]);
 		if (data->num_cmds == 1 && !data->pars[0].is_redir
 			&& is_builtin(data, 0))
 			builtin_init(data);

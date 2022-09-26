@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:57:11 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 22:49:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 22:45:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ char	*find_env_elem(t_data *data, char *key)
 	int	i;
 
 	i = -1;
-	while (data->env[++i])
+	while (ft_strlen(key) > 1 && data->env[++i])
 		if (!ft_strncmp(key, data->env[i], ft_strlen(key) - 1))
+			return (data->env[i] + ft_strlen(key));
+	i = -1;
+	while (ft_strlen(key) == 1 && data->env[++i])
+		if (key[0] == data->env[i][0]
+			&& (ft_strlen(data->env[i]) == 1 || data->env[i][1] == '='))
 			return (data->env[i] + ft_strlen(key));
 	return (NULL);
 }

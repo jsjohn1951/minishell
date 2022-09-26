@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 22:54:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 21:17:11 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 23:39:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ void	set_err_status(t_data *data, int i)
 	data->err = i;
 }
 
+int	end_pipe_exists(t_data *data)
+{
+	if (data->cmd && data->cmd[ft_strlen(data->cmd) - 1] == '|')
+	{
+		data->err = 258;
+		return (ft_fd_putmultistr(3, 2, "SEA SHELL: ", "end '|'",
+				": unhandled exception\n"));
+	}
+	return (0);
+}
+
 int	check_cmds(t_data *data)
 {
 	int		i;
@@ -24,12 +35,8 @@ int	check_cmds(t_data *data)
 
 	i = -1;
 	pr = NULL;
-	if (data->cmd && data->cmd[ft_strlen(data->cmd) - 1] == '|')
-	{
-		data->err = 258;
-		return (ft_fd_putmultistr(3, 2, "SEA SHELL: ", "end '|'",
-				": unhandled exception\n"));
-	}
+	if (end_pipe_exists(data))
+		return (1);
 	while (++i < data->num_cmds)
 	{
 		pr = data->pars[i].pipe_redir;

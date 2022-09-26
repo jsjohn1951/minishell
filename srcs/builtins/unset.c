@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 17:14:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 01:22:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,17 @@ char	**unset_in_env(char *key, t_data *data)
 	len_key = ft_strlen(key);
 	temp = malloc(sizeof(char *) * (ft_matrix_size(data->env) + 1));
 	i = -1;
-	while (data->env[++i])
+	while (key && data->env[++i])
 	{
-		if (!(ft_strncmp(key, data->env[i], len_key - 1) == 0) && len_key > 1)
+		if (len_key > 1 && ft_strncmp(key, data->env[i], len_key - 1))
 			temp[j++] = ft_strdup(data->env[i]);
-		if (!(len_key <= 1 && key[0] == data->env[i][0]) && len_key == 1)
-			temp[j++] = ft_strdup(data->env[i]);
+		else if (len_key == 1)
+		{
+			if (key[0] != data->env[i][0])
+				temp[j++] = ft_strdup(data->env[i]);
+			else if (data->env[i][1] && data->env[i][1] != '=')
+				temp[j++] = ft_strdup(data->env[i]);
+		}
 	}
 	free_env(data->env);
 	temp[j] = NULL;
@@ -88,30 +93,28 @@ char	**unset_in_env(char *key, t_data *data)
 
 char	**ft_unset(t_data *data, int num_cmd)
 {
-	char	*key;
-	char	*value;
-	char	*line;
+	t_unset	unset;
 	int		i;
-	int		flag;
 
-	key = NULL;
-	value = NULL;
+	unset.key = NULL;
+	unset.value = NULL;
 	i = 0;
-	flag = 0;
-	line = data->pars[num_cmd].cmd[1];
+	unset.flag = 0;
+	unset.line = data->pars[num_cmd].cmd[1];
 	data->unset.flag = 0;
-	if (!line)
+	if (!unset.line)
 		return (data->env);
 	while (data->pars[num_cmd].cmd[++i])
 	{
-		ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
-		if (!ft_check_env(data->pars[num_cmd].cmd[i], data, key))
-			flag = 1;
-		if (!flag)
+		ft_parse_env(data->pars[num_cmd].cmd[i], &unset.key, &unset.value);
+		if (!ft_check_env(data->pars[num_cmd].cmd[i], data, unset.key))
+			unset.flag = 1;
+		if (!unset.flag)
 		{
-			if (ft_in_env(data, key) && !data->unset.flag)
-				data->env = unset_in_env(key, data);
+			if (ft_in_env(data, unset.key) && !data->unset.flag)
+				data->env = unset_in_env(unset.key, data);
 		}
 	}
+	unset.key = ft_free(unset.key);
 	return (data->env);
 }

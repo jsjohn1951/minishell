@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:06:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/21 22:47:06 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 22:21:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	is_key_elem(char c)
 	if (c >= 'A' && c <= 'Z')
 		return (1);
 	if (c >= '0' && c <= '9')
+		return (1);
+	if (c == '_')
 		return (1);
 	return (0);
 }

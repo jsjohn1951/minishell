@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:33:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 16:54:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 22:28:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	check_env_size(t_data *data)
 	}
 	if (!find_env_elem(data, "OLDPWD"))
 		data->env = ft_matrix_add_elem(data->env, "OLDPWD");
+	if (!find_env_elem(data, "_="))
+		data->env = ft_matrix_add_elem(data->env, "_=");
 }
 
 void	env(t_data *data)
