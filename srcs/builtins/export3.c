@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 18:20:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:47:39 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	export2(t_data *data, int i, int num_cmd, int flag)
 			ft_parse_env(data->pars[num_cmd].cmd[i], &key, &value);
 			if (!ft_is_in_env(data, key))
 				data->env = set_in_env(data, data->pars[num_cmd].cmd[i]);
-			else if (ft_is_in_env(data, key))
+			else if (value)
 			{
 				value = ft_strtrim_first_letter(value);
 				change_env(data, key, value);
