@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 16:57:17 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 00:25:59 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,34 @@ void	init_redir_found(t_data *data)
 	}
 }
 
+void	builtin_init(t_data *data)
+{
+	if (is_builtin(data, 0) == 7)
+		exit_(data, 0);
+	else if (is_builtin(data, 0) == 5)
+		ft_export(data, 0);
+	else
+		exec_builtin(data, 0);
+}
+
 int	ft_exec(t_data *data, int i)
 {
 	data->fd.initial = 0;
 	if (!(data->err && !data->a_err))
 	{
-		if (data->num_cmds == 1 && !data->pars[0].is_redir)
+		if (data->num_cmds == 1 && !data->pars[0].is_redir
+			&& is_builtin(data, 0))
+			builtin_init(data);
+		else
 		{
-			if (is_builtin(data, 0) == 7)
-				exit_(data, 0);
-			else if (is_builtin(data, 0) == 5)
-				ft_export(data, 0);
-			else if (is_builtin(data, 0) == 6)
-				ft_unset(data, 0);
+			if (data->pars[0].is_redir)
+			{
+				data->fd.initial = 1;
+				init_redir_found(data);
+				data->fd.initial = 0;
+			}
+			multi_pipe(data, i);
 		}
-		else if (data->pars[0].is_redir)
-		{
-			data->fd.initial = 1;
-			init_redir_found(data);
-			data->fd.initial = 0;
-		}
-		multi_pipe(data, i);
 	}
 	return (0);
 }

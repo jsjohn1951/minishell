@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 22:08:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 00:48:48 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <limits.h>
 
 typedef struct s_parsed
 {

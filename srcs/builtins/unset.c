@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 14:49:04 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/09/26 01:36:25 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,15 @@
 
 int	ft_in_env(t_data *data, char *key, char *line)
 {
-	int	i;
-	int	size;
-
-	i = -1;
-	size = ft_strlen(key);
-	while (data->env[++i])
+	if (ft_strlen(line) != ft_strlen(key))
 	{
-		if (ft_strlen(line) != ft_strlen(key))
-		{
-			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
-				line, "': not a valid identifier\n");
-			data->err = 1;
-			return (0);
-		}
-		else if (ft_strncmp(key, data->env[i], size - 1) && size > 1)
-		{
-			ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
-				line, "': not a valid identifier\n");
-			data->err = 1;
-			return (0);
-		}
-		else if (size <= 1 && data->env[i][0] == key[0])
-			return (1);
+		ft_fd_putmultistr(3, 2, "SEASHELL: unset: `",
+			line, "': not a valid identifier\n");
+		data->err = 1;
+		return (0);
 	}
+	if (find_env_elem(data, key))
+		return (1);
 	return (0);
 }
 

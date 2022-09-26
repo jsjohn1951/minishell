@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:33:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 15:22:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 01:14:06 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	rm_elem_matrix(t_data *data)
 	}
 }
 
+void	check_env_size(t_data *data)
+{
+	char	cwd[PATH_MAX];
+	char	*path;
+
+	if (!find_env_elem(data, "PWD") && getcwd(cwd, sizeof(cwd)))
+	{
+		path = ft_strjoin("PWD=", cwd);
+		data->env = ft_matrix_add_elem(data->env, path);
+		path = ft_free (path);
+	}
+}
+
 void	env(t_data *data)
 {
 	int		i;
@@ -81,4 +94,5 @@ void	env(t_data *data)
 	}
 	if (!rtn)
 		data->env = ft_matrix_add_elem(data->env, "SHLVL=1");
+	check_env_size(data);
 }

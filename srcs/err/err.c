@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 18:10:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 00:38:15 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,23 @@ int	before_pars_(char *s, t_data *data)
 	return (multi_pipe_(c));
 }
 
+int	null_check_(t_data *data, int i)
+{
+	if (data->pars[i].is_redir && !data->pars[i].cmd)
+		return (1);
+	if (i < data->num_cmds - 1
+		&& !data->pars[i].is_redir
+		&& !data->pars[i + 1].is_redir
+		&& !data->pars[i].cmd)
+		return (1);
+	return (0);
+}
+
 int	pars_check_(t_data *data)
 {
+	int	i;
+
+	i = -1;
 	if (before_pars_(data->cmd, data))
 		return (258);
 	if (data->pars[0].pipe_redir
@@ -63,6 +78,16 @@ int	pars_check_(t_data *data)
 			"SEA SHELL: syntax error near unexpected token `",
 			data->pars[0].pipe_redir, "'\n");
 		return (258);
+	}
+	while (++i < data->num_cmds)
+	{
+		if (null_check_(data, i))
+		{
+			ft_fd_putmultistr(3, 2,
+				"SEA SHELL: syntax error near unexpected token `",
+				data->pars[i].pipe_redir, "'\n");
+			return (258);
+		}
 	}
 	return (0);
 }
