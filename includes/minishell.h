@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 10:54:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <limits.h>
+
+typedef struct s_unset
+{
+	int	flag;
+	int	j;
+}	t_unset;
 
 typedef struct s_parsed
 {
@@ -110,6 +116,7 @@ typedef struct s_data
 	t_flags		flags;
 	t_fd		fd;
 	t_expand	*exp;
+	t_unset		unset;
 }	t_data;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 12:58:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/26 17:05:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int	error_path(char *str, t_data *data)
 int	error_path2(char *path, t_data *data)
 {
 	(void) path;
-	// perror(path);
-	// free(path);
 	data->err = 1;
 	return (2);
 }
