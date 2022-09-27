@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 14:27:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:07:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,16 @@ void	ft_print_env(char **env_sorted)
 int	ft_check_arg(char *arg, t_data *data)
 {
 	int	i;
-	int	j;
 
-	j = 0;
 	i = 0;
-	while (arg[i])
+	if (!first_index(data, arg))
+		return (0);
+	while (arg && arg[i] && arg[i] != '=')
 	{
-		if (arg[i] == '=')
-			j = 1;
-		if ((arg[i] && (arg[i] >= '0' && arg[i] <= '9') && !j) \
-		|| (arg[0] && arg[0] == '$' && !arg[1]) \
-		|| arg[0] == '=' || arg[0] == '-' || arg[0] == '+')
+		if (!(arg[i] >= '0' && arg[i] <= '9')
+			&& !(arg[i] >= 65 && arg[i] <= 90)
+			&& !(arg[i] >= 97 && arg[i] <= 122)
+			&& arg[i] != '_')
 		{
 			ft_fd_putmultistr(3, 2, "SEASHELL: export: `", arg,
 				"': not a valid identifier\n");
