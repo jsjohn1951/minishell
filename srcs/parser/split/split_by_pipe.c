@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 17:24:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:07:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,17 @@ void	split_pipe(t_data *data, char *cmd, int i, int j)
 
 	while (cmd[++i])
 	{
-		data->pars[i].pipe_redir = NULL;
 		start = i;
 		if (is_pipe_redir(cmd[i], &data->flags))
 		{
+			data->pars[j].pipe_redir = NULL;
 			while (is_pipe_redir(cmd[i], &data->flags) && cmd[i])
 				i = set_flag(data, cmd[i], i);
 			data->pars[j].pipe_redir = ft_substr(cmd, start, i - start);
 		}
 		else
 		{
+			data->pars[j].cmd = NULL;
 			while (!is_pipe_redir(cmd[i], &data->flags) && cmd[i])
 				i = set_flag(data, cmd[i], i);
 			sub = ft_substr(cmd, start, i - start);

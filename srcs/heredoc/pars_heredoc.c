@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 00:31:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:11:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	here_entries(t_data *data, int i)
 	char	*line;
 
 	line = NULL;
-	if (!data->pars[i].cmd && !data->pars[i].cmd[0])
-		return ;
 	data->strip = quote_strip_(data->pars[i].cmd[0]);
 	line = readline("Heredoc -> ");
 	if (ft_strlen(line)
@@ -46,7 +44,8 @@ void	here_pars(t_data *data)
 	i = -1;
 	while (++i < data->num_cmds)
 	{
-		if (ft_redir_type(data, i) == MODE_HEREDOC)
+		if (ft_redir_type(data, i) == MODE_HEREDOC
+			&& data->pars[i].cmd)
 			here_entries(data, i);
 	}
 }
