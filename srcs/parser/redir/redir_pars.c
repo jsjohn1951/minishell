@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 00:09:14 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 21:51:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 00:15:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	mv_struct(t_data *data)
 		data->pars[i].cmd_name = ft_strdup(data->pars[i - 1].cmd_name);
 		data->pars[i].cmd = ft_matrix_dup(data->pars[i - 1].cmd);
 		data->pars[i].pipe_redir = ft_strdup (data->pars[i - 1].pipe_redir);
-
 		data->pars[i - 1].cmd_name = ft_free (data->pars[i - 1].cmd_name);
 		data->pars[i - 1].cmd = ft_free_matrix(data->pars[i - 1].cmd);
 		data->pars[i - 1].pipe_redir = ft_free (data->pars[i - 1].pipe_redir);
@@ -52,11 +51,12 @@ void	check_redirs(t_data *data)
 		starting_redir(data);
 	while (++i < data->num_cmds)
 	{
-		if (i < data->num_cmds - 1 && data->pars[i + 1].is_redir && !data->pars[i].is_redir)
+		if (i < data->num_cmds - 1
+			&& data->pars[i + 1].is_redir && !data->pars[i].is_redir)
 		{
-			sav = i;
+			sav = i - 1;
 			j = 0;
-			while (sav + 1 < data->num_cmds && data->pars[sav + 1].is_redir)
+			while (++sav + 1 < data->num_cmds && data->pars[sav + 1].is_redir)
 			{
 				while (data->pars[sav + 1].cmd
 					&& ft_matrix_size(data->pars[sav + 1].cmd) > 1
@@ -64,7 +64,6 @@ void	check_redirs(t_data *data)
 					data->pars[i].cmd
 						= ft_matrix_add_elem(data->pars[i].cmd,
 							data->pars[sav + 1].cmd[j]);
-				sav++;
 			}
 		}
 	}

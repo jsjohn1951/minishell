@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 08:45:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/12 12:41:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 23:44:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	print_cmd(t_data *data, int pars_i)
 	while (data->pars[pars_i].cmd[++i])
 		printf("argument < %s%d%s >:\t| %s%s%s |\n",
 			KGRN, i, KNRM, KMAG, data->pars[pars_i].cmd[i], KNRM);
+	if (data->pars[pars_i].heredoc)
+		ft_print_matrix(data->pars[pars_i].heredoc);
 	printf("\n");
 }

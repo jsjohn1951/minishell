@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 23:56:27 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 14:15:38 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 23:40:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	close_heredoc(int pipe_fd[2])
 	dup2(pipe_fd[0], STDIN_FILENO);
 	close(pipe_fd[1]);
 	close(pipe_fd[0]);
-	close (0);
 	return ;
 }
 
@@ -38,9 +37,9 @@ int	ft_heredoc(t_data *data, int i)
 	while (i < data->num_cmds - 1 && ft_redir_type(data, i + 1)
 		&& ft_redir_type(data, i + 1) == MODE_HEREDOC)
 		i++;
-	while (data->pars[i].cmd && data->pars[i].cmd[++ind])
+	while (data->pars[i].heredoc && data->pars[i].heredoc[++ind])
 	{
-		line = data->pars[i].cmd[ind];
+		line = data->pars[i].heredoc[ind];
 		print_herdoc(fd, line);
 	}
 	close_heredoc(fd);

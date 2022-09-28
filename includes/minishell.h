@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 18:22:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 00:15:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ typedef struct s_unset
 
 typedef struct s_parsed
 {
+	int		is_heredoc;
 	int		is_redir;
 	char	*cmd_name;
 	char	**cmd;
+	char	**heredoc;
 	char	*pipe_redir;
 }	t_parsed;
 
@@ -180,13 +182,13 @@ char	*find_pwd(t_data *data);
 void	strip_all_quotes(t_data *data);
 /* file: terminate */
 void	ft_free_fds(t_data *data);
+void	free_heredoc(t_data *data);
 
 /*
 *	redir
 *		redir_pars
 */
 void	check_redirs(t_data *data);
-
 
 /*	err */
 /* file: err */

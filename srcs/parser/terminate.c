@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 00:21:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 15:24:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 23:58:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,21 @@ void	free_parsed_data(t_data *data)
 	}
 }
 
+void	free_heredoc(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->num_cmds)
+		if (data->pars[i].is_heredoc)
+			data->pars[i].heredoc
+				= ft_free_matrix(data->pars[i].heredoc);
+}
+
 void	free_data(t_data *data)
 {
 	ft_free_matrix(data->env);
 	ft_free_matrix(data->path);
 	free_parsed_data(data);
+	free_heredoc(data);
 }
