@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 00:13:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 18:22:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ typedef struct s_unset
 
 typedef struct s_parsed
 {
-	int		num;
 	int		is_redir;
-	int		fd;
-	int		perm;
 	char	*cmd_name;
 	char	**cmd;
 	char	*pipe_redir;

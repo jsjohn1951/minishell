@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:21:06 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 12:25:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 18:17:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ char	**ft_matrix_add_elem(char **matrix, char *elem)
 	if (matrix)
 		size = ft_matrix_size(matrix);
 	else
-	{
-		printf("-> size = 0\n");
 		size = 0;
-	}
 	new = (char **)malloc(sizeof(char *) * (size + 2));
 	if (!new)
 		return (matrix);
