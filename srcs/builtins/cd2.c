@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 17:05:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 12:35:17 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	error_path(char *str, t_data *data)
 
 int	error_path2(char *path, t_data *data)
 {
-	(void) path;
+	ft_fd_putmultistr(3, 2, "SEA SHELL: ",
+		path, ": No such file or directory\n");
 	data->err = 1;
 	return (2);
 }
