@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 16:05:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 00:13:34 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,13 @@ char	*find_pwd(t_data *data);
 void	strip_all_quotes(t_data *data);
 /* file: terminate */
 void	ft_free_fds(t_data *data);
+
+/*
+*	redir
+*		redir_pars
+*/
+void	check_redirs(t_data *data);
+
 
 /*	err */
 /* file: err */

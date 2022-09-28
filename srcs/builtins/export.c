@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 01:55:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 00:23:09 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,10 @@ int	change_env(t_data *data, char *path, char *new_path)
 	ret_ptr = get_path2(data, path, &i);
 	tmp = ft_substr(data->env[i], 0, ft_strlen(path) + 1);
 	data->env[i] = ft_free(data->env[i]);
-	if (tmp[ft_strlen(tmp) - 1] != '=')
+	if (ft_strlen(tmp) && tmp[ft_strlen(tmp) - 1] != '=')
 		tmp = ft_strjoin_mod(tmp, "=", 1);
-	data->env[i] = ft_strjoin(tmp, new_path);
+	data->env[i] = ft_strjoin_mod(tmp, new_path, ft_strlen(new_path));
 	free(ret_ptr);
-	free(tmp);
 	return (0);
 }
 

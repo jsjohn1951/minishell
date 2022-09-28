@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:33:38 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 22:28:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/28 00:31:10 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	rm_elem_matrix(t_data *data)
 			i++;
 		}
 		data->env[i] = ft_free (data->env[i]);
+		data->env = ft_matrix_add_elem(data->env, "OLDPWD");
 	}
 }
 
