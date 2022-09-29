@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 13:05:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 00:52:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,19 @@ void	split_pipe(t_data *data, char *cmd, int i, int j)
 	}
 }
 
-void	set_cmds(t_data *data, char *cmd)
+int	set_cmds(t_data *data, char *cmd)
 {
 	int			i;
 	int			j;
 
 	i = 0;
 	j = 0;
+	if (ft_strlen(data->cmd) > 4095)
+	{
+		data->err = 258;
+		ft_fd_putmultistr(1, 2, "SEA SHELL: Exceeded command limitations\n");
+		return (1);
+	}
 	flag_init(&data->flags);
 	data->pars[0].cmd = NULL;
 	data->pars[0].pipe_redir = NULL;
@@ -93,4 +99,5 @@ void	set_cmds(t_data *data, char *cmd)
 	while (cmd[i] && white_space(cmd[i]))
 		i++;
 	split_pipe(data, cmd, i - 1, j);
+	return (0);
 }

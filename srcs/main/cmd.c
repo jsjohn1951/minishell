@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 00:12:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 00:54:18 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 void	cmd_control(t_data *data)
 {
-	if (quote_check_(data))
+	if (quote_check_(data)
+		|| set_cmds(data, data->cmd))
 		return ;
-	set_cmds(data, data->cmd);
 	here_pars(data);
 	expand_all(data);
 	pipe_count(data);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 00:15:33 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 00:45:35 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	print_cmd(t_data *data, int pars_i);
 /*	file: customsplit */
 char	**split(char *cmd);
 /*	file: split_by_pipe */
-void	set_cmds(t_data *data, char *cmd);
+int		set_cmds(t_data *data, char *cmd);
 int		is_pipe_redir(char c, t_flags *flags);
 /*	file: split_tools */
 void	isword(t_flags *flags);
