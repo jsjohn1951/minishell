@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/22 15:52:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 12:11:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_cd(t_data *data)
 	char	*path_cd;
 	char	buffer[4096];
 
-	path_cd = data->pars[0].cmd[1];
+	path_cd = ft_strdup (data->pars[0].cmd[1]);
 	if (!check_cd_arg(data))
 		return (1);
 	if (path_cd == NULL)
@@ -78,7 +78,7 @@ int	ft_cd(t_data *data)
 		if (chdir(path_cd) == -1)
 			return (error_path2(path_cd, data));
 		change_env(data, "PWD", getcwd(buffer, 4096));
-		return (0);
 	}
+	path_cd = ft_free(path_cd);
 	return (0);
 }

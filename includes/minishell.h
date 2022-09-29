@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 00:45:35 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 11:54:15 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void	is_quoted_message(t_flags *flags, char *cmd, int i);
 void	cancel_flags(t_flags *flags, char *cmd, int i);
 /*	file: utils */
 int		white_space(char c);
+void	initializer(t_data *data);
 
 /*	file: quote_strip */
 char	*quote_strip_(char *s);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 00:52:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/29 11:54:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,12 @@ int	set_cmds(t_data *data, char *cmd)
 	}
 	flag_init(&data->flags);
 	data->pars[0].cmd = NULL;
+	data->pars[0].cmd_name = NULL;
+	data->pars[0].is_heredoc = 0;
+	data->pars[0].is_redir = 0;
 	data->pars[0].pipe_redir = NULL;
 	data->num_cmds = num_of_cmds(data, cmd);
+	initializer(data);
 	data->num_pipes = 0;
 	while (cmd[i] && white_space(cmd[i]))
 		i++;
