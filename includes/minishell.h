@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 11:54:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:25:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ int		key_expansion(t_data *data, int n, t_expand *exp);
 char	*last_exit(t_data *data, char *s, int *i);
 char	*no_expansion(char *s, int *i);
 char	*other_(char *s, int *i);
+char	*wrapper(char *s);
 
 /*exec */
 /* file: execve2 */

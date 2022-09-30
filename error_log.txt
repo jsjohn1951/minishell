@@ -1,0 +1,24 @@
+Test for invalid characters plz
+
+cd - -> segfault
+
+signals exit code (ctrl + c);
+
+redirection permissions -> executes cmd if the file have 0 permissions
+			chmod 0 test.txt
+			echo hi > test.txt
+
+echo -n "args" redirection -> it doesn't redirect
+
+echo -n hi | cat -e -> pipe doesn't work
+
+cd into a directory -> delete the directory -> cd .. -> OLDPWD is gonna be empty
+
+ctrl + c inside minishell inside minishell displays double prompt -> it's up to you if u wanna handle it
+
+(ctrl + c && ctrl + d) are not woking inside heredoc
+
+ls |      -> should be an error (open pipe)
+
+./minishell | ./minishell | ./minishell -> it's working but the prompt isn't working (not showing the cmd I'm writing)
+

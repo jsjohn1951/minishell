@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:24:57 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 11:54:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:50:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_pipe_redir(char c, t_flags *flags)
 
 int	set_flag(t_data *data, char c, int i)
 {
-	if ((c == 34 || c == 39) & !data->flags.quote)
+	if ((c == 34 || c == 39) && !data->flags.quote)
 		data->flags.quote = c;
 	else if (data->flags.quote == c)
 		data->flags.quote = 0;
@@ -42,7 +42,7 @@ int	num_of_cmds(t_data *data, char *s)
 		set_flag(data, s[i], i);
 		if (is_pipe_redir(s[i], &data->flags))
 		{
-			if (!is_pipe_redir(s[i + 1], &data->flags) && s[i + 1] != 0)
+			if (s[i + 1] && !is_pipe_redir(s[i + 1], &data->flags))
 				num++;
 		}
 	}
@@ -81,10 +81,9 @@ void	split_pipe(t_data *data, char *cmd, int i, int j)
 int	set_cmds(t_data *data, char *cmd)
 {
 	int			i;
-	int			j;
+	char		*sub;
 
 	i = 0;
-	j = 0;
 	if (ft_strlen(data->cmd) > 4095)
 	{
 		data->err = 258;
@@ -92,16 +91,13 @@ int	set_cmds(t_data *data, char *cmd)
 		return (1);
 	}
 	flag_init(&data->flags);
-	data->pars[0].cmd = NULL;
-	data->pars[0].cmd_name = NULL;
-	data->pars[0].is_heredoc = 0;
-	data->pars[0].is_redir = 0;
-	data->pars[0].pipe_redir = NULL;
-	data->num_cmds = num_of_cmds(data, cmd);
-	initializer(data);
 	data->num_pipes = 0;
 	while (cmd[i] && white_space(cmd[i]))
 		i++;
-	split_pipe(data, cmd, i - 1, j);
+	sub = ft_substr(cmd, i, ft_strlen(cmd) - (i));
+	data->num_cmds = num_of_cmds(data, sub);
+	initializer(data);
+	split_pipe(data, sub, -1, 0);
+	sub = ft_free (sub);
 	return (0);
 }

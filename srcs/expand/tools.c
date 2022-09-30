@@ -6,11 +6,34 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:57:11 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 01:41:25 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 14:26:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	*wrapper(char *s)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	if (!s)
+		return (NULL);
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
+	res[0] = ':';
+	i = -1;
+	j = 1;
+	while (s && s[++i])
+	{
+		res[j] = s[i];
+		j++;
+	}
+	res[j] = ':';
+	res[j + 1] = '\0';
+	s = ft_free (s);
+	return (res);
+}
 
 char	*find_env_elem(t_data *data, char *key)
 {
