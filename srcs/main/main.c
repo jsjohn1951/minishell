@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:15:59 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/30 23:59:43 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 16:33:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data			data;
 
+	(void) argc;
+	(void) argv;
 	rl_catch_signals = 0;
 	data.argc = argc;
 	data.argv = argv;
 	data.env = ft_matrix_dup(envp);
 	data.path = path(data.env);
-	exec_single_non_term(argc, argv, &data);
 	env(&data);
 	data.err = 0;
 	data.a_err = 0;

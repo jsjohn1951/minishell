@@ -4,9 +4,4 @@ cd - -> segfault
 
 cd into a directory -> delete the directory -> cd .. -> OLDPWD is gonna be empty
 
-ctrl + c inside minishell inside minishell displays double prompt -> it's up to you if u wanna handle it
-
 (ctrl + c && ctrl + d) are not woking inside heredoc
-
-./minishell | ./minishell | ./minishell -> it's working but the prompt isn't working (not showing the cmd I'm writing)
-

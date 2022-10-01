@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 00:22:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:11:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	here_entries(t_data *data, int i)
 	while (!ft_strlen(line)
 		|| ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 	{
+		if (!line)
+			return ;
 		if (ft_strlen(line))
 			line = ft_free(line);
 		line = readline("Heredoc -> ");
