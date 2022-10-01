@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 00:54:18 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 23:59:36 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	cmd_(t_data *data)
 	not_cmd_(data, data->cmd);
 	if (ft_strlen(data->cmd))
 	{
-		signals_(1);
+		signals_(1, data);
 		if (!all_spaces(data->cmd))
 			cmd_control(data);
 		add_history(data->cmd);
@@ -111,6 +111,6 @@ int	cmd_(t_data *data)
 	}
 	else
 		free (data->cmd);
-	signals_(0);
+	signals_(0, data);
 	return (0);
 }

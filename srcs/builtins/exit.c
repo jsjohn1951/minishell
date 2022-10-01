@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:38:01 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 22:11:12 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:45:54 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	exit_(t_data *data, int i)
 	if (!data->pars[i].cmd)
 		return ;
 	if (data->num_cmds == 1)
-		printf("exit\n");
+		ft_putstr_fd("exit\n", 1);
 	if (data->pars[i].cmd[1] && data->pars[i].cmd[1][0])
 	{
 		s = data->pars[i].cmd[1];

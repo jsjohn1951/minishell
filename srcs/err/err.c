@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 15:23:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 23:58:07 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:51:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	multi_pipe_(int c)
 	if (c > 2)
 	{
 		if (c == 3)
-			ft_printf("SEA SHELL: syntax error near unexpected token `|'\n");
+			ft_putstr_fd("SEA SHELL: syntax error near unexpected token `|'\n", 2);
 		else
-			ft_printf("SEA SHELL: syntax error near unexpected token `||'\n");
+			ft_putstr_fd("SEA SHELL: syntax error near unexpected token `||'\n", 2);
 		return (258);
 	}
 	return (0);
@@ -42,8 +42,8 @@ int	before_pars_(char *s, t_data *data)
 	{
 		if (s[i] != '|')
 		{
-			ft_printf("SEA SHELL: syntax error ");
-			ft_printf("near unexpected token 'newline'\n");
+			ft_putstr_fd("SEA SHELL: syntax error ", 2);
+			ft_putstr_fd("near unexpected token 'newline'\n", 2);
 			return (258);
 		}
 		else

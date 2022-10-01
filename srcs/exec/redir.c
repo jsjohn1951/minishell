@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/28 21:31:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:51:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_mode_read(t_data *data, int i)
 	int		file_d;
 
 	file = data->pars[i].cmd_name;
-	if (access(file, R_OK))
+	if (access(file, R_OK) && access(file, F_OK))
 	{
 		ft_fd_putmultistr(3, 2, "SEA SHELL: ",
 			file, ": No such file or directory\n");
@@ -44,8 +44,15 @@ void	ft_mode_read(t_data *data, int i)
 	else
 	{
 		file_d = open(file, O_RDONLY);
-		if (!data->fd.initial)
+		if (!data->fd.initial && !access(file, R_OK))
 			dup2(file_d, STDIN_FILENO);
+		else if (access(file, R_OK))
+		{
+			ft_fd_putmultistr(3, 2, "SEASHELL: ", file, ": Permission denied\n");
+			data->fd.err = 1;
+			data->err = 1;
+			return ;
+		}
 		close (file_d);
 	}
 }
@@ -64,8 +71,15 @@ void	ft_mode_append(t_data *data, int i)
 		return ;
 	}
 	file_d = open(file, O_RDWR | O_CREAT | O_APPEND, 0666);
-	if (!data->fd.initial)
+	if (!data->fd.initial && !access(file, W_OK))
 		dup2(file_d, STDOUT_FILENO);
+	else if (access(file, W_OK))
+	{
+		ft_fd_putmultistr(3, 2, "SEASHELL: ", file, ": Permission denied\n");
+		data->fd.err = 1;
+		data->err = 1;
+		return ;
+	}
 	close (file_d);
 }
 
@@ -83,8 +97,15 @@ void	ft_mode_write(t_data *data, int i)
 		return ;
 	}
 	file_d = open(file, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (!data->fd.initial)
+	if (!data->fd.initial && !access(file, W_OK))
 		dup2(file_d, STDOUT_FILENO);
+	else if (access(file, W_OK))
+	{
+		ft_fd_putmultistr(3, 2, "SEASHELL: ", file, ": Permission denied\n");
+		data->fd.err = 1;
+		data->err = 1;
+		return ;
+	}
 	close (file_d);
 }
 

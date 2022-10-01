@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:21:19 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/23 15:21:10 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:53:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	is_command(char *join, t_data *data)
 	if (join && !access(join, X_OK))
 	{
 		if (data->argc == 2)
-			printf("%s: Cannot execute binary file\n", join);
+		{
+			ft_putstr_fd(join, 2);
+			ft_putstr_fd(": Cannot execute binary file\n", 2);
+		}
 		else
 		{
 			printf("%s: ", join);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 23:06:35 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/19 00:08:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 23:47:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,23 @@ int	ft_echo(char **matrix)
 
 	i = 1;
 	if (ft_matrix_size(matrix) == 1)
-		return (printf("\n"));
+	{
+		ft_putchar_fd('\n', 1);
+		return (1);
+	}
 	if (matrix[1])
 		while (matrix[i] && !echo_char_check(matrix[i]))
 			i++;
 	while (matrix[i])
 	{
 		temp = matrix[i];
-		printf("%s", temp);
+		ft_putstr_fd(temp, 1);
 		if (matrix[i + 1] && matrix[i + 1][0])
-			printf(" ");
+			ft_putchar_fd(' ', 1);
 		i++;
 	}
 	if (matrix[1])
 		if (echo_char_check(matrix[1]))
-			printf("\n");
+			ft_putchar_fd('\n', 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 11:47:33 by wismith           #+#    #+#             */
-/*   Updated: 2022/07/31 14:43:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:51:47 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	quote_check_(t_data *data)
 	}
 	if (flags.quote)
 	{
-		ft_printf("SEA SHELL: Parse err: found unclosed quotes\n");
+		ft_putstr_fd("SEA SHELL: Parse err: found unclosed quotes\n", 2);
 		data->err = 258;
 		data->a_err = 1;
 	}

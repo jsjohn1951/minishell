@@ -6,33 +6,36 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:18:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 13:28:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:58:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int	*g_err;
+
 void	handlr1_(int signum)
 {
 	if (signum == SIGINT)
 	{
-		printf("\n");
-		rl_on_new_line();
+		*g_err = 1;
+		ft_putchar_fd('\n', 1);
 		rl_replace_line("", 0);
-		rl_redisplay();
+		ft_fd_putmultistr(5, 1, KCYN, "SEA SHELL", KRED, " ➜ ", KNRM);
 	}
 }
 
 void	handlr2_(int signum)
 {
 	(void) signum;
-	printf("\n");
+	ft_putchar_fd('\n', 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 }
 
-void	signals_(int mod)
+void	signals_(int mod, t_data *data)
 {
+	g_err = &data->err;
 	if (mod == 0)
 	{
 		signal(SIGQUIT, &handlr1_);

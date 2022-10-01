@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:16:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/16 15:42:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 00:45:18 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	ft_env(t_data *data)
 	while (data->env[++i])
 	{
 		if (ft_strlen(data->env[i]) && t_env_(data->env[i]))
-			printf("%s\n", data->env[i]);
+		{
+			ft_putstr_fd(data->env[i], 1);
+			ft_putchar_fd('\n', 1);
+		}
 	}
 	return (0);
 }

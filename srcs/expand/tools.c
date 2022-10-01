@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 22:57:11 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/30 14:26:52 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 23:40:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*wrapper(char *s)
 	if (!s)
 		return (NULL);
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
-	res[0] = ':';
+	res[0] = 127;
 	i = -1;
 	j = 1;
 	while (s && s[++i])
@@ -29,7 +29,7 @@ char	*wrapper(char *s)
 		res[j] = s[i];
 		j++;
 	}
-	res[j] = ':';
+	res[j] = 127;
 	res[j + 1] = '\0';
 	s = ft_free (s);
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/30 14:25:36 by wismith          ###   ########.fr       */
+/*   Updated: 2022/09/30 23:54:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ typedef struct s_data
 */
 
 /*	main */
-/* file: main */
-void	signals_(int mod);
 /* file: cmd */
 int		cmd_(t_data *data);
 char	**path(char **data);
@@ -140,7 +138,7 @@ char	**path(char **data);
 void	do_print_(t_data *data, int i);
 void	join_cmds_(t_data *data);
 /* file: signalhandlr */
-void	signals_(int mod);
+void	signals_(int mod, t_data *data);
 /* file: argargv */
 void	exec_single_non_term(int argc, char **argv, t_data *data);
 /* file: rtn_prompt*/
