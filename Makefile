@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/10/01 22:02:05 by wismith          ###   ########.fr        #
+#    Updated: 2022/10/02 15:52:36 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,14 @@ SRCS = main/main\
 		exec/execve2\
 		builtins/pwd\
 		builtins/env\
-		builtins/cd\
-		builtins/export\
-		builtins/export2\
-		builtins/export3\
-		builtins/export4\
+		builtins/cd/cd\
+		builtins/cd/cd2\
+		builtins/cd/utils\
+		builtins/export/export\
+		builtins/export/export2\
+		builtins/export/export3\
+		builtins/export/export4\
 		builtins/unset\
-		builtins/cd2\
 		exec/redir\
 		exec/Heredoc\
 		heredoc/pars_heredoc\
@@ -89,6 +90,8 @@ $(OBJDIR)/%.o : srcs/%.c
 	@mkdir -p $(OBJDIR)/parser/split
 	@mkdir -p $(OBJDIR)/parser/redir
 	@mkdir -p $(OBJDIR)/builtins
+	@mkdir -p $(OBJDIR)/builtins/cd
+	@mkdir -p $(OBJDIR)/builtins/export
 	@mkdir -p $(OBJDIR)/err
 	@mkdir -p $(OBJDIR)/expand
 	@mkdir -p $(OBJDIR)/exec

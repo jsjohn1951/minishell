@@ -1,5 +1,1 @@
-> 1 echo > 2 hi
-cat 2
 
-echo > 1  hello > 2 hi
-cat 2

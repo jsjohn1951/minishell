@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 14:55:56 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 15:41:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,9 @@ int		check_cd_arg(t_data *data);
 char	*ft_strnstr2(const char *haystack, const char *needle, size_t len);
 int		error_path(char *str, t_data *data);
 int		error_path2(char *path, t_data *data);
+char	*get_path_cd(t_data *data, char *to_find, int *i);
+int		empty_path(char *path);
+int		ft_isspace(char c);
 
 /*redirecation*/
 int		ft_redir_init(t_data *data, int i, int mod);

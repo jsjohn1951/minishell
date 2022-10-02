@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 23:46:30 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/10/02 15:41:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	check_cd_arg(t_data *data)
 {
@@ -58,7 +58,6 @@ int	error_path(char *str, t_data *data)
 {
 	ft_fd_putmultistr(3, 2, "SEASHELL: cd: ", str, " not set\n");
 	data->err = 1;
-	// str = ft_free (str);
 	return (0);
 }
 

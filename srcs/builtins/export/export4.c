@@ -6,11 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:04:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 16:05:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 15:51:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	first_index(t_data *data, char *arg)
 {

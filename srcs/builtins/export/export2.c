@@ -6,11 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 16:07:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 15:51:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	ft_print_env(char **env_sorted)
 {
