@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:46:38 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 19:09:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int	ft_cd_minus(t_data *data, char *path, char buffer[4096])
 	{
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
 		ft_fd_putmultistr(2, 1, path + 1, "\n");
+		if (chdir(path) == -1)
+			return (error_path2(path, data));
+		change_env(data, "PWD", getcwd(buffer, 4096));
 		path = ft_free(path);
 	}
 	return (0);

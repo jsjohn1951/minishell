@@ -1,6 +1,2 @@
-command not found is printed when the binary is inexecutable
-<< x | >> y -> leaks
-x|x|x|x|X|x|x|X|X|x|X|X|x|X|x|x|X|x|x|x|x|x|x|x|x -> a shit load of leaks (sus set of leaks)
 export "" -> actually works and is unsettable
-spaces only -> conditional jump
 / -> leak

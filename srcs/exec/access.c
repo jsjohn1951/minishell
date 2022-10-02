@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:37:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/26 21:06:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:56:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ char	*accessibility_(t_data *data)
 	}
 	if (!access(data->strip, X_OK))
 		return (data->strip);
+	else if (!access(data->strip, F_OK))
+		ft_fd_putmultistr(3, 2, "SEA SHELL: ",
+			data->strip, ": Permission denied\n");
 	return (NULL);
 }
