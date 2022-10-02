@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 13:17:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 00:35:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,6 @@ void	multi_pipe(t_data *data, int i)
 	wait_(data, 0);
 }
 
-void	init_redir_found(t_data *data)
-{
-	int	pid;
-	int	status;
-
-	pid = fork();
-	status = 0;
-	if (!pid)
-	{
-		ft_redir_init(data, -1, 0);
-		free_data(data);
-		exit(data->err);
-	}
-	else
-		waitpid(pid, &status, 0);
-	if (WEXITSTATUS(status))
-		data->err = WEXITSTATUS(status);
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == 2)
-			data->err = 130;
-		else if (WTERMSIG(status) == 3)
-			data->err = 131;
-	}
-}
-
 void	builtin_init(t_data *data)
 {
 	if (is_builtin(data, 0) == 7)
@@ -107,12 +81,8 @@ int	ft_exec(t_data *data, int i)
 			builtin_init(data);
 		else
 		{
-			if (data->pars[0].is_redir)
-			{
-				data->fd.initial = 1;
-				init_redir_found(data);
-				data->fd.initial = 0;
-			}
+			if (data->num_cmds > 1)
+				change_env(data, "_", NULL);
 			multi_pipe(data, i);
 		}
 	}

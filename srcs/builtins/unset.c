@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 23:50:19 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 00:39:21 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	**unset_in_env(char *key, t_data *data)
 	j = 0;
 	len_key = ft_strlen(key);
 	temp = malloc(sizeof(char *) * (ft_matrix_size(data->env) + 1));
-	i = -1;
 	while (key && data->env[++i])
 	{
 		temp[j] = NULL;

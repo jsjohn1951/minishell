@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:20 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:51:53 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 00:30:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*get_path2(t_data *data, char *to_find, int *i)
 	size = ft_strlen(to_find);
 	while (size && data->env[++(*i)])
 	{
-		if (!ft_strncmp(data->env[*i], to_find, size - 1) && size > 1)
+		if (size > 1 && !ft_strncmp(data->env[*i], to_find, size - 1))
 			return (ft_strdup(data->env[*i]));
 		else if (size == 1 && data->env[*i][0] == to_find[0]
 			&& (ft_strlen(data->env[*i]) == 1 || data->env[*i][1] == '='))

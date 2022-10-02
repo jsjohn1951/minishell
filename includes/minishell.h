@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 23:38:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 00:25:05 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,7 @@ void	export2(t_data *data, int i, int num_cmd, int flag);
 int		first_index(t_data *data, char *arg);
 /*	file: unset */
 char	**ft_unset(t_data *data, int num_cmd);
+char	**unset_in_env(char *key, t_data *data);
 int		ft_is_in_env2(char *key, t_data *data);
 /*	file: cd */
 int		ft_cd(t_data *data);
