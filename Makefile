@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/10/02 15:52:36 by wismith          ###   ########.fr        #
+#    Updated: 2022/10/02 16:54:22 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,7 +163,6 @@ valgrind: re
 	@valgrind \
 	--leak-check=full \
 	--track-fds=yes \
-	--trace-children=yes \
 	--track-origins=yes \
 	--show-leak-kinds=all \
 	--suppressions=readline/readline_ig2.supp \
@@ -175,7 +174,6 @@ noenv: re
 	@valgrind \
 	--leak-check=full \
 	--track-fds=yes \
-	--trace-children=yes \
 	--track-origins=yes \
 	--show-leak-kinds=all \
 	--suppressions=readline/readline_ig2.supp \

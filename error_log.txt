@@ -1,1 +1,17 @@
-
+<< | << -> segfault
+'' | '' | << \ -> leaks
+>> < -> segfault
+> < -> segfault
+x > > y -> segfault
+cat | cat |    "" -> leak
+"" | "" | "" | "" -> leaks
+$|$|$ -> leaks
+command not found is printed when the binary is inexecutable
+<< x | >> y -> leaks
+x|x|x|x|X|x|x|X|X|x|X|X|x|X|x|x|X|x|x|x|x|x|x|x|x -> a shit load of leaks (sus set of leaks)
+export "" -> actually works and is unsettable
+<< << -> instant segfault
+spaces only -> conditional jump
+/ -> leak
+When PATH is set to PATH= and a random command is executed -> leak
+cat << y | x -> leak
