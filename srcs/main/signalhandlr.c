@@ -6,13 +6,11 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:18:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 00:58:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 23:29:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	*g_err;
 
 void	handlr1_(int signum)
 {
@@ -35,9 +33,9 @@ void	handlr2_(int signum)
 
 void	signals_(int mod, t_data *data)
 {
-	g_err = &data->err;
 	if (mod == 0)
 	{
+		g_err = &data->err;
 		signal(SIGQUIT, &handlr1_);
 		signal(SIGINT, &handlr1_);
 	}

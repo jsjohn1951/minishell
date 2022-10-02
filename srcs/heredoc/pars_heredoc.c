@@ -6,13 +6,13 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 15:11:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 23:35:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	here_entries(t_data *data, int i)
+void	here_entries(t_data *data, int i, int err)
 {
 	char	*line;
 
@@ -26,7 +26,7 @@ void	here_entries(t_data *data, int i)
 	while (!ft_strlen(line)
 		|| ft_strncmp(data->strip, line, ft_strlen(data->strip)))
 	{
-		if (!line)
+		if (!line && !err)
 			return ;
 		if (ft_strlen(line))
 			line = ft_free(line);
@@ -42,8 +42,11 @@ void	here_entries(t_data *data, int i)
 void	here_pars(t_data *data)
 {
 	int	i;
+	int	err;
 
 	i = -1;
+	err = 0;
+	g_err = &err;
 	while (++i < data->num_cmds)
 	{
 		data->pars[i].heredoc = NULL;
@@ -55,7 +58,7 @@ void	here_pars(t_data *data)
 			data->pars[i].heredoc = (char **)malloc(sizeof(char *) * 2);
 			data->pars[i].heredoc[0] = ft_strdup(data->pars[i].cmd[0]);
 			data->pars[i].heredoc[1] = 0;
-			here_entries(data, i);
+			here_entries(data, i, err);
 		}
 	}
 }

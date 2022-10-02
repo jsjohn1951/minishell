@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strip_all_quotes.c                                 :+:      :+:    :+:   */
+/*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 14:49:50 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 22:15:57 by wismith          ###   ########.fr       */
+/*   Created: 2022/10/01 22:02:10 by wismith           #+#    #+#             */
+/*   Updated: 2022/10/01 22:12:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	strip_cmds(t_parsed *pars)
+char	*ft_insert_quote(char *s)
 {
+	char	*res;
 	int		i;
-	char	*tmp;
 
 	i = -1;
-	while (pars->cmd && pars->cmd[++i])
-	{
-		tmp = quote_strip_(pars->cmd[i]);
-		pars->cmd[i] = ft_free(pars->cmd[i]);
-		tmp = ft_insert_quote(tmp);
-		pars->cmd[i] = tmp;
-	}
+	res = ft_strdup(s);
+	while (s && res && res[++i])
+		if (res[i] == 11)
+			res[i] = 34;
+	s = ft_free (s);
+	return (res);
 }
 
-void	strip_all_quotes(t_data *data)
+char	*ft_replace_quote(char *s)
 {
-	int	i;
+	char	*res;
+	int		i;
 
+	res = ft_strdup(s);
 	i = -1;
-	while (++i < data->num_cmds)
-		if (data->pars[i].cmd)
-			strip_cmds(&data->pars[i]);
-	return ;
+	while (s && res && res[++i])
+		if (res[i] == 34)
+			res[i] = 11;
+	s = ft_free (s);
+	return (res);
 }

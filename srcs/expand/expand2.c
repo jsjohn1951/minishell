@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:37:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/30 14:26:27 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 22:14:35 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*expand(t_data *data, char *s, char *key, int *i)
 	int		j;
 	char	*tmp;
 	char	*tmp2;
+	char	*elem;
 	char	*res;
 
 	j = *i;
@@ -53,14 +54,17 @@ char	*expand(t_data *data, char *s, char *key, int *i)
 		j++;
 	tmp = ft_substr(s, 0, *i - 1);
 	if (find_env_elem(data, key))
-		res = ft_strjoin(tmp, find_env_elem(data, key));
+	{
+		elem = ft_replace_quote(wrapper(find_env_elem(data, key)));
+		res = ft_strjoin(tmp, elem);
+		elem = ft_free (elem);
+	}
 	else
 		res = ft_strdup(tmp);
 	*i = ft_strlen(res) - 1;
 	tmp2 = ft_substr(s, j, ft_strlen(s) - j);
 	res = ft_strjoin_mod(res, tmp2, ft_strlen(tmp2));
 	ft_freer(3, tmp, tmp2, s);
-	res = wrapper(res);
 	return (res);
 }
 

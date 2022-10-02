@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/29 12:11:16 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 23:02:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int	ft_cd(t_data *data)
 		return (ft_cd_minus(data, path_cd));
 	else
 	{
-		change_env(data, "OLDPWD", getcwd(buffer, 4096));
+		if (!getcwd(NULL, 0))
+			change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
+		else
+			change_env(data, "OLDPWD", getcwd(buffer, 4096));
 		if (chdir(path_cd) == -1)
 			return (error_path2(path_cd, data));
 		change_env(data, "PWD", getcwd(buffer, 4096));

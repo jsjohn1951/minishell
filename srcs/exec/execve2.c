@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 01:28:15 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 10:41:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ void	multi_pipe(t_data *data, int i)
 {
 	data->fd.pid = (int *)malloc(sizeof(int) * (data->num_cmds));
 	data->fd.fd = (int **)malloc (sizeof(int *) * (data->num_cmds));
+	if (!data->fd.pid || !data->fd.fd)
+		return ;
 	while (++i < data->num_cmds)
 	{
 		data->fd.fd[i] = (int *)malloc(sizeof(int) * 2);
+		if (!data->fd.fd[i])
+			return ;
 		pipe(data->fd.fd[i]);
 	}
 	spawn_process(data->fd.fd, data, data->fd.pid, -1);

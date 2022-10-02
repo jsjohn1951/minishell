@@ -1,7 +1,3 @@
-Test for invalid characters plz
-
 cd - -> segfault
-
-cd into a directory -> delete the directory -> cd .. -> OLDPWD is gonna be empty
 
 (ctrl + c && ctrl + d) are not woking inside heredoc

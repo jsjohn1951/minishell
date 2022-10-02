@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 16:34:48 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 10:46:29 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <limits.h>
+
+/* GLOBAL */
+
+int		*g_err;
+
+/* GLOBAL */
 
 typedef struct s_unset
 {
@@ -213,6 +219,9 @@ char	*last_exit(t_data *data, char *s, int *i);
 char	*no_expansion(char *s, int *i);
 char	*other_(char *s, int *i);
 char	*wrapper(char *s);
+/* file: tools2 */
+char	*ft_replace_quote(char *s);
+char	*ft_insert_quote(char *s);
 
 /*exec */
 /* file: execve2 */
