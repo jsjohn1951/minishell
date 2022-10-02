@@ -3,6 +3,3 @@ cat 2
 
 echo > 1  hello > 2 hi
 cat 2
-
-sdklfjsdf | echasfsd | wdfajsljdf  | pwd
-echo $?

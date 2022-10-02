@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:20:05 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 10:41:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 13:17:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	wait_(t_data *data, int status)
 			waitpid (data->fd.pid[i], &status, 0);
 			if (WEXITSTATUS(status))
 				data->err = WEXITSTATUS(status);
+			else
+				data->err = 0;
 			if (WIFSIGNALED(status))
 			{
 				if (WTERMSIG(status) == 2)
