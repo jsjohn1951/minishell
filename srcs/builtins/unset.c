@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:59:04 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 16:46:17 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 23:50:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	**unset_in_env(char *key, t_data *data)
 	i = -1;
 	while (key && data->env[++i])
 	{
+		temp[j] = NULL;
 		if (len_key > 1 && ft_strncmp(key, data->env[i], len_key - 1))
 			temp[j++] = ft_strdup(data->env[i]);
 		else if (len_key == 1)
@@ -88,8 +89,8 @@ char	**unset_in_env(char *key, t_data *data)
 				temp[j++] = ft_strdup(data->env[i]);
 		}
 	}
-	free_env(data->env);
-	temp[j] = NULL;
+	data->env = ft_free_matrix(data->env);
+	temp[j] = 0;
 	return (temp);
 }
 

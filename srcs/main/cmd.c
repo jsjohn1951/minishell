@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 18:05:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 23:38:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	cmd_control(t_data *data)
 {
-	if (quote_check_(data)
+	if (quote_check_(data) || end_pipe_exists(data)
 		|| set_cmds(data, data->cmd))
 		return ;
 	expand_all(data);
@@ -33,6 +33,8 @@ void	cmd_control(t_data *data)
 	signals_(1, data);
 	ft_exec(data, -1);
 	set_err_(data, 0);
+	free_heredoc(data);
+	free_parsed_data(data);
 }
 
 char	**path(char **data)
@@ -105,8 +107,6 @@ int	cmd_(t_data *data)
 		add_history(data->cmd);
 		ft_free_matrix(data->path);
 		data->path = path(data->env);
-		free_heredoc(data);
-		free_parsed_data(data);
 		data->cmd = ft_free (data->cmd);
 	}
 	else

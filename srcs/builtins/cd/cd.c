@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 19:09:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 00:00:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ int	mod_oldpwd(t_data *data, char *path_cd)
 {
 	char	buffer[4096];
 
+	if (!find_env_elem(data, "PWD"))
+		data->env = ft_matrix_add_elem(data->env, "PWD");
+	if (!find_env_elem(data, "OLDPWD"))
+			data->env = ft_matrix_add_elem(data->env, "OLDPWD");
 	if (!getcwd(buffer, 4096))
 		change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
 	else

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:41:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 23:38:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int		quote_check_(t_data *data);
 void	set_err_status(t_data *data, int i);
 void	err_child_exit(t_data *data, int mod, int status, char *file);
 int		check_cmds(t_data *data);
+int		end_pipe_exists(t_data *data);
 
 /*	expansions */
 /* file: expand */
