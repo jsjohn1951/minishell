@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 13:28:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:51:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 21:51:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ char	**ft_export(t_data *data, int num_cmd)
 	flag = 0;
 	if (!data->pars[num_cmd].cmd[1])
 		ft_print_export(data->env);
-	export2(data, i, num_cmd, flag);
+	else if (ft_strlen(data->pars[num_cmd].cmd[1]))
+		export2(data, i, num_cmd, flag);
+	else
+	{
+		ft_putstr_fd("SEA SHELL: export: `': not a valid identifier\n", 2);
+		data->err = 1;
+	}
 	return (data->env);
 }

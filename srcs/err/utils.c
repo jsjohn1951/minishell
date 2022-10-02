@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 22:54:34 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 19:00:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 21:44:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	err_child_exit(t_data *data, int mod, int status, char *file)
 			file, ": No such file or directory\n");
 	if (mod == MODE_CHILD && access(file, F_OK))
 		ft_fd_putmultistr(3, 2, "SEA SHELL: ", file, ": command not found\n");
-	else if (!access(file, F_OK))
+	else if (file && !access(file, F_OK))
 		status = 126;
 	free_data(data);
 	close_fd(data->fd.fd, data);
