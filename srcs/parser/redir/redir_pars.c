@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 00:09:14 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 13:53:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 17:53:59 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	check_redirs(t_data *data)
 	i = data->num_cmds;
 	while (i)
 	{
-		if ((i - 2) > -1 && data->pars[i - 1].is_redir
+		if ((i - 2) > -1 && data->pars[i - 1].cmd && data->pars[i - 1].is_redir
 			&& ft_matrix_size(data->pars[i - 1].cmd) > 1)
 		{
 			j = 0;

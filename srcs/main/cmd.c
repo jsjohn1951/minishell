@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 14:08:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:05:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**path(char **data)
 		return (NULL);
 	while (data[i] && ft_strncmp(data[i], "PATH=", 4))
 		i++;
-	if (data[i])
+	if (data[i] && ft_strlen(data[i]) > ft_strlen("PATH="))
 	{
 		scpy = (char *) data[i];
 		return (ft_split((char *) scpy + 5, ':'));
