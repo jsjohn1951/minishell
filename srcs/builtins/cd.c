@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 10:57:34 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/10/02 13:07:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,21 @@ int empty_path(char *path)
 }
 char	*get_path_cd(t_data *data, char *to_find, int *i)
 {
-	int		size;
 	char	*ret;
 	char	*path;
 
 	path = NULL;
-	size = ft_strlen(to_find);
 	while (data->env[++(*i)])
 	{
-		ret = ft_strnstr2(data->env[*i], to_find, size);
-		if (ret != 0)
+		ret = find_env_elem(data, to_find);
+		if (ret)
 		{
-			path = ft_strdup(ret + (size + 1));
+			path = ft_strdup(ret);
 			if (empty_path(path) == 0)
+			{
+				path = ft_free (path);
 				return(NULL);
+			}
 			return (path);
 		}
 	}
@@ -71,16 +72,19 @@ int	ft_cd_minus(t_data *data, char *path, char	buffer[4096])
 	int	i;
 
 	i = -1;
-	free(path);
+	path = ft_free(path);
 	path = get_path_cd(data, "OLDPWD", &i);
 	if (path == NULL)
+	{
+		path = ft_free(path);
 		return (error_path("OLDPWD", data));
+	}
 	else
 	{
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
-		printf("%s\n", path);
+		ft_fd_putmultistr(2, 1, path + 1, "\n");
+		path = ft_free(path);
 	}
-		// ft_cd(data);
 	return (0);
 }
 
@@ -101,11 +105,15 @@ int	ft_cd(t_data *data)
 	}
 	if ((ft_strncmp(path_cd, "-", 1) == 0) && data->flag_cd == 0)
 	{
-		ft_cd_minus(data, path_cd, buffer);
+		if (!ft_cd_minus(data, path_cd, buffer))
+			return (0);
 	}
 	else
 	{
-		change_env(data, "OLDPWD", getcwd(buffer, 4096));
+		if (!getcwd(buffer, 4096))
+			change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
+		else
+			change_env(data, "OLDPWD", getcwd(buffer, 4096));
 		if (chdir(path_cd) == -1)
 			return (error_path2(path_cd, data));
 		change_env(data, "PWD", getcwd(buffer, 4096));
