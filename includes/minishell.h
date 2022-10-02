@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 10:46:29 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 10:58:34 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_data
 	int			a_err;
 	int			status;
 	int			end_pipe;
+	int			flag_cd;
 	t_parsed	pars[150000];
 	t_flags		flags;
 	t_fd		fd;

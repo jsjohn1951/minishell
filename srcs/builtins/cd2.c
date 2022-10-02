@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/30 13:41:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/01 23:46:30 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	error_path(char *str, t_data *data)
 {
 	ft_fd_putmultistr(3, 2, "SEASHELL: cd: ", str, " not set\n");
 	data->err = 1;
-	str = ft_free (str);
+	// str = ft_free (str);
 	return (0);
 }
 
