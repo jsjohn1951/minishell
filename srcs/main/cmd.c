@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 23:35:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 14:08:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	cmd_control(t_data *data)
 	if (quote_check_(data)
 		|| set_cmds(data, data->cmd))
 		return ;
-	here_pars(data);
 	expand_all(data);
 	pipe_count(data);
 	data->status = data->err;
@@ -30,6 +29,7 @@ void	cmd_control(t_data *data)
 		return ;
 	strip_all_quotes(data);
 	check_redirs(data);
+	here_pars(data);
 	signals_(1, data);
 	ft_exec(data, -1);
 	set_err_(data, 0);

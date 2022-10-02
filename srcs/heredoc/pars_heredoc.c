@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 23:35:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 14:56:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	here_entries(t_data *data, int i, int err)
 	char	*line;
 
 	line = NULL;
+	signals_(2, data);
 	data->strip = quote_strip_(data->pars[i].cmd[0]);
 	line = readline("Heredoc -> ");
 	if (ft_strlen(line)
@@ -37,6 +38,7 @@ void	here_entries(t_data *data, int i, int err)
 				= ft_matrix_add_elem(data->pars[i].heredoc, line);
 	}
 	ft_freer(2, data->strip, line);
+	signals_(0, data);
 }
 
 void	here_pars(t_data *data)

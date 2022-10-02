@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:18:37 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 23:29:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 14:56:24 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	handlr2_(int signum)
 	rl_replace_line("", 0);
 }
 
+void	handlr3_(int signum)
+{
+	(void) signum;
+}
+
 void	signals_(int mod, t_data *data)
 {
 	if (mod == 0)
@@ -43,5 +48,10 @@ void	signals_(int mod, t_data *data)
 	{
 		signal(SIGQUIT, &handlr2_);
 		signal(SIGINT, &handlr2_);
+	}
+	if (mod == 2)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, &handlr3_);
 	}
 }

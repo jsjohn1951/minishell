@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 00:09:14 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 12:50:42 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/02 13:53:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ void	starting_redir(t_data *data)
 
 void	check_redirs(t_data *data)
 {
+	int	i;
+	int	j;
+
 	if (data->pars[0].is_redir)
 		starting_redir(data);
+	i = data->num_cmds;
+	while (i)
+	{
+		if ((i - 2) > -1 && data->pars[i - 1].is_redir
+			&& ft_matrix_size(data->pars[i - 1].cmd) > 1)
+		{
+			j = 0;
+			while (data->pars[i - 1].cmd && data->pars[i - 1].cmd[++j])
+				data->pars[i - 2].cmd
+					= ft_matrix_add_elem(data->pars[i - 2].cmd,
+						data->pars[i - 1].cmd[j]);
+		}
+		i--;
+	}
 }
