@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:08:39 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:41:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 18:38:27 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strnstr2(const char *haystack, const char *needle, size_t len)
 int	error_path(char *str, t_data *data)
 {
 	ft_fd_putmultistr(3, 2, "SEASHELL: cd: ", str, " not set\n");
+	str = ft_free(str);
 	data->err = 1;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/10/03 16:55:13 by wismith          ###   ########.fr        #
+#    Updated: 2022/10/03 18:41:17 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -164,6 +164,7 @@ valgrind: re
 	--leak-check=full \
 	--track-fds=yes \
 	--track-origins=yes \
+	--trace-children=yes \
 	--show-leak-kinds=all \
 	--suppressions=readline/readline_ig2.supp \
 	./minishell\
