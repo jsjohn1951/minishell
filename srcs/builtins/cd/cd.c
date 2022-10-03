@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 12:47:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:11:10 by mnyalhdrmy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ int	mod_oldpwd(t_data *data, char *path_cd)
 	if (!find_env_elem(data, "PWD"))
 		data->env = ft_matrix_add_elem(data->env, "PWD");
 	if (!find_env_elem(data, "OLDPWD"))
-			data->env = ft_matrix_add_elem(data->env, "OLDPWD");
+		data->env = ft_matrix_add_elem(data->env, "OLDPWD");
 	if (!getcwd(buffer, 4096))
+	{
 		change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
+		ft_fd_putmultistr(1, 2, "SEASHELL: cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");
+	}
 	else
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
 	if (chdir(path_cd) == -1)
