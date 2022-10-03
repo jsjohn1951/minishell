@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:39:32 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 15:40:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 11:43:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_path_cd(t_data *data, char *to_find, int *i)
 	while (data->env[++(*i)])
 	{
 		ret = find_env_elem(data, to_find);
-		if (ret)
+		if (ret && ft_strlen(ret))
 		{
 			path = ft_strdup(ret + 1);
 			if (empty_path(path) == 0)
