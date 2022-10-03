@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:25:17 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 14:39:55 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:46:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	split_sep(t_data *data, t_sep *sep, int n)
 {
 	while (sep->i < sep->size1)
 	{
-		sep->res[sep->i] = ft_strdup(sep->tmp[sep->i]);
+		if (sep->i)
+			sep->res[sep->i] = wrapper(sep->tmp[sep->i]);
+		else
+			sep->res[sep->i] = ft_strdup(sep->tmp[sep->i]);
 		sep->i++;
 	}
 	sep->j = 1;

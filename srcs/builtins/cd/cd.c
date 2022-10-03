@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnyalhdrmy <mnyalhdrmy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 13:11:10 by mnyalhdrmy       ###   ########.fr       */
+/*   Updated: 2022/10/03 17:23:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_cd_minus(t_data *data, char *path, char buffer[4096])
 	int	i;
 
 	i = -1;
-	// path = ft_free(path);
 	path = get_path_cd(data, "OLDPWD", &i);
 	if (path == NULL)
 	{
@@ -59,13 +58,16 @@ int	mod_oldpwd(t_data *data, char *path_cd)
 	if (!getcwd(buffer, 4096))
 	{
 		change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
-		ft_fd_putmultistr(1, 2, "SEASHELL: cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");
+		ft_fd_putmultistr(1, 2, "SEASHELL: cd: error retrieving directory\n");
+		data->err = 1;
+		return (1);
 	}
 	else
 		change_env(data, "OLDPWD", getcwd(buffer, 4096));
 	if (chdir(path_cd) == -1)
 		return (error_path2(path_cd, data));
 	change_env(data, "PWD", getcwd(buffer, 4096));
+	data->pwd = ft_strdup(buffer);
 	return (0);
 }
 
