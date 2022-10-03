@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:37:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/01 22:14:35 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 10:32:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ int	key_expansion(t_data *data, int n, t_expand *exp)
 	n++;
 	key = rtn_key(data->pars[exp->i].cmd[exp->j], &n);
 	if (key)
-		data->pars[exp->i].cmd[exp->j]
-			= expand(data, data->pars[exp->i].cmd[exp->j], key, &n);
+	{
+		if ((!exp->j && ft_redir_type(data, exp->i) != MODE_HEREDOC) || exp->j)
+			data->pars[exp->i].cmd[exp->j]
+				= expand(data, data->pars[exp->i].cmd[exp->j], key, &n);
+	}
 	else
 		data->pars[exp->i].cmd[exp->j]
 			= expand_other(data,
