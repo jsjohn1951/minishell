@@ -6,19 +6,34 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:19:55 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/25 23:23:48 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/04 00:18:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/* Need to add exit to builtins */
+int	check_echo(char *s)
+{
+	char	*s2;
+	int		i;
+	int		flag;
+
+	i = -1;
+	flag = 1;
+	s2 = ft_strdup(s);
+	while (s2[++i])
+		s2[i] = ft_tolower(s2[i]);
+	if (!ft_strncmp(s2, "echo", 4))
+		flag = 0;
+	s2 = ft_free (s2);
+	return (flag);
+}
 
 int	is_builtin(t_data *data, int i)
 {
 	if (!data->pars[i].cmd)
 		return (0);
-	if (ft_strncmp(*data->pars[i].cmd, "echo", 4) == 0)
+	if (!check_echo(*data->pars[i].cmd))
 		return (1);
 	if (ft_strncmp(*data->pars[i].cmd, "cd", 2) == 0)
 		return (2);
@@ -40,7 +55,7 @@ int	exec_builtin(t_data *data, int i)
 	int	result;
 
 	result = 0;
-	if (!ft_strncmp(data->pars[i].cmd[0], "echo", 4))
+	if (!check_echo(data->pars[i].cmd[0]))
 		ft_echo(data->pars[i].cmd);
 	else if (!ft_strncmp(data->pars[i].cmd[0], "pwd", 3))
 		result = ft_pwd(data);
