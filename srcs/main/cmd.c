@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:36:24 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 17:12:35 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 17:32:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	cmd_(t_data *data)
 
 	str = prompt_str(data);
 	data->num_cmds = 0;
+	data->pwd = find_pwd(data);
 	data->cmd = readline(str);
 	str = ft_free(str);
 	not_cmd_(data, data->cmd);
