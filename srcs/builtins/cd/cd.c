@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 18:24:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 23:22:43 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	mod_oldpwd(t_data *data, char *path_cd)
 		data->env = ft_matrix_add_elem(data->env, "OLDPWD");
 	if (!getcwd(buffer, 4096))
 	{
-		path_cd = ft_free(path_cd);
 		change_env(data, "OLDPWD", find_env_elem(data, "PWD") + 1);
 		ft_fd_putmultistr(2, 2,
 			"SEASHELL: cd: error retrieving directory.",
@@ -78,25 +77,23 @@ int	ft_cd(t_data *data)
 {
 	char	*path_cd;
 	char	buffer[4096];
+	int		rtn;
 
-	data->flag_cd = 0;
 	path_cd = ft_strdup (data->pars[0].cmd[1]);
+	rtn = 0;
 	if (!check_cd_arg(data))
-		return (1);
-	if (path_cd == NULL)
+		rtn = 1;
+	else if (path_cd == NULL)
 	{
 		path_cd = ft_get_home(data);
 		if (!path_cd)
-			return (error_path("HOME", data));
+			rtn = error_path("HOME", data);
 	}
-	if ((ft_strncmp(path_cd, "-", 1) == 0) && data->flag_cd == 0)
-	{
-		if (!ft_cd_minus(data, path_cd, buffer))
-			return (0);
-	}
-	else
-		if (mod_oldpwd(data, path_cd))
-			return (2);
+	else if (!ft_strncmp(path_cd, "-", 1)
+		&& !ft_cd_minus(data, path_cd, buffer))
+			rtn = 0;
+	else if (mod_oldpwd(data, path_cd))
+		rtn = 2;
 	path_cd = ft_free(path_cd);
-	return (0);
+	return (rtn);
 }
