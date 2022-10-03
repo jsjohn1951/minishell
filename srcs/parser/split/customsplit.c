@@ -6,11 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 09:08:31 by wismith           #+#    #+#             */
-/*   Updated: 2022/09/27 14:03:38 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:38:33 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+int	sep_is_quote_(char c)
+{
+	if (c == 34 || c == 39)
+		return (c);
+	return (0);
+}
 
 int	count_(char *cmd, t_flags flags)
 {
@@ -19,12 +26,12 @@ int	count_(char *cmd, t_flags flags)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
+		if (!sep_is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
 			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
-		else if (is_quote_(cmd[i]) && !flags.quote)
+		else if (sep_is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);
 			i++;
@@ -47,12 +54,12 @@ int	count_start_(char *cmd, t_flags flags, int word)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
+		if (!sep_is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
 			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
-		else if (is_quote_(cmd[i]) && !flags.quote)
+		else if (sep_is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);
 			if (flags.count == word)
@@ -74,12 +81,12 @@ int	count_end_(char *cmd, t_flags flags, int word)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
+		if (!sep_is_quote_(cmd[i]) && !flags.word && !white_space(cmd[i]))
 		{
 			if (i == 0 || white_space(cmd[i - 1]))
 				isword(&flags);
 		}
-		else if (is_quote_(cmd[i]) && !flags.quote)
+		else if (sep_is_quote_(cmd[i]) && !flags.quote)
 		{
 			is_quoted_message(&flags, cmd, i);
 			i++;
