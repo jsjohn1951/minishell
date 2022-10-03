@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:30:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/02 14:56:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 11:00:13 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	here_entries(t_data *data, int i, int err)
 
 	line = NULL;
 	signals_(2, data);
-	data->strip = quote_strip_(data->pars[i].cmd[0]);
+	data->strip = ft_strdup(data->pars[i].cmd[0]);
 	line = readline("Heredoc -> ");
 	if (ft_strlen(line)
 		&& ft_strncmp(data->strip, line, ft_strlen(data->strip)))

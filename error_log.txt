@@ -1,1 +1,3 @@
 echo leak check -> ✔️
+heredock leak check -> ✔️
+export leak check -> ✔️
