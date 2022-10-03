@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:43:44 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 00:00:30 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/03 12:47:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_cd_minus(t_data *data, char *path, char buffer[4096])
 	int	i;
 
 	i = -1;
-	path = ft_free(path);
+	// path = ft_free(path);
 	path = get_path_cd(data, "OLDPWD", &i);
 	if (path == NULL)
 	{
