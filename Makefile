@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/06 23:23:17 by wismith           #+#    #+#              #
-#    Updated: 2022/10/03 18:41:17 by wismith          ###   ########.fr        #
+#    Updated: 2022/10/04 11:01:23 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS = main/main\
 		parser/strip_all_quotes\
 		builtins/echo\
 		builtins/exit\
+		builtins/ft_atoi_mod\
 		err/err\
 		err/utils\
 		err/quote_check\

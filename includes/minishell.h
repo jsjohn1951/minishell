@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 01:16:26 by wismith           #+#    #+#             */
-/*   Updated: 2022/10/03 00:25:05 by wismith          ###   ########.fr       */
+/*   Updated: 2022/10/04 11:00:42 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ void	exit_(t_data *data, int i);
 void	free_data(t_data *data);
 void	free_parsed_data(t_data *data);
 int		ft_exit_status(int i);
+int		ft_atoi_mod(const char *nptr);
 
 void	ft_process(t_data *data, int i, int *fd);
 int		ft_exec(t_data *data, int i);
