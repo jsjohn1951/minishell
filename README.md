@@ -154,8 +154,14 @@
 ---
 
 ## Conclusion
-	Building a shell is not an easy task, and the more features you want to implement, the longer it takes to complete. For any 42 student busy with this project, there are plenty of resources online, but the most important resource will always be your peers.
+	Building a shell is not an easy task, and the more features you want to implement,
+	the longer it takes to complete. For any 42 student busy with this project,
+	there are plenty of resources online, but the most important resource will always
+	be your peers.
 
-	And for those who are just curious about this project, you are free to clone and enjoy my personal mini - version of bash :) just type 'make' and execute './minishell' inside a unix / linux environment. For windows users, you might have to install a virtual machine / docker, or use WSL.
+	And for those who are just curious about this project, you are free to clone and
+	enjoy my personal mini - version of bash :) just type 'make' and execute './minishell'
+	inside a unix / linux environment. For windows users, you might have to install a
+	virtual machine / docker, or use WSL.
 
 	Thank you for the read and I hope this was informative.
