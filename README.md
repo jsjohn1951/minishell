@@ -82,7 +82,8 @@
 			E.g: echo hello world | cat | grep -o hello | cat -e
 				The output of echo is piped to cat, then cat's output is piped to the grep
 					command, and so forth until the end. The last command will then
-						display the output on the regular STDOUT or file descriptor 1.
+						display the output on the regular STDOUT
+							or file descriptor 1.
 
 			Pipes and redirections can be mixed as well inorder to redirected stdin or 
 			stdout within a pipeline.
@@ -96,7 +97,8 @@
 				evironmental variable. It will expand the variable to it's value in the 
 					envp.
 		
-			E.g: echo $PWD will output the current directory: /Users/username/Desktop/minishell
+			E.g: echo $PWD will output the current directory:
+				/Users/username/Desktop/minishell
 				similarly echo $USER will expand to the username in the envp.
 
 			Sometimes even mixed:
@@ -126,14 +128,19 @@
 						return (0);
 					}
 
-					Alternatively if you're lazy like me, just type env in the terminal ;)
+					Alternatively if you're lazy like me, just type env in the
+						terminal ;)
 
 11. One non-env expansion: '$?,' which expands to the exit status of the last child-process to
 	be executed.
 
 12. Crtl-c (SIGINT), crtl-d (eof), and crtl-\ (SIGQUIT).
 	
-		Type man signal into the terminal to findout more about SIGINT and SIGQUIT. Crtl-d is simply an EndOfFile input. The behaviour of these signals should be like in bash. They work normally on the child-processes, however, SIGINT simply displays a new prompt and SIGQUIT does nothing. It is worth noting that SIGINT changes the last exit status.
+		Type man signal into the terminal to findout more about SIGINT and SIGQUIT.
+		Crtl-d is simply an EndOfFile input. The behaviour of these signals should be like
+		in bash. They work normally on the child-processes, however, SIGINT simply displays 
+		a new prompt and SIGQUIT does nothing. It is worth noting that SIGINT changes the 
+		last exit status.
 
 13. It is required by the subject that we implement several built-ins (thank goodness it's not all of bash's builtins).
 
