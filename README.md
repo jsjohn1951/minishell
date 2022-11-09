@@ -3,17 +3,17 @@
 	Appreciate the madness of Minihell.
 
 	This project may seem simple at first glace, however, it took a good portion of a 4 month
-	period to perfect and complete, and indroduced my teamate and I to many new concepts that
-	we will continue to practice throughout our coding careers.
+	period to perfect and complete, and indroduced my teammate and I to many new concepts
+	that we will continue to practice throughout our coding careers.
 	
 	For example:
 		Multi-processing using the fork() function in C, and piping the output of one child
 		process to the next using pipe() and dup() / dup2(). 
 
-	One of the most prevelent and important subjects that this project taught me was how shell
-	script is parsed, and expansions are applied, seeing as in the 42 cursus we incorporate the
-	use of shells every day it is critical that we as students understand how shells are used as
-	primary means of communication between the user and the machine.
+	One of the most prevelent and important subjects that this project taught me was how
+	shell script is parsed, and expansions are applied, seeing as in the 42 cursus we
+	incorporate the use of shells every day it is critical that we as students understand
+	how shells are used as primary means of communication between the user and the machine.
 
 	It is important to note that not all shells are created equal, and neither are the
 	Minishells produced by 42 students. No shell will ever perfect.
@@ -49,13 +49,13 @@
 
 		> , >> : stdout redirections - creates files, and redirects outputs
 			to those files. '>' overwrites pre-existing content, whereas '>>'
-				appends new content to existing content.
+			appends new content to existing content.
 
 		< , << : stdin redirections - < redirects input from a file to a child
 			process. << (Heredoc) redirects input from the stdin on the terminal
-				to a child process, it may also display a prompt whilst waiting for
-					input. << (Heredoc) will stop once it receives a signal, or the
-						deliminator is entered. The syntax for Heredoc is always
+			to a child process, it may also display a prompt whilst waiting for
+			input. << (Heredoc) will stop once it receives a signal, or the
+			deliminator is entered. The syntax for Heredoc is always
 							'nameOfProcess << deliminator.'
 	[More info on heredoc](https://linuxize.com/post/bash-heredoc/)
 
@@ -65,11 +65,11 @@
 
 			E.g: cat < test1 < test2 < test3 - only test3 will be piped to cat,
 				similarly cat > test1 < test2 > test3 < test4 - test4 will be
-					piped into cat and the output will be piped to test3.
+				piped into cat and the output will be piped to test3.
 			
 			Mixed E.g: cat < test1 > test2 << bob >> test3 - Only the << (Heredoc) with bob 
 				as the deliminator will be taken as input, and the output will be appended 
-					into test3.
+				into test3.
 			
 			Hint: Even though only the last redirection of a particular redir. type is used
 				the shell will still ensure that each file exists, or in the case of stdout 
@@ -81,11 +81,10 @@
 			
 			E.g: echo hello world | cat | grep -o hello | cat -e
 				The output of echo is piped to cat, then cat's output is piped to the grep
-					command, and so forth until the end. The last command will then
-						display the output on the regular STDOUT
-							or file descriptor 1.
+				command, and so forth until the end. The last command will then
+				display the output on the regular STDOUT or file descriptor 1.
 
-			Pipes and redirections can be mixed as well inorder to redirected stdin or 
+			Pipes and redirections can be mixed as well inorder to redirect stdin or 
 			stdout within a pipeline.
 
 			E.g: cat < test.txt | cat -e > test2.txt | echo hi | cat -e
@@ -94,8 +93,8 @@
 	
 		If a '$' is found within a string of characters the shell takes the characters to
 			the right up until the first non apha / numerical character as the name of an 
-				evironmental variable. It will expand the variable to it's value in the 
-					envp.
+			evironmental variable. It will expand the variable to it's value in the 
+			envp.
 		
 			E.g: echo $PWD will output the current directory:
 				/Users/username/Desktop/minishell
@@ -104,7 +103,7 @@
 			Sometimes even mixed:
 
 				E.g: echo Hello$PWD: 
-    				- this will output Hello/Users/username/Desktop/minishell:
+				this will output Hello/Users/username/Desktop/minishell:
 
 			All of this was easily achieved using my ft_strncmp(), modified ft_strjoin(), 
 				and ft_substr() included in libft.
