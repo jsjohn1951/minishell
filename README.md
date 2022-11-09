@@ -2,14 +2,21 @@
 ## About
 	Appreciate the madness of Minihell.
 
-	This project may seem simple at first glace, however, it took a good portion of a 4 month period to perfect and complete, and indroduced my teamate and I to many new concepts that we will continue to practice throughout our coding careers.
+	This project may seem simple at first glace, however, it took a good portion of a 4 month
+	period to perfect and complete, and indroduced my teamate and I to many new concepts that
+	we will continue to practice throughout our coding careers.
 	
 	For example:
-		Multi-processing using the fork() function in C, and piping the output of one child process to the next using pipe() and dup() / dup2(). 
+		Multi-processing using the fork() function in C, and piping the output of one child
+		process to the next using pipe() and dup() / dup2(). 
 
-	One of the most prevelent and important subjects that this project taught me was how shell script is parsed, and expansions are applied, seeing as in the 42 cursus we incorporate the use of shells every day it is critical that we as students understand how shells are used as primary means of communication between the user and the machine.
+	One of the most prevelent and important subjects that this project taught me was how shell
+	script is parsed, and expansions are applied, seeing as in the 42 cursus we incorporate the
+	use of shells every day it is critical that we as students understand how shells are used as
+	primary means of communication between the user and the machine.
 
-	It is important to note that not all shells are created equal, and neither are the Minishells produced by 42 students. No shell will ever perfect.
+	It is important to note that not all shells are created equal, and neither are the
+	Minishells produced by 42 students. No shell will ever perfect.
 
 ---
 ## Project specifications
