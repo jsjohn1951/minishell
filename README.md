@@ -56,7 +56,7 @@
 			to a child process, it may also display a prompt whilst waiting for
 			input. << (Heredoc) will stop once it receives a signal, or the
 			deliminator is entered. The syntax for Heredoc is always
-							'nameOfProcess << deliminator.'
+							'Command << deliminator.'
 	[More info on heredoc](https://linuxize.com/post/bash-heredoc/)
 
 		When you encounter a sequence of the same redirection type
@@ -111,7 +111,7 @@
 			In order to see the list of environmental variables, take in envp as 3rd 
 				argument for your main() function. 
 
-					This little program will display the envp from the previous shell:
+					This little program will display the envp from the parent shell:
 
 					#include <stdio.h>
 
@@ -144,15 +144,30 @@
 13. It is required by the subject that we implement several built-ins (thank goodness it's not all of bash's builtins).
 
         1.  echo - with the option to enter -n as a flag.
-        2.  cd - with only absolute or relative path
-        3.  pwd
-        4.  export
-        5.  unset
-        6.  env - without any arguments or options
-        7.  and - exit without options
+        2.  cd - with only absolute or relative path.
+        3.  pwd - print working directory.
+        4.  export - exports new environmental variables.
+        5.  unset - unsets environmental variables.
+        6.  env - without any arguments or options.
+        7.  and - exit without options.
 
 ---
-
+## Reflection
+	Throughout the process of developing we encountered a number of problems
+	to overcome. 
+	For example: it took me 3 weeks to create the perfect parser through trial
+	and error, the expansions process we redesigned multiple times in order
+	to accomodate for quotes within the expansions, and the fact that neither
+	I nor my partner had any prior experience in multi-processing to benefit
+	from. Non-the-less we persevered and became better coders for it.
+	
+	One lesson that formed a big part of the project was knowing when you've
+	done enough. The many features you add to your minishell must work 
+	flewlessly, thus the more you steer away from the minimum the project
+	requires, the more effort you should put into testing every aspect.
+	As 42 students time is a rare and valuable commodity when you've got a
+	blackhole threatening to swallow you. 
+---
 ## Conclusion
 	Building a shell is not an easy task, and the more features you want to implement,
 	the longer it takes to complete. For any 42 student busy with this project,
